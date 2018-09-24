@@ -22,7 +22,7 @@ public class TestEnemy : Enemy
 	float accelerationTime;
 
 	[SerializeField]
-	float turnAccelerationFactor;
+	float stopTime;
 
 	[SerializeField]
 	float maxSpeed;
@@ -30,8 +30,6 @@ public class TestEnemy : Enemy
 	[SerializeField]
 	float wanderSpeed;
 
-	[SerializeField]
-	float changeDirChance = 0.001f;
 
 	[SerializeField]
 	State state;
@@ -127,7 +125,7 @@ public class TestEnemy : Enemy
 					break;
 				}
 
-				float retardation = maxSpeed / accelerationTime;
+				float retardation = maxSpeed / stopTime;
 				if (rbody.velocity.magnitude < retardation * Time.fixedDeltaTime)
 					rbody.velocity = Vector3.zero;
 				rbody.AddForce(-rbody.velocity.normalized * retardation, ForceMode.Acceleration);
