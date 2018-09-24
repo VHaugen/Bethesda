@@ -12,7 +12,9 @@ public class Movement : MonoBehaviour {
 	protected virtual void Start ()
     {
         rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true;
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        ;
+        
 	}
 
     void Update()

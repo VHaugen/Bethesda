@@ -2,43 +2,81 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : Movement {
+public class PlayerMovement : Movement
+{
 
     public float speed;
+    public float maxSpeed;
     public float dashSpeed;
-    private float dashTime;
-    public float startDashTime;
-    private int direction;
+    private bool startDashTimer;
+    public float dashTimer;
+    public float coolDownPeriod;
+    public float timeStamp;
 
-	// Use this for initialization
-	protected override void Start ()
+    // Use this for initialization
+    protected override void Start()
     {
         base.Start();
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    }
+
+    // Update is called once per frame
+    void Update()
     {
-        Vector3 movement = new Vector3(0, rb.velocity.y, 0);
-        if (Input.GetButtonDown("Horizontal"))
-        {
-            float rawAxisX;
-            rawAxisX = Input.GetAxisRaw("Horizontal");
-            rawAxisX = (float)System.Math.Round(rawAxisX);
-            movement = new Vector3(rawAxisX * speed, 0, rb.velocity.z);
-        }
-        if (Input.GetButtonDown("Vertical"))
-        {
-            float rawAxisY;
-            rawAxisY = Input.GetAxisRaw("Vertical");
-            rawAxisY = (float)System.Math.Round(rawAxisY);
-            movement = new Vector3(rb.velocity.x, 0, rawAxisY * speed);
-        }
-        else
+        Vector3 movement;
+        timeStamp = Time.time + coolDownPeriod;
+
+        float rawAxisX, rawAxisY;
+        rawAxisX = Input.GetAxis("Horizontal");
+        //rawAxisX = (float)System.Math.Round(rawAxisX);        
+        rawAxisY = Input.GetAxis("Vertical");
+        //rawAxisY = (float)System.Math.Round(rawAxisY);
+        movement = new Vector3(rawAxisX * speed, 0, rawAxisY * speed);
+
+        if (movement.sqrMagnitude == 0)
         {
             rb.velocity *= 0.1f;
         }
-        rb.velocity = movement;
-	}
-   
+
+        rb.AddForce(movement, ForceMode.Acceleration);
+
+        if (rb.velocity.sqrMagnitude > maxSpeed * maxSpeed)
+        {
+            rb.velocity = rb.velocity.normalized * maxSpeed;
+            transform.rotation = Quaternion.LookRotation(movement);
+
+        }
+        if (timeStamp >= Time.time)
+        {
+            if (Input.GetAxis("LeftBumpStick") != 0)
+            {
+                startDashTimer = true;
+                dashTimer = 0.1f;
+                dashForward();
+            }
+            
+        }
+        print(rb.velocity.normalized);
+
+
+        //}
+        //   void PlayerDirection()
+        //   {
+    }
+
+    void dashForward()
+    {
+        rb.velocity = transform.GetChild(0).forward * dashSpeed;
+
+        if (startDashTimer == true)
+        {
+            dashTimer -= Time.deltaTime;
+        }
+        if (dashTimer <= 0)
+        {
+            startDashTimer = false;
+            dashTimer = 0;
+            rb.velocity = new Vector3(0, 0, 0);
+        }
+    }
+
 }
