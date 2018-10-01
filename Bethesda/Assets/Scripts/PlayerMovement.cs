@@ -11,19 +11,23 @@ public class PlayerMovement : Movement
     private bool startDashTimer;
     public float dashTimer;
     public float coolDownPeriod;
-    public float timeStamp;
+    public float timeStamp = 3;
+    private bool iFrames;
+    TrailRenderer tRail;
 
     // Use this for initialization
     protected override void Start()
     {
         base.Start();
+        iFrames = false;
+        tRail = GetComponent<TrailRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
         Vector3 movement;
-        timeStamp = Time.time + coolDownPeriod;
+        
 
         float rawAxisX, rawAxisY;
         rawAxisX = Input.GetAxis("Horizontal");
@@ -45,17 +49,42 @@ public class PlayerMovement : Movement
             transform.rotation = Quaternion.LookRotation(movement);
 
         }
-        if (timeStamp >= Time.time)
+        if (coolDownPeriod >= 0)
         {
-            if (Input.GetAxis("LeftBumpStick") != 0)
-            {
-                startDashTimer = true;
-                dashTimer = 0.1f;
-                dashForward();
-            }
-            
+            coolDownPeriod -= Time.deltaTime;
         }
-        print(rb.velocity.normalized);
+        if (coolDownPeriod < 0)
+        {
+            coolDownPeriod = 0;
+        }
+        if (Input.GetAxis("LeftBumpStick") != 0 && coolDownPeriod == 0 || Input.GetKey(KeyCode.Q) && coolDownPeriod == 0)
+        { 
+            startDashTimer = true;
+            dashTimer = 0.5f;
+            iFrames = true;
+            coolDownPeriod = timeStamp;
+        }
+        if (startDashTimer == true)
+        {
+            rb.velocity = transform.forward * dashSpeed;
+            dashTimer -= Time.deltaTime;
+            if (dashTimer <= 0)
+            {
+                startDashTimer = false;
+                dashTimer = 0;
+                rb.velocity = new Vector3(0, 0, 0);
+                iFrames = false;
+            }
+        }
+        if (iFrames)
+        {
+            tRail.enabled = true;
+        }
+        else if (!iFrames)
+        {
+            tRail.enabled = false;
+        }
+        //print(rb.velocity.normalized);
 
 
         //}
@@ -63,19 +92,11 @@ public class PlayerMovement : Movement
         //   {
     }
 
-    void dashForward()
+    private void OnTriggerEnter(Collider other)
     {
-        rb.velocity = transform.GetChild(0).forward * dashSpeed;
-
-        if (startDashTimer == true)
+        if (other.gameObject.CompareTag("enemy") && iFrames == false)
         {
-            dashTimer -= Time.deltaTime;
-        }
-        if (dashTimer <= 0)
-        {
-            startDashTimer = false;
-            dashTimer = 0;
-            rb.velocity = new Vector3(0, 0, 0);
+            print("dead");
         }
     }
 
