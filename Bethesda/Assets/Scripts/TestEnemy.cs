@@ -119,8 +119,6 @@ public class TestEnemy : Enemy
 
 				WalkToPoint(idle_targetPosition, wanderSpeed);
 
-				print((idle_targetPosition - transform.position).magnitude);
-
 				if ((idle_targetPosition - transform.position).magnitude <= attackDistance)
 				{
 					SetState(State.Idle);
