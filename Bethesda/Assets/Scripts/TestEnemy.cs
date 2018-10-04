@@ -44,6 +44,7 @@ public class TestEnemy : Enemy
 	Rigidbody rbody;
 	Animator animator;
 	AttackHitBox attack;
+	Quaternion targetRotation;
 
 	Vector3 idle_targetPosition;
 	float timer = 0;
@@ -167,7 +168,7 @@ public class TestEnemy : Enemy
 
 		if (rbody.velocity != Vector3.zero)
 		{
-			rbody.MoveRotation(Quaternion.LookRotation(rbody.velocity, Vector3.up));
+			rbody.rotation = Quaternion.SlerpUnclamped(rbody.rotation, Quaternion.LookRotation(rbody.velocity, Vector3.up) * Quaternion.Euler(0, -90, 0), 0.1f);
 		}
 	}
 

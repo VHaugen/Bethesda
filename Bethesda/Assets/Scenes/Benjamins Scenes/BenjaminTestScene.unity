@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -161,7 +161,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ea91194d45fa33a4bac083e655cedf96, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -187,7 +187,7 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 52477566}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 0b8c0144d49f58a459ef9c5dede17900, type: 3}
 --- !u!4 &52477570
 Transform:
   m_ObjectHideFlags: 0
@@ -195,7 +195,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 52477566}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.9, y: -2.13, z: -2.91}
+  m_LocalPosition: {x: 0.9, y: -1.02, z: -2.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 499172089}
@@ -467,8 +467,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 499172088}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00000023842, y: -0.0000000074506, z: 0.498}
-  m_LocalScale: {x: 1.7999, y: 1.7999, z: 1.7999}
+  m_LocalPosition: {x: 1.297, y: 0.224, z: -0.041}
+  m_LocalScale: {x: 2.4205055, y: 2.4205055, z: 2.4205055}
   m_Children: []
   m_Father: {fileID: 52477570}
   m_RootOrder: 0
@@ -580,7 +580,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4397901895541616, guid: 78ff50e7e4e45164b8488c24646c1750, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 7.0883894
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4397901895541616, guid: 78ff50e7e4e45164b8488c24646c1750, type: 2}
       propertyPath: m_LocalRotation.x
@@ -605,18 +605,6 @@ Prefab:
     - target: {fileID: 1712318412317098, guid: 78ff50e7e4e45164b8488c24646c1750, type: 2}
       propertyPath: m_Name
       value: ActuallyTheRealPlayerNoForReal
-      objectReference: {fileID: 0}
-    - target: {fileID: 1712318412317098, guid: 78ff50e7e4e45164b8488c24646c1750, type: 2}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1712318412317098, guid: 78ff50e7e4e45164b8488c24646c1750, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1319014819923158, guid: 78ff50e7e4e45164b8488c24646c1750, type: 2}
-      propertyPath: m_Layer
-      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78ff50e7e4e45164b8488c24646c1750, type: 2}

@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33236612767733516}
   - component: {fileID: 23114897158605502}
   - component: {fileID: 135842395609884788}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,9 +43,10 @@ GameObject:
   - component: {fileID: 114556223927630438}
   - component: {fileID: 54829437046830970}
   - component: {fileID: 96399718503580172}
-  m_Layer: 0
+  - component: {fileID: 114787786082674004}
+  m_Layer: 9
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,7 +58,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1712318412317098}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.5225496, y: 2.3582742, z: 1.7098546}
+  m_LocalPosition: {x: 3.785955, y: -1.63, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4454258603152534}
@@ -71,7 +72,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1319014819923158}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.05, y: 0, z: 1.33}
+  m_LocalPosition: {x: -0.05, y: 0, z: 0.46}
   m_LocalScale: {x: 0.68, y: 0.68, z: 0.68}
   m_Children: []
   m_Father: {fileID: 4397901895541616}
@@ -92,7 +93,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0cf05885666df394993f48313b481e8c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -127,7 +128,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0cf05885666df394993f48313b481e8c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -183,7 +184,7 @@ TrailRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1712318412317098}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -284,7 +285,25 @@ MonoBehaviour:
   dashSpeed: 20
   dashTimer: 0
   coolDownPeriod: 0
-  timeStamp: 2
+  timeStamp: 1
+--- !u!114 &114787786082674004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1712318412317098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 222cf6ea23d65784e9dfa4e59f95bdc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preview: 1
+  numberOfImages: 3
+  timeBetweenImages: 0.1
+  fadeOutDuration: 0.5
+  startingOpacity: 0.728
+  tintColor: {r: 1, g: 1, b: 1, a: 0}
+  tintFactor: 0.187
 --- !u!135 &135842395609884788
 SphereCollider:
   m_ObjectHideFlags: 1

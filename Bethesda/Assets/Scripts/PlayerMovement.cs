@@ -14,6 +14,7 @@ public class PlayerMovement : Movement
     public float timeStamp = 3;
     private bool iFrames;
     TrailRenderer tRail;
+	AfterImages afterImages;
 
     // Use this for initialization
     protected override void Start()
@@ -21,6 +22,7 @@ public class PlayerMovement : Movement
         base.Start();
         iFrames = false;
         tRail = GetComponent<TrailRenderer>();
+		afterImages = GetComponent<AfterImages>();
     }
 
     // Update is called once per frame
@@ -63,6 +65,7 @@ public class PlayerMovement : Movement
             dashTimer = 0.5f;
             iFrames = true;
             coolDownPeriod = timeStamp;
+			afterImages.Show();
         }
         if (startDashTimer == true)
         {
@@ -76,14 +79,14 @@ public class PlayerMovement : Movement
                 iFrames = false;
             }
         }
-        if (iFrames)
-        {
-            tRail.enabled = true;
-        }
-        else if (!iFrames)
-        {
-            tRail.enabled = false;
-        }
+        //if (iFrames)
+        //{
+        //    tRail.enabled = true;
+        //}
+        //else if (!iFrames)
+        //{
+        //    tRail.enabled = false;
+        //}
         //print(rb.velocity.normalized);
 
 
