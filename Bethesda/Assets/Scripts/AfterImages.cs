@@ -109,7 +109,9 @@ public class AfterImages : MonoBehaviour
 		Material afterImageMaterial = CreateMaterial();
 		afterImageMaterial.SetFloat("_Opacity", startingOpacity);
 		afterImageMaterial.SetPass(0);
-		Matrix4x4 matrix = Matrix4x4.TRS(transform.position + Vector3.back * 2f, transform.rotation, transform.lossyScale);
+		Vector3 offset = -transform.forward * (meshFilter.sharedMesh.bounds.size.z + 0.1f);
+		offset.Scale(transform.lossyScale);
+		Matrix4x4 matrix = Matrix4x4.TRS(transform.position + offset, transform.rotation, transform.lossyScale);
 		Graphics.DrawMeshNow(meshFilter.sharedMesh, matrix);
 	}
 
