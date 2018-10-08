@@ -44,8 +44,9 @@ public class TestEnemy : Enemy
 	Rigidbody rbody;
 	Animator animator;
 	AttackHitBox attack;
-	Quaternion targetRotation;
+	SquashEffect squash;
 
+	Quaternion targetRotation;
 	Vector3 idle_targetPosition;
 	float timer = 0;
 
@@ -54,6 +55,7 @@ public class TestEnemy : Enemy
 	{
 		state = State.Idle;
 		rbody = GetComponent<Rigidbody>();
+		squash = GetComponent<SquashEffect>();
 		animator = GetComponent<Animator>();
 		var eventsInvoker = animator.GetBehaviour<AnimationEventsInvoker>();
 		eventsInvoker.stateEndEvent.AddListener(OnAnimationEnd);
@@ -108,6 +110,12 @@ public class TestEnemy : Enemy
 
 	void FixedUpdate()
 	{
+		if (Input.GetKeyDown(KeyCode.F))
+		{
+			squash.DoSquash();
+			state = State.Idle;
+		}
+
 		switch (state)
 		{
 			case State.Wander:
