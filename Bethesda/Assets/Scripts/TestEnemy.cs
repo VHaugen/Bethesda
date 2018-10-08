@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TestEnemy : Enemy
 {
@@ -30,13 +28,23 @@ public class TestEnemy : Enemy
 	[SerializeField]
 	float wanderSpeed;
 
+	[SerializeField]
+	float wanderAreaRadius;
 
 	[SerializeField]
 	State state;
 
+	[SerializeField]
+	float idleDurationMin;
+
+	[SerializeField]
+	float idleDurationMax;
+
 	Transform player;
 	Rigidbody rbody;
 	Animator animator;
+	AttackHitBox attack;
+	Quaternion targetRotation;
 
 	Vector3 idle_targetPosition;
 	float timer = 0;
@@ -49,6 +57,8 @@ public class TestEnemy : Enemy
 		animator = GetComponent<Animator>();
 		var eventsInvoker = animator.GetBehaviour<AnimationEventsInvoker>();
 		eventsInvoker.stateEndEvent.AddListener(OnAnimationEnd);
+
+		attack = GetComponentInChildren<AttackHitBox>();
 	}
 
 	void Start()
@@ -65,7 +75,8 @@ public class TestEnemy : Enemy
 
 	void RandomizeNewTargetPosition()
 	{
-		idle_targetPosition = new Vector3(Random.value, transform.position.y, Random.value) * 10f;
+		Vector2 xy = Random.insideUnitCircle * wanderAreaRadius;
+		idle_targetPosition = new Vector3(xy.x, transform.position.y, xy.y);
 	}
 
 	void WalkToPoint(Vector3 targetPosition, float maxSpeed)
@@ -108,8 +119,6 @@ public class TestEnemy : Enemy
 
 
 				WalkToPoint(idle_targetPosition, wanderSpeed);
-
-				print((idle_targetPosition - transform.position).magnitude);
 
 				if ((idle_targetPosition - transform.position).magnitude <= attackDistance)
 				{
@@ -154,10 +163,12 @@ public class TestEnemy : Enemy
 				{
 					SetState(State.Attack);
 				}
-
-
-
 				break;
+		}
+
+		if (rbody.velocity != Vector3.zero)
+		{
+			rbody.rotation = Quaternion.SlerpUnclamped(rbody.rotation, Quaternion.LookRotation(rbody.velocity, Vector3.up) * Quaternion.Euler(0, -90, 0), 0.1f);
 		}
 	}
 
@@ -168,7 +179,7 @@ public class TestEnemy : Enemy
 		switch (state)
 		{
 			case State.Idle:
-				timer = Random.Range(0.5f, 2f);
+				timer = Random.Range(idleDurationMin, idleDurationMax);
 				break;
 			case State.Wander:
 				RandomizeNewTargetPosition();
@@ -178,13 +189,17 @@ public class TestEnemy : Enemy
 			case State.Attack:
 				rbody.velocity = Vector3.zero;
 				animator.Play("EnemyAttack");
+				attack.Attack();
 				break;
 		}
 	}
 
 	private void OnDrawGizmos()
 	{
+		Gizmos.color = Color.white;
 		Gizmos.DrawWireSphere(transform.position, huntDistance);
+		Gizmos.color = Color.grey;
+		Gizmos.DrawWireSphere(Vector3.zero, wanderAreaRadius);
 		Gizmos.DrawSphere(idle_targetPosition, 0.1f);
 	}
 }

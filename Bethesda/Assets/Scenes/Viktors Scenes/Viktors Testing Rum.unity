@@ -141,11 +141,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   room: {fileID: 1807227609665122, guid: 9b69b1b2526338641bd8b19e24daab0a, type: 2}
+  startRoom: {fileID: 1227405900293598, guid: 3210ea21647b5fc41be53ae2a2a237e9, type: 2}
   sideRooms: []
   cornerRooms: []
   midRooms: []
-  hight: 4
-  width: 4
+  size: 7
   distanceBetweenRooms: 50
 --- !u!4 &288011256
 Transform:
@@ -293,7 +293,7 @@ Camera:
   m_GameObject: {fileID: 630348107}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 3
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
