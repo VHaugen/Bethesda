@@ -6,11 +6,9 @@ public class Set_Dungeon_Layout : MonoBehaviour
 {
 
     private GameObject[,] map;
+    private GameObject bossRoom;
     public GameObject room;
     public GameObject startRoom;
-    public GameObject[] sideRooms;
-    public GameObject[] cornerRooms;
-    public GameObject[] midRooms;
 
     public ushort size;
     private int dir;
@@ -20,7 +18,9 @@ public class Set_Dungeon_Layout : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        DrawGrid();
         BuildDungeon();
+
     }
 
     // Update is called once per frame
@@ -30,11 +30,12 @@ public class Set_Dungeon_Layout : MonoBehaviour
 
     void DrawGrid()
     {
+        map = new GameObject[size, size];
         for (int i = 0; i < size; i++)
         {
             for (int k = 0; k < size; k++)
             {
-                map[i, k] = Instantiate(room, new Vector3(k * distanceBetweenRooms, 0, i * distanceBetweenRooms), Quaternion.identity) as GameObject;
+                map[i, k] = Instantiate(startRoom, new Vector3(k * distanceBetweenRooms, -10, i * distanceBetweenRooms), Quaternion.identity) as GameObject;
             }
         }
     }
@@ -45,7 +46,7 @@ public class Set_Dungeon_Layout : MonoBehaviour
         map = new GameObject[size, size];
 
         int roomYouCameDownOn = Random.Range(0, size);
-        map[0,roomYouCameDownOn] = Instantiate(startRoom, new Vector3(roomYouCameDownOn * distanceBetweenRooms, 0, -1 * distanceBetweenRooms), Quaternion.identity) as GameObject;
+        map[0, roomYouCameDownOn] = Instantiate(startRoom, new Vector3(roomYouCameDownOn * distanceBetweenRooms, 0, -1 * distanceBetweenRooms), Quaternion.identity) as GameObject;
 
         for (int i = 0; i < size; i++)
         {
@@ -53,15 +54,36 @@ public class Set_Dungeon_Layout : MonoBehaviour
             int spaceToNextplace = roomOnNextFloor - roomYouCameDownOn;
             int miniSpace = spaceToNextplace;
 
-            if (spaceToNextplace < 0)
-                miniSpace = spaceToNextplace * -1;
-
-            for (int k = 0; k < miniSpace; k++)
+            if (spaceToNextplace > 0)
             {
-                map[i, k] = Instantiate(startRoom, new Vector3(k * distanceBetweenRooms, 0, i * distanceBetweenRooms), Quaternion.identity) as GameObject;
-                print(roomYouCameDownOn + spaceToNextplace);
+                
+
+                //going right
+                for (int k = 0; k < miniSpace + 1; k++)
+                {
+                    map[i, roomYouCameDownOn + k] = Instantiate(room, new Vector3((roomYouCameDownOn + k) * distanceBetweenRooms, 0, i * distanceBetweenRooms), Quaternion.identity) as GameObject;
+                    //print(" roomyoucamedownon + spacetonextplace" + roomYouCameDownOn + spaceToNextplace);
+                    print("right");
+                }
             }
+            else
+            {
+                miniSpace = spaceToNextplace * -1;
+                for (int k = 0; k < miniSpace + 1; k++)
+                {
+                    map[i, roomYouCameDownOn - k] = Instantiate(room, new Vector3((roomYouCameDownOn - k) * distanceBetweenRooms, 0, i * distanceBetweenRooms), Quaternion.identity) as GameObject;
+                    //print(" roomyoucamedownon + spacetonextplace" + roomYouCameDownOn + spaceToNextplace);
+                    print("left");
+
+                }
+            }
+            //going left
+
+            roomYouCameDownOn = roomOnNextFloor;
+            //break; ////////////////////// du breakar här
         }
+        bossRoom = Instantiate(startRoom, new Vector3(roomYouCameDownOn * distanceBetweenRooms, 15, (1 + size ) * distanceBetweenRooms), Quaternion.identity) as GameObject;
+
 
 
 
