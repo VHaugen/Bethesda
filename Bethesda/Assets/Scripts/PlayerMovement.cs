@@ -1,9 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : Movement
 {
+
+    public int startingHealth = 100;
+    public int currentHealth;
+    public Slider healthSlider;
+    public Image damageImage;
+    public float flashSpeed = 5f;
+    public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
+    private Color normalColor = new Color(0.9137255f, 0.6511509f, 0.1960784f, 1f);
+    public Color collideColor = new Color(1f, 1f, 1f, 0.1f);
+    public Renderer GameMesh;
 
     public float speed;
     public float maxSpeed;
@@ -12,9 +23,11 @@ public class PlayerMovement : Movement
     public float dashTimer;
     public float coolDownPeriod;
     public float timeStamp = 3;
-    private bool iFrames;
+
+    bool damaged;
+    public bool iFrames;
     TrailRenderer tRail;
-	AfterImages afterImages;
+    AfterImages afterImages;
 
     // Use this for initialization
     protected override void Start()
@@ -22,14 +35,16 @@ public class PlayerMovement : Movement
         base.Start();
         iFrames = false;
         tRail = GetComponent<TrailRenderer>();
-		afterImages = GetComponent<AfterImages>();
+        afterImages = GetComponent<AfterImages>();
+        GetComponent<MeshRenderer>();
+        currentHealth = startingHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
         Vector3 movement;
-        
+
 
         float rawAxisX, rawAxisY;
         rawAxisX = Input.GetAxis("Horizontal");
@@ -60,12 +75,12 @@ public class PlayerMovement : Movement
             coolDownPeriod = 0;
         }
         if (Input.GetAxis("LeftBumpStick") != 0 && coolDownPeriod == 0 || Input.GetKey(KeyCode.Q) && coolDownPeriod == 0)
-        { 
+        {
             startDashTimer = true;
             dashTimer = 0.5f;
             iFrames = true;
             coolDownPeriod = timeStamp;
-			afterImages.Show();
+            afterImages.Show();
         }
         if (startDashTimer == true)
         {
@@ -79,6 +94,15 @@ public class PlayerMovement : Movement
                 iFrames = false;
             }
         }
+        if (damaged)
+        {
+            damageImage.color = flashColour;
+        }
+        else
+        {
+            damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+        }
+        damaged = false;
         //if (iFrames)
         //{
         //    tRail.enabled = true;
@@ -94,13 +118,38 @@ public class PlayerMovement : Movement
         //   void PlayerDirection()
         //   {
     }
-
-    private void OnTriggerEnter(Collider other)
+    public void TakeDamage(int amount)
     {
-        if (other.gameObject.CompareTag("enemy") && iFrames == false)
+        damaged = true;
+        currentHealth -= amount;
+        healthSlider.value = currentHealth;
+
+        StartCoroutine(Flasher());
+                print("newColour");
+    }
+    IEnumerator Flasher()
+    {
+        var renderer = GameMesh;
+        if (renderer != null)
         {
-            print("dead");
+            for (int i = 0; i <= 5; i++)
+            {
+                renderer.material.color = collideColor;
+                yield return new WaitForSeconds(.1f);
+                renderer.material.color = normalColor;
+                yield return new WaitForSeconds(.1f);
+            }
         }
     }
+   
+
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.CompareTag("enemy") && iFrames == false)
+    //    {
+    //        print("dead");
+    //    }
+    //}
 
 }
