@@ -10,7 +10,7 @@
 	}
 	SubShader
 	{
-		Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent" }
+		Tags {"Queue"="Geometry" "IgnoreProjector"="True" "RenderType"="Transparent" }
 	
 		LOD 100
 
@@ -62,7 +62,6 @@
 			{
 				float4 vertex : POSITION;
 				float2 uv : TEXCOORD0;
-				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct v2f
@@ -70,7 +69,7 @@
 				float2 uv : TEXCOORD0;
 				UNITY_FOG_COORDS(1)
 				float4 vertex : SV_POSITION;
-				UNITY_VERTEX_INPUT_INSTANCE_ID
+
 			};
 
 			sampler2D _MainTex;
