@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering.PostProcessing;
 
 public class PlayerMovement : Movement
 {
@@ -24,6 +25,10 @@ public class PlayerMovement : Movement
     public float coolDownPeriod;
     public float timeStamp = 3;
 
+    public float vignette = 0.675f;
+    Vignette vignetteLayer = null;
+    public GameObject postProcessingObject;
+
     bool damaged;
     public bool iFrames;
     TrailRenderer tRail;
@@ -38,6 +43,7 @@ public class PlayerMovement : Movement
         afterImages = GetComponent<AfterImages>();
         GetComponent<MeshRenderer>();
         currentHealth = startingHealth;
+
     }
 
     // Update is called once per frame
@@ -96,13 +102,26 @@ public class PlayerMovement : Movement
         }
         if (damaged)
         {
+
             damageImage.color = flashColour;
+            if (currentHealth <= 50)
+            {
+                PostProcessVolume volume = postProcessingObject.GetComponent<PostProcessVolume>();
+                volume.profile.TryGetSettings(out vignetteLayer);
+                if (vignetteLayer != null)
+                {
+                    vignetteLayer.enabled.value = true;
+                    vignetteLayer.intensity.value = vignette;
+                }
+            }
+
         }
         else
         {
             damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
         }
         damaged = false;
+
         //if (iFrames)
         //{
         //    tRail.enabled = true;
@@ -120,12 +139,13 @@ public class PlayerMovement : Movement
     }
     public void TakeDamage(int amount)
     {
+
         damaged = true;
         currentHealth -= amount;
         healthSlider.value = currentHealth;
 
         StartCoroutine(Flasher());
-                print("newColour");
+        print("newColour");
     }
     IEnumerator Flasher()
     {
@@ -135,13 +155,15 @@ public class PlayerMovement : Movement
             for (int i = 0; i <= 5; i++)
             {
                 renderer.material.color = collideColor;
+                iFrames = true;
                 yield return new WaitForSeconds(.1f);
                 renderer.material.color = normalColor;
+                iFrames = false;
                 yield return new WaitForSeconds(.1f);
             }
         }
     }
-   
+
 
 
     //private void OnTriggerEnter(Collider other)
