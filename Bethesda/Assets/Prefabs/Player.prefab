@@ -280,12 +280,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a999b0c48ca96345b6f2c17b33d56a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingHealth: 100
+  currentHealth: 0
+  healthSlider: {fileID: 0}
+  damageImage: {fileID: 0}
+  flashSpeed: 5
+  flashColour: {r: 1, g: 0, b: 0, a: 0.1}
+  collideColor: {r: 1, g: 1, b: 1, a: 0.1}
   speed: 100
   maxSpeed: 10
   dashSpeed: 20
   dashTimer: 0
   coolDownPeriod: 0
   timeStamp: 1
+  iFrames: 0
 --- !u!114 &114787786082674004
 MonoBehaviour:
   m_ObjectHideFlags: 1

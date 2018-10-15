@@ -33,7 +33,7 @@ public class Takedamage : MonoBehaviour {
                 playerHealth.TakeDamage(attackDamage);
                 print("Damage");
             }
-            else if(playerHealth.currentHealth > 0 && playerHealth.iFrames == true)
+            else if(playerHealth.currentHealth > 0 && playerHealth.iFrames)
             {
                 print("Invincibility");
             }

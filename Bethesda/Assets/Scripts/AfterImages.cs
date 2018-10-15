@@ -2,12 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
 public class AfterImages : MonoBehaviour
 {
-	[SerializeField]
-	bool preview = false;
-
 	[SerializeField]
 	int numberOfImages = 3;
 
@@ -40,11 +36,6 @@ public class AfterImages : MonoBehaviour
 
 	void Start()
 	{
-#if UNITY_EDITOR
-		if (preview && !Application.isPlaying)
-			return;
-#endif
-
 		imageObjects = new GameObject[numberOfImages];
 		string baseName = "AfterImage--" + gameObject.name + "--";
 		Material afterImageMaterial = CreateMaterial();
@@ -97,22 +88,6 @@ public class AfterImages : MonoBehaviour
 				}
 			}
 		}
-	}
-
-	void OnRenderObject()
-	{
-#if UNITY_EDITOR
-		if (!preview || Application.isPlaying)
-			return;
-#endif
-
-		Material afterImageMaterial = CreateMaterial();
-		afterImageMaterial.SetFloat("_Opacity", startingOpacity);
-		afterImageMaterial.SetPass(0);
-		Vector3 offset = -transform.forward * (meshFilter.sharedMesh.bounds.size.z + 0.1f);
-		offset.Scale(transform.lossyScale);
-		Matrix4x4 matrix = Matrix4x4.TRS(transform.position + offset, transform.rotation, transform.lossyScale);
-		Graphics.DrawMeshNow(meshFilter.sharedMesh, matrix);
 	}
 
 	void CreateAfterImage(int index)

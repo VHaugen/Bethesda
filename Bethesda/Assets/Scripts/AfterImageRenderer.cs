@@ -30,7 +30,6 @@ public class AfterImageRenderer : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		meshRenderer.GetPropertyBlock(propertyBlock);
 		propertyBlock.SetFloat("_Opacity", opacity);
 		meshRenderer.SetPropertyBlock(propertyBlock);
 
