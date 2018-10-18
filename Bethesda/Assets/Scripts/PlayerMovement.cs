@@ -56,13 +56,16 @@ public class PlayerMovement : Movement
 		{
 			rb.velocity *= 0.1f;
 		}
+		else
+		{
+			transform.rotation = Quaternion.LookRotation(movement);
+		}
 
 		rb.AddForce(movement, ForceMode.Acceleration);
 
 		if (rb.velocity.sqrMagnitude > maxSpeed * maxSpeed)
 		{
 			rb.velocity = rb.velocity.normalized * maxSpeed;
-			transform.rotation = Quaternion.LookRotation(movement);
 
 		}
 		if (coolDownPeriod >= 0)
@@ -80,6 +83,7 @@ public class PlayerMovement : Movement
 			iFrames = true;
 			coolDownPeriod = timeStamp;
 			afterImages.Show();
+			CameraEffects.Get.Shake(0.1f, 0.04f);
 		}
 		if (startDashTimer == true)
 		{
@@ -126,6 +130,8 @@ public class PlayerMovement : Movement
 		gameMesh.material.SetColor("_TintColor", collideColor);
 		StartCoroutine(Flasher());
 		print("newColour");
+
+		CameraEffects.Get.Shake(0.1f, 0.2f);
 	}
 	IEnumerator Flasher()
 	{

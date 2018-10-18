@@ -114,7 +114,10 @@ public class SquashEffect : MonoBehaviour
 		if (state != State.Still)
 		{
 			transform.localScale = Vector3.Scale(baseScale, squashScale);
-			transform.position = basePosition + offset;
+			Vector3 pivotPosition = basePosition - new Vector3(0, meshFilter.mesh.bounds.extents.y, 0);
+			Vector3 pivotOffset = basePosition - pivotPosition;
+			pivotPosition = basePosition - new Vector3(0, meshFilter.mesh.bounds.extents.y * baseScale.y, 0);
+			transform.position = Vector3.Scale(pivotOffset, transform.localScale) + pivotPosition;
 		}
 	}
 
@@ -122,7 +125,6 @@ public class SquashEffect : MonoBehaviour
 	{
 		float otherSize = Mathf.Lerp(1, flatSize, 1 - height / (1 - squashedHeight));
 		squashScale = new Vector3(otherSize, height, otherSize);
-		offset = new Vector3(0, -(1 - height) * meshFilter.mesh.bounds.extents.y);
 	}
 
 	public void DoSquash()
