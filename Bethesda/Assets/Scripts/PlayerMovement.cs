@@ -1,7 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering.PostProcessing;
 
 public class PlayerMovement : Movement
 {
@@ -12,7 +13,9 @@ public class PlayerMovement : Movement
 	public Image damageImage;
 	public float flashSpeed = 5f;
 	public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
-	public Color collideColor = new Color(1f, 1f, 1f, 1f);
+	private Color normalColor = new Color(0.9137255f, 0.6511509f, 0.1960784f, 1f);
+	public Color collideColor = new Color(1f, 1f, 1f, 0.1f);
+	public Renderer GameMesh;
 
 	public float speed;
 	public float maxSpeed;
@@ -22,11 +25,14 @@ public class PlayerMovement : Movement
 	public float coolDownPeriod;
 	public float timeStamp = 3;
 
+	public float vignette = 0.675f;
+	Vignette vignetteLayer = null;
+	public GameObject postProcessingObject;
+
 	bool damaged;
 	public bool iFrames;
 	TrailRenderer tRail;
 	AfterImages afterImages;
-	Renderer gameMesh;
 
 	// Use this for initialization
 	protected override void Start()
@@ -35,8 +41,9 @@ public class PlayerMovement : Movement
 		iFrames = false;
 		tRail = GetComponent<TrailRenderer>();
 		afterImages = GetComponent<AfterImages>();
-		gameMesh = GetComponent<MeshRenderer>();
+		GetComponent<MeshRenderer>();
 		currentHealth = startingHealth;
+
 	}
 
 	// Update is called once per frame
@@ -66,7 +73,6 @@ public class PlayerMovement : Movement
 		if (rb.velocity.sqrMagnitude > maxSpeed * maxSpeed)
 		{
 			rb.velocity = rb.velocity.normalized * maxSpeed;
-
 		}
 		if (coolDownPeriod >= 0)
 		{
@@ -99,13 +105,26 @@ public class PlayerMovement : Movement
 		}
 		if (damaged)
 		{
+
 			damageImage.color = flashColour;
+			if (currentHealth <= 50)
+			{
+				PostProcessVolume volume = postProcessingObject.GetComponent<PostProcessVolume>();
+				volume.profile.TryGetSettings(out vignetteLayer);
+				if (vignetteLayer != null)
+				{
+					vignetteLayer.enabled.value = true;
+					vignetteLayer.intensity.value = vignette;
+				}
+			}
+
 		}
 		else
 		{
 			damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
 		}
 		damaged = false;
+
 		//if (iFrames)
 		//{
 		//    tRail.enabled = true;
@@ -123,26 +142,28 @@ public class PlayerMovement : Movement
 	}
 	public void TakeDamage(int amount)
 	{
+
 		damaged = true;
 		currentHealth -= amount;
 		healthSlider.value = currentHealth;
 
-		gameMesh.material.SetColor("_TintColor", collideColor);
 		StartCoroutine(Flasher());
 		print("newColour");
-
 		CameraEffects.Get.Shake(0.1f, 0.2f);
 	}
 	IEnumerator Flasher()
 	{
-		if (gameMesh != null)
+		var renderer = GameMesh;
+		if (renderer != null)
 		{
 			for (int i = 0; i <= 5; i++)
 			{
-				gameMesh.material.SetFloat("_TintAmount", 0.8f);
+				renderer.material.color = collideColor;
+				iFrames = true;
 				yield return new WaitForSeconds(.1f);
-				gameMesh.material.SetFloat("_TintAmount", 0);
-				yield return new WaitForSeconds(.05f);
+				renderer.material.color = normalColor;
+				iFrames = false;
+				yield return new WaitForSeconds(.1f);
 			}
 		}
 	}
