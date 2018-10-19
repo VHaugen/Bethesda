@@ -249,7 +249,7 @@ public class TestEnemy : Enemy, IAttackable
 				if (health <= 0)
 				{
 					SetState(State.Dead);
-				} 
+				}
 			}
 		}
 	}
@@ -258,12 +258,12 @@ public class TestEnemy : Enemy, IAttackable
 	{
 		startedDeathFlashing = true;
 		Renderer renderer = GetComponent<Renderer>();
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < 6; i++)
 		{
 			renderer.enabled = false;
-			yield return new WaitForSeconds(0.1f);
+			yield return new WaitForSeconds(0.2f - i * 0.01f);
 			renderer.enabled = true;
-			yield return new WaitForSeconds(0.05f);
+			yield return new WaitForSeconds(0.1f - i * 0.01f);
 		}
 		Destroy(gameObject);
 	}

@@ -19,7 +19,7 @@ public class HammerWeapon : MonoBehaviour
 
 	void Update()
 	{
-		if (Input.GetButtonDown("Attack"))
+		if (Input.GetButtonDown("Attack") && !anim.GetCurrentAnimatorStateInfo(0).IsName("PlaceholderWeaponAttack"))
 		{
 			print("Attacku!");
 			anim.Play("PlaceholderWeaponAttack");

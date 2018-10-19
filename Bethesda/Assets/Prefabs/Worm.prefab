@@ -59,7 +59,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1015075552739012}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.19, y: 0.987, z: 9.14}
+  m_LocalPosition: {x: 6.15, y: 1.233, z: -10.59}
   m_LocalScale: {x: 0.40555, y: 0.40555, z: 0.40555}
   m_Children:
   - {fileID: 4672352659619764}
@@ -73,7 +73,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1449984379290368}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.65, y: 0.06, z: -0.041}
+  m_LocalPosition: {x: 1.65, y: 1.023, z: -0.041}
   m_LocalScale: {x: 3.9664824, y: 3.9664824, z: 3.9664824}
   m_Children: []
   m_Father: {fileID: 4368148668636904}
@@ -146,8 +146,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.4018703, y: 4.2526727, z: 3.241992}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.7643409, y: 3.655185, z: 0.86655545}
+  m_Center: {x: -0.15770018, y: -0.18802895, z: -0.06958851}
 --- !u!82 &82573157491512336
 AudioSource:
   m_ObjectHideFlags: 1
@@ -274,7 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   squashDuration: 0.05
   remainSquashedDuration: 0.5
-  recoverDuration: 0.2
+  recoverDuration: 0.4
   squashedHeight: 0.03
   flatSize: 1.5
   baseScale: {x: 0, y: 0, z: 0}

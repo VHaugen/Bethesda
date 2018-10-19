@@ -17,7 +17,7 @@ public class CameraEffects : MonoBehaviour
 	{
 		Get = this;
 		if (transform.localPosition != Vector3.zero || transform.localEulerAngles != Vector3.zero)
-			Debug.LogWarning("Camera with CameraEffects should have local position and rotation 0,0,0!!");
+			Debug.LogWarning("Camera with CameraEffects should have local position and rotation 0,0,0!! (make it a child to an empty object and change that transform instead)");
 	}
 
 	// Update is called once per frame

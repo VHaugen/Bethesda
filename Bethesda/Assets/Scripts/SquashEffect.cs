@@ -54,6 +54,7 @@ public class SquashEffect : MonoBehaviour
 	Animator animator;
 	MeshFilter meshFilter;
 	AudioSource audio;
+	Collider collision;
 
 	enum State
 	{
@@ -73,6 +74,7 @@ public class SquashEffect : MonoBehaviour
 		animator = GetComponent<Animator>();
 		meshFilter = GetComponent<MeshFilter>();
 		audio = GetComponent<AudioSource>();
+		collision = GetComponent<Collider>();
 	}
 
 	// Update is called once per frame
@@ -128,9 +130,9 @@ public class SquashEffect : MonoBehaviour
 		if (state != State.Still)
 		{
 			transform.localScale = Vector3.Scale(baseScale, squashScale);
-			Vector3 pivotPosition = basePosition - new Vector3(0, meshFilter.mesh.bounds.extents.y, 0);
+			Vector3 pivotPosition = basePosition - new Vector3(0, collision.bounds.extents.y, 0);
 			Vector3 pivotOffset = basePosition - pivotPosition;
-			pivotPosition = basePosition - new Vector3(0, meshFilter.mesh.bounds.extents.y * baseScale.y, 0);
+			pivotPosition = basePosition - new Vector3(0, collision.bounds.extents.y * baseScale.y, 0);
 			transform.position = Vector3.Scale(pivotOffset, transform.localScale) + pivotPosition;
 		}
 	}
