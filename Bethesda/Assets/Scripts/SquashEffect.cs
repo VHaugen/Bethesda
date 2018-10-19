@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class SquashEffect : MonoBehaviour
 {
 	[SerializeField]
@@ -25,6 +26,7 @@ public class SquashEffect : MonoBehaviour
 	[HideInInspector]
 	public Vector3 basePosition;
 
+
 	public bool inSquash
 	{
 		get
@@ -33,14 +35,25 @@ public class SquashEffect : MonoBehaviour
 		}
 	}
 
+
+	public bool isFlat
+	{
+		get
+		{
+			return state == State.SquashedStill;
+		}
+	}
+
 	public Vector3 squashScale { get; private set; }
 	Vector3 offset;
 
 	float timer;
 	bool animatorWasEnabled;
+	bool recover;
 
 	Animator animator;
 	MeshFilter meshFilter;
+	AudioSource audio;
 
 	enum State
 	{
@@ -59,6 +72,7 @@ public class SquashEffect : MonoBehaviour
 		squashScale = Vector3.one;
 		animator = GetComponent<Animator>();
 		meshFilter = GetComponent<MeshFilter>();
+		audio = GetComponent<AudioSource>();
 	}
 
 	// Update is called once per frame
@@ -84,7 +98,7 @@ public class SquashEffect : MonoBehaviour
 					break;
 				}
 			case State.SquashedStill:
-				if (timer > remainSquashedDuration)
+				if (timer > remainSquashedDuration && recover)
 				{
 					timer = 0f;
 					state = State.Recover;
@@ -127,12 +141,17 @@ public class SquashEffect : MonoBehaviour
 		squashScale = new Vector3(otherSize, height, otherSize);
 	}
 
-	public void DoSquash()
+	public void DoSquash(bool recover = true)
 	{
 		state = State.Squash;
 		animatorWasEnabled = animator.enabled;
 		animator.enabled = false;
+		this.recover = recover;
 		baseScale = transform.localScale;
 		basePosition = transform.position;
+		if (audio.clip != null)
+		{
+			audio.Play();
+		}
 	}
 }

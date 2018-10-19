@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
-public class TestEnemy : Enemy
+public class TestEnemy : Enemy, IAttackable
 {
 	enum State
 	{
@@ -8,6 +9,7 @@ public class TestEnemy : Enemy
 		Wander,
 		Hunt,
 		Attack,
+		Dead,
 	}
 
 	[SerializeField]
@@ -46,16 +48,26 @@ public class TestEnemy : Enemy
 	AttackHitBox attack;
 	SquashEffect squash;
 
+	AudioSource audio;
+	[SerializeField] AudioClip attackSound;
+
 	Quaternion targetRotation;
+	Vector3 hunt_playerOffset;
 	Vector3 idle_targetPosition;
 	float timer = 0;
+	Vector3 startPosition;
+	bool startedDeathFlashing = false;
+
+	float health = 3;
 
 	// Use this for initialization
 	void Awake()
 	{
 		state = State.Idle;
+		startPosition = transform.position;
 		rbody = GetComponent<Rigidbody>();
 		squash = GetComponent<SquashEffect>();
+		audio = GetComponent<AudioSource>();
 		animator = GetComponent<Animator>();
 		var eventsInvoker = animator.GetBehaviour<AnimationEventsInvoker>();
 		eventsInvoker.stateEndEvent.AddListener(OnAnimationEnd);
@@ -78,7 +90,7 @@ public class TestEnemy : Enemy
 	void RandomizeNewTargetPosition()
 	{
 		Vector2 xy = Random.insideUnitCircle * wanderAreaRadius;
-		idle_targetPosition = new Vector3(xy.x, transform.position.y, xy.y);
+		idle_targetPosition = startPosition + new Vector3(xy.x, 0, xy.y);
 	}
 
 	void WalkToPoint(Vector3 targetPosition, float maxSpeed)
@@ -110,12 +122,6 @@ public class TestEnemy : Enemy
 
 	void FixedUpdate()
 	{
-		if (Input.GetKeyDown(KeyCode.F))
-		{
-			squash.DoSquash();
-			state = State.Idle;
-		}
-
 		switch (state)
 		{
 			case State.Wander:
@@ -160,7 +166,7 @@ public class TestEnemy : Enemy
 				float distance = GetDistanceToPlayer();
 				if (distance > attackDistance)
 				{
-					WalkToPoint(player.position, maxSpeed);
+					WalkToPoint(player.position + hunt_playerOffset, maxSpeed);
 
 					if (distance > huntDistance)
 					{
@@ -172,11 +178,38 @@ public class TestEnemy : Enemy
 					SetState(State.Attack);
 				}
 				break;
+
+			case State.Attack:
+				if (squash.inSquash)
+				{
+					SetState(State.Hunt);
+				}
+
+				break;
+
+			case State.Dead:
+				if (!startedDeathFlashing && squash.isFlat)
+				{
+					StartCoroutine(FlashAndDie());
+				}
+				break;
 		}
 
 		if (rbody.velocity != Vector3.zero)
 		{
-			rbody.rotation = Quaternion.SlerpUnclamped(rbody.rotation, Quaternion.LookRotation(rbody.velocity, Vector3.up) * Quaternion.Euler(0, -90, 0), 0.1f);
+			Quaternion rot;
+			if (state == State.Attack)
+			{
+				Vector3 meToPlayer = player.position - transform.position;
+				meToPlayer.y = 0;
+				rot = Quaternion.LookRotation(meToPlayer, Vector3.up);
+			}
+			else
+			{
+				rot = Quaternion.LookRotation(new Vector3(rbody.velocity.x, 0, rbody.velocity.z), Vector3.up);
+			}
+			rot *= Quaternion.Euler(0, -90, 0);
+			rbody.rotation = Quaternion.SlerpUnclamped(rbody.rotation, rot, 0.1f);
 		}
 	}
 
@@ -193,21 +226,54 @@ public class TestEnemy : Enemy
 				RandomizeNewTargetPosition();
 				break;
 			case State.Hunt:
+				hunt_playerOffset = Random.insideUnitSphere * 1.0f;
+				hunt_playerOffset.y = 0;
 				break;
 			case State.Attack:
 				rbody.velocity = Vector3.zero;
 				animator.Play("EnemyAttack");
 				attack.Attack();
+				//audio.PlayOneShot(attackSound);
 				break;
 		}
 	}
 
-	private void OnDrawGizmos()
+	public void TakeDamage(float amount)
+	{
+		if (health > 0)
+		{
+			if (!squash.inSquash)
+			{
+				health -= amount;
+				squash.DoSquash(health > 0);
+				if (health <= 0)
+				{
+					SetState(State.Dead);
+				} 
+			}
+		}
+	}
+
+	IEnumerator FlashAndDie()
+	{
+		startedDeathFlashing = true;
+		Renderer renderer = GetComponent<Renderer>();
+		for (int i = 0; i < 5; i++)
+		{
+			renderer.enabled = false;
+			yield return new WaitForSeconds(0.1f);
+			renderer.enabled = true;
+			yield return new WaitForSeconds(0.05f);
+		}
+		Destroy(gameObject);
+	}
+
+	private void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.white;
 		Gizmos.DrawWireSphere(transform.position, huntDistance);
 		Gizmos.color = Color.grey;
-		Gizmos.DrawWireSphere(Vector3.zero, wanderAreaRadius);
+		Gizmos.DrawWireSphere(transform.position, wanderAreaRadius);
 		Gizmos.DrawSphere(idle_targetPosition, 0.1f);
 	}
 }

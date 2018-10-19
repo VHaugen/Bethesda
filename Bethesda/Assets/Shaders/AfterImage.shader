@@ -10,11 +10,11 @@
 	}
 	SubShader
 	{
-		Tags {"Queue"="Geometry" "IgnoreProjector"="True" "RenderType"="Transparent" }
-	
+		Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent" }
+
 		LOD 100
 
-		/*Pass
+		Pass
 		{
 			ZWrite On
 			ColorMask 0
@@ -43,7 +43,7 @@
 			}
 
 			ENDCG
-		}*/
+		}
 
 		Pass
 		{

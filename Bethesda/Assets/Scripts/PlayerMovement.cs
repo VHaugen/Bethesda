@@ -33,6 +33,9 @@ public class PlayerMovement : Movement
 	public bool iFrames;
 	TrailRenderer tRail;
 	AfterImages afterImages;
+	AudioSource audio;
+	public AudioClip dashSound;
+	public AudioClip damageSound;
 
 	// Use this for initialization
 	protected override void Start()
@@ -43,6 +46,7 @@ public class PlayerMovement : Movement
 		afterImages = GetComponent<AfterImages>();
 		GetComponent<MeshRenderer>();
 		currentHealth = startingHealth;
+		audio = GetComponent<AudioSource>();
 
 	}
 
@@ -89,7 +93,8 @@ public class PlayerMovement : Movement
 			iFrames = true;
 			coolDownPeriod = timeStamp;
 			afterImages.Show();
-			CameraEffects.Get.Shake(0.1f, 0.04f);
+			CameraEffects.Get.Shake(0.1f, 0.1f);
+			audio.PlayOneShot(dashSound);
 		}
 		if (startDashTimer == true)
 		{
@@ -149,23 +154,25 @@ public class PlayerMovement : Movement
 
 		StartCoroutine(Flasher());
 		print("newColour");
-		CameraEffects.Get.Shake(0.1f, 0.2f);
+		CameraEffects.Get.Shake(0.1f, 0.5f);
+		audio.PlayOneShot(damageSound);
 	}
 	IEnumerator Flasher()
 	{
 		var renderer = GameMesh;
 		if (renderer != null)
 		{
+			renderer.material.SetColor("_TintColor", collideColor);
 			for (int i = 0; i <= 5; i++)
 			{
-				renderer.material.color = collideColor;
+				renderer.material.SetFloat("_TintAmount", 0.8f);
 				iFrames = true;
 				yield return new WaitForSeconds(.1f);
-				renderer.material.color = normalColor;
-				iFrames = false;
+				renderer.material.SetFloat("_TintAmount", 0.0f);
 				yield return new WaitForSeconds(.1f);
 			}
 		}
+		iFrames = false;
 	}
 
 

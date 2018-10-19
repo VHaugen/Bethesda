@@ -8,7 +8,7 @@ public class AfterImages : MonoBehaviour
 	int numberOfImages = 3;
 
 	[SerializeField]
-	float timeBetweenImages = 0.5f;
+	float duration = 1.0f;
 
 	[SerializeField]
 	float fadeOutDuration = 1f;
@@ -74,6 +74,7 @@ public class AfterImages : MonoBehaviour
 		if (currentIndex != -1)
 		{
 			timer += Time.deltaTime;
+			float timeBetweenImages = duration / numberOfImages;
 			if (timer > timeBetweenImages)
 			{
 				currentIndex++;

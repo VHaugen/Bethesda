@@ -38,6 +38,8 @@ public class CameraEffects : MonoBehaviour
 			{
 				timer = -1;
 				pos = Vector3.zero;
+				amplitude = 0;
+				duration = 0;
 			}
 			if (timerWithinSingleShake > singleShakeDuration)
 			{
@@ -59,7 +61,9 @@ public class CameraEffects : MonoBehaviour
 		timer = 0;
 		timerWithinSingleShake = 0;
 		PickNewPosition();
-		this.amplitude = amplitude;
-		this.duration = duration;
+		if (amplitude > this.amplitude)
+			this.amplitude = amplitude;
+		if (duration > this.duration)
+			this.duration = duration;
 	}
 }
