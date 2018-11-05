@@ -8,6 +8,7 @@ public class PlayerMovement : Movement
 {
 
 	public int startingHealth = 100;
+    public int armorValue;
 	public int currentHealth;
 	public Slider healthSlider;
 	public Image damageImage;
@@ -45,7 +46,7 @@ public class PlayerMovement : Movement
 		tRail = GetComponent<TrailRenderer>();
 		afterImages = GetComponent<AfterImages>();
 		GetComponent<MeshRenderer>();
-		currentHealth = startingHealth;
+		currentHealth = startingHealth;       
 		audio = GetComponent<AudioSource>();
 
 	}
@@ -149,7 +150,7 @@ public class PlayerMovement : Movement
 	{
 
 		damaged = true;
-		currentHealth -= amount;
+		currentHealth -= amount - armorValue;
 		healthSlider.value = currentHealth;
 
 		StartCoroutine(Flasher());
