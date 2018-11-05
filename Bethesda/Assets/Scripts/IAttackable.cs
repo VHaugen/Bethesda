@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IAttackable
 {
-	void TakeDamage(float amount);
+	void TakeDamage(float amount, Element element);
 }
