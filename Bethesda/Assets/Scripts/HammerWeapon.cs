@@ -7,7 +7,8 @@ public enum Element
     Fire,
     Ice,
     Lightning,
-    Poison
+    Poison,
+	None
 }
 [RequireComponent(typeof(AudioSource))]
 public class HammerWeapon : MonoBehaviour
