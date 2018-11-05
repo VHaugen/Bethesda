@@ -20,7 +20,7 @@ public class DealDamageToEnemies : MonoBehaviour
 		if (thingICanKill != null)
 		{
 			print("YES WE CAN DIE");
-			thingICanKill.TakeDamage(damage); 
+			thingICanKill.TakeDamage(new DamageParams(damage, Element.Fire));
 		}
 	}
 }

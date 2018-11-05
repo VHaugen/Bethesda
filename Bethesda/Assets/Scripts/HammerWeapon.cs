@@ -10,6 +10,7 @@ public enum Element
     Poison,
 	None
 }
+
 [RequireComponent(typeof(AudioSource))]
 public class HammerWeapon : MonoBehaviour
 {

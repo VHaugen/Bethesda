@@ -46,7 +46,6 @@ public class TestEnemy : Enemy, IAttackable
 	Rigidbody rbody;
 	Animator animator;
 	AttackHitBox attack;
-	SquashEffect squash;
 
 	AudioSource audio;
 	[SerializeField] AudioClip attackSound;
@@ -58,15 +57,16 @@ public class TestEnemy : Enemy, IAttackable
 	Vector3 startPosition;
 	bool startedDeathFlashing = false;
 
-	float health = 3;
-
 	// Use this for initialization
-	void Awake()
+	override protected void Awake()
 	{
+		base.Awake();
+
+		health = 3;
+
 		state = State.Idle;
 		startPosition = transform.position;
 		rbody = GetComponent<Rigidbody>();
-		squash = GetComponent<SquashEffect>();
 		audio = GetComponent<AudioSource>();
 		animator = GetComponent<Animator>();
 		var eventsInvoker = animator.GetBehaviour<AnimationEventsInvoker>();
@@ -122,6 +122,11 @@ public class TestEnemy : Enemy, IAttackable
 
 	void FixedUpdate()
 	{
+		if (fireStatus >= 0)
+		{
+			
+		}
+
 		switch (state)
 		{
 			case State.Wander:
@@ -238,20 +243,15 @@ public class TestEnemy : Enemy, IAttackable
 		}
 	}
 
-	public void TakeDamage(float amount)
+	override public void TakeDamage(DamageParams args)
 	{
-		if (health > 0)
-		{
-			if (!squash.inSquash)
-			{
-				health -= amount;
-				squash.DoSquash(health > 0);
-				if (health <= 0)
-				{
-					SetState(State.Dead);
-				}
-			}
-		}
+		base.TakeDamage(args);
+	}
+
+	override protected void Die()
+	{
+		SetState(State.Dead);
+
 	}
 
 	IEnumerator FlashAndDie()
