@@ -17,4 +17,5 @@ public struct DamageParams
 public interface IAttackable
 {
 	void TakeDamage(DamageParams args);
+	bool IsBurning();
 }

@@ -122,11 +122,6 @@ public class TestEnemy : Enemy, IAttackable
 
 	void FixedUpdate()
 	{
-		if (fireStatus >= 0)
-		{
-			
-		}
-
 		switch (state)
 		{
 			case State.Wander:
@@ -193,7 +188,7 @@ public class TestEnemy : Enemy, IAttackable
 				break;
 
 			case State.Dead:
-				if (!startedDeathFlashing && squash.isFlat)
+				if (!startedDeathFlashing && (squash.isFlat || !squash.inSquash))
 				{
 					StartCoroutine(FlashAndDie());
 				}
@@ -240,6 +235,9 @@ public class TestEnemy : Enemy, IAttackable
 				attack.Attack();
 				//audio.PlayOneShot(attackSound);
 				break;
+			case State.Dead:
+				rbody.velocity = Vector3.zero;
+				break;
 		}
 	}
 
@@ -261,9 +259,9 @@ public class TestEnemy : Enemy, IAttackable
 		for (int i = 0; i < 6; i++)
 		{
 			renderer.enabled = false;
-			yield return new WaitForSeconds(0.2f - i * 0.01f);
-			renderer.enabled = true;
 			yield return new WaitForSeconds(0.1f - i * 0.01f);
+			renderer.enabled = true;
+			yield return new WaitForSeconds(0.05f - i * 0.01f);
 		}
 		Destroy(gameObject);
 	}

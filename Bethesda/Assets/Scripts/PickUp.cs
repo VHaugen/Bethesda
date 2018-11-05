@@ -5,6 +5,7 @@ using UnityEngine;
 public class PickUp : MonoBehaviour {
 
     public Material mat;
+	public Element element;
 
 	// Use this for initialization
 	void Start () {
@@ -21,7 +22,9 @@ public class PickUp : MonoBehaviour {
         if (other.gameObject.tag == "Player")
         {
             Destroy(gameObject);
-            other.transform.Find("Weapon/Head").GetComponent<MeshRenderer>().material = mat; 
+			Transform weapon = other.transform.Find("Weapon/Head");
+			weapon.GetComponent<MeshRenderer>().material = mat;
+			weapon.GetComponent<DealDamageToEnemies>().currentElement = element;
         }
     }
 }

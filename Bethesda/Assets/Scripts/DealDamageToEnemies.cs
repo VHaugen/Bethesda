@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DealDamageToEnemies : MonoBehaviour
 {
-
+	public Element currentElement = Element.None;
 	public float damage;
 
 	// Use this for initialization
@@ -20,7 +20,7 @@ public class DealDamageToEnemies : MonoBehaviour
 		if (thingICanKill != null)
 		{
 			print("YES WE CAN DIE");
-			thingICanKill.TakeDamage(new DamageParams(damage, Element.Fire));
+			thingICanKill.TakeDamage(new DamageParams(damage, currentElement));
 		}
 	}
 }

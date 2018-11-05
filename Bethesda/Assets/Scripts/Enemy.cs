@@ -8,7 +8,7 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 	GameObject fire;
 
 	protected float health;
-	protected float fireDamagePerSecond;
+	protected float fireDamagePerSecond = 0.5f;
 
 	protected float fireStatus = -1;
 	float fireSpreadTimer = 0;
@@ -30,7 +30,7 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 
 	virtual protected void HandleFireStatusEffect()
 	{
-		const float spreadInterval = 0.4f;
+		const float spreadInterval = 0.8f;
 		const float fireSpreadRadius = 3.0f;
 
 		if (fireStatus > 0)
@@ -46,19 +46,23 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 			fireSpreadTimer += Time.deltaTime;
 			if (fireSpreadTimer > spreadInterval)
 			{
+				print("Spread fire!");
 				fireSpreadTimer = 0f;
 				Collider[] nearbyColliders = Physics.OverlapSphere(transform.position, fireSpreadRadius);
 				foreach (Collider colliderToMakeBurn in nearbyColliders)
 				{
-					IAttackable attackable = colliderToMakeBurn as IAttackable;
-					if (attackable != null)
+					IAttackable attackable = colliderToMakeBurn.GetComponent<IAttackable>();
+					print("CAN I PLZ BURN " + colliderToMakeBurn.gameObject.name);
+					if (attackable != null && !attackable.IsBurning())
 					{
+						print("Put this on fire!");
 						attackable.TakeDamage(new DamageParams(0, Element.Fire));
 					}
 				}
 			}
 
-			health -= fireDamagePerSecond;
+			health -= fireDamagePerSecond * Time.deltaTime;
+			//print("HP after fire " + health);
 			if (health <= 0)
 			{
 				Die();
@@ -103,6 +107,11 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 				}
 			}
 		}
+	}
+
+	public bool IsBurning()
+	{
+		return fireStatus > 0;
 	}
 
 	abstract protected void Die();
