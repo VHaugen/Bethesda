@@ -681,6 +681,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 100
+  startingArmor: 2
+  currentArmor: 0
   currentHealth: 0
   healthSlider: {fileID: 0}
   damageImage: {fileID: 0}
@@ -711,7 +713,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfImages: 7
-  timeBetweenImages: 0.05
+  duration: 1
   fadeOutDuration: 0.75
   startingOpacity: 0.728
   tintColor: {r: 1, g: 0.013784842, b: 0, a: 0}
