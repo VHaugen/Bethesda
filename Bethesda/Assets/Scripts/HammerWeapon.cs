@@ -18,12 +18,14 @@ public class HammerWeapon : MonoBehaviour
     Collider hitbox;
     AudioSource audioSource;
     Animator anim;
+    Collider overHeadHitBox;
 
     void Awake()
     {
         hitbox = transform.Find("Head").GetComponent<Collider>();
         audioSource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
+        overHeadHitBox = transform.Find("AOE").GetComponent<Collider>();
     }
 
     void Update()
@@ -32,6 +34,10 @@ public class HammerWeapon : MonoBehaviour
         {
             print("Attacku!");
             anim.Play("PlaceholderWeaponAttack");
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            print("ROADO ROLLA DA");
         }
     }
 
