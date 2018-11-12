@@ -75,8 +75,9 @@ public class TestEnemy : Enemy, IAttackable
 		attack = GetComponentInChildren<AttackHitBox>();
 	}
 
-	void Start()
+	protected override void Start()
 	{
+		base.Start();
 		player = GameObject.FindGameObjectWithTag("Player").transform;
 	}
 
@@ -266,7 +267,7 @@ public class TestEnemy : Enemy, IAttackable
 		Destroy(gameObject);
 	}
 
-	private void OnDrawGizmosSelected()
+	void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.white;
 		Gizmos.DrawWireSphere(transform.position, huntDistance);
