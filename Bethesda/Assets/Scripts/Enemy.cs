@@ -33,6 +33,7 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 		if (flammable && flammable.IsBurning())
 		{
 			health -= fireDamagePerSecond * Time.deltaTime;
+			healthSlider.gameObject.SetActive(true);
 			healthSlider.value = health;
 			//print("HP after fire " + health);
 			if (health <= 0)
@@ -52,6 +53,7 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 				if (args.amount > 0)
 				{
 					health -= args.amount;
+					healthSlider.gameObject.SetActive(true);
 					healthSlider.value = health;
 					squash.DoSquash(health > 0); 
 				}

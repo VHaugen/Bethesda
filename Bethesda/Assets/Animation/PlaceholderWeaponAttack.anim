@@ -292,6 +292,13 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.06666667
+    functionName: ShowImpact
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
+    messageOptions: 0
+  - time: 0.06666667
     functionName: PlaySound
     data: 
     objectReferenceParameter: {fileID: 8300000, guid: 4acad52d1abab0b44a6b90a369d53d2b,
@@ -301,6 +308,13 @@ AnimationClip:
     messageOptions: 0
   - time: 0.1
     functionName: EnableHitbox
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.1
+    functionName: ShowImpact
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

@@ -19,13 +19,21 @@ public class HammerWeapon : MonoBehaviour
     AudioSource audioSource;
     Animator anim;
     Collider overHeadHitBox;
+	AfterImages afterImages;
+	Transform impact;
+	Vector3 impactOffset;
 
     void Awake()
     {
         hitbox = transform.Find("Head").GetComponent<Collider>();
+
+		impact = transform.Find("Impact");
+		impactOffset = impact.localPosition;
+
         audioSource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
         overHeadHitBox = transform.Find("AOE").GetComponent<Collider>();
+		afterImages = GetComponentInChildren<AfterImages>();
     }
 
     void Update()
@@ -34,6 +42,8 @@ public class HammerWeapon : MonoBehaviour
         {
             print("Attacku!");
             anim.Play("PlaceholderWeaponAttack");
+			afterImages.Show();
+
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -42,6 +52,22 @@ public class HammerWeapon : MonoBehaviour
     }
 
 
+	public void ShowImpact(int show)
+	{
+		if (show == 0)
+		{
+			impact.gameObject.SetActive(false);
+			impact.parent = transform;
+			impact.localPosition = impactOffset;
+			impact.localRotation = Quaternion.identity;
+		}
+		else
+		{
+			impact.gameObject.SetActive(true);
+			impact.parent = null;
+			impact.rotation = Quaternion.Euler(90, 90, Random.Range(0f, 360f));;
+		}
+	}
 
     public void EnableHitbox(int enable)
     {
