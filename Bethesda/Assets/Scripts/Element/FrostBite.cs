@@ -1,0 +1,60 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class FrostBite : MonoBehaviour
+{
+    [SerializeField]
+    Material material;
+
+    Material normalMat;
+
+    public float duration;
+    public bool infinite = false;
+
+    float iceTimer = -1;
+    
+
+    MeshRenderer meshRenderer;
+
+    // Use this for initialization
+    private void Awake()
+    {
+        meshRenderer = GetComponent<MeshRenderer>();
+        normalMat = meshRenderer.material;
+    }
+
+    // Update is called once per frame
+    public void FreezeStart()
+    {
+        iceTimer = duration;
+        meshRenderer.material = material;
+    }
+
+    public bool IsFreezing()
+    {
+        return iceTimer > 0;
+    }
+
+    public void StopFreezing()
+    {
+        meshRenderer.material = normalMat;
+        iceTimer = -1;
+    }
+
+    void Update()
+    {
+        if (iceTimer > 0)
+        {
+            if (!infinite)
+            {
+                iceTimer -= Time.deltaTime;
+            }
+
+            if (iceTimer <= 0)
+            {
+                StopFreezing();
+            }
+        }
+    }
+}

@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4237897761775170}
   - component: {fileID: 33354259882418676}
   - component: {fileID: 135918889331627484}
+  - component: {fileID: 114441765361260314}
   m_Layer: 0
   m_Name: AOE
   m_TagString: Untagged
@@ -62,6 +63,7 @@ GameObject:
   - component: {fileID: 96399718503580172}
   - component: {fileID: 114787786082674004}
   - component: {fileID: 82724222999076436}
+  - component: {fileID: 114121561543720738}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -143,7 +145,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1712318412317098}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.37, y: 11.13, z: 8.2}
+  m_LocalPosition: {x: 4.5225496, y: 1.19, z: 1.7098546}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4454258603152534}
@@ -696,6 +698,20 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &114121561543720738
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1712318412317098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8edbe62d542b04b821c92b1ff3cc56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireSpreadRadius: 0.79
+  duration: 3
+  infinite: 0
 --- !u!114 &114404259714213862
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -707,6 +723,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2227e3ae5dad75e4f9c6c69f34171d57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerObject: {fileID: 1712318412317098}
+--- !u!114 &114441765361260314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1195131951586222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c982e1689e3a3342941b66744467bd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentElement: 4
+  damage: 3
 --- !u!114 &114556223927630438
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -750,7 +780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfImages: 7
-  duration: 1
+  duration: 0.4
   fadeOutDuration: 0.75
   startingOpacity: 0.728
   tintColor: {r: 1, g: 0.013784842, b: 0, a: 0}
@@ -787,8 +817,8 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1195131951586222}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
+  m_IsTrigger: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -801,10 +831,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 0
-  m_Radius: 0.66
-  m_Height: 2.58
+  m_Radius: 0.887705
+  m_Height: 2.5800002
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Center: {x: 0.000000059604645, y: -3.661842e-15, z: -0.00000008940695}
 --- !u!136 &136662637441412260
 CapsuleCollider:
   m_ObjectHideFlags: 1

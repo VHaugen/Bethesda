@@ -10,16 +10,19 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 
 	protected float health;
 	protected float fireDamagePerSecond = 0.5f;
+    protected float iceDamagePerSecond = 0.25f;
 	
 	protected float poisonStatus = -1;
-	protected float iceStatus = -1;
+	//protected float iceStatus = -1;
 	protected float lightningStatus = -1;
 	protected SquashEffect squash;
 	protected Flammable flammable;
+    protected FrostBite freezable;
 
 	virtual protected void Awake()
 	{
 		flammable = GetComponent<Flammable>();
+        freezable = GetComponent<FrostBite>();
 		squash = GetComponent<SquashEffect>();
 	}
 
@@ -40,6 +43,16 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 				Die();
 			} 
 		}
+        if (freezable && freezable.IsFreezing())
+        {
+            health -= iceDamagePerSecond * Time.deltaTime;
+            healthSlider.value = health;
+            print("Hp after ICE");
+            if (health <= 0)
+            {
+                Die();
+            }
+        }
 	}
 
 
@@ -67,7 +80,10 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 						}
 						break;
 					case Element.Ice:
-						iceStatus = 2.0f;
+                        if (freezable)
+                        {
+                            freezable.FreezeStart();
+                        }
 						break;
 					case Element.Poison:
 						poisonStatus = 2.0f;
