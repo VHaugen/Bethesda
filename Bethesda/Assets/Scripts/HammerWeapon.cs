@@ -8,7 +8,7 @@ public enum Element
     Ice,
     Lightning,
     Poison,
-	None
+    None
 }
 
 [RequireComponent(typeof(AudioSource))]
@@ -22,6 +22,7 @@ public class HammerWeapon : MonoBehaviour
 	AfterImages afterImages;
 	Transform impact;
 	Vector3 impactOffset;
+    public GameObject playerObject;
 
     void Awake()
     {
@@ -41,14 +42,15 @@ public class HammerWeapon : MonoBehaviour
         if (Input.GetButtonDown("Attack") && !anim.GetCurrentAnimatorStateInfo(0).IsName("PlaceholderWeaponAttack"))
         {
             print("Attacku!");
-            anim.Play("PlaceholderWeaponAttack");
+            anim.SetTrigger("AttackTransitionBasic");
 			afterImages.Show();
-
-        }
-        if (Input.GetKeyDown(KeyCode.E))
+		}
+        if (Input.GetKeyDown(KeyCode.E) && !anim.GetCurrentAnimatorStateInfo(0).IsName("PlaceholderOverheadAttack") || Input.GetButtonDown("B Button") && !anim.GetCurrentAnimatorStateInfo(1).IsName("PlaceholderOverheadAttack"))
         {
             print("ROADO ROLLA DA");
+            anim.SetTrigger("AttackTransitionOverhead");
         }
+
     }
 
 
@@ -72,6 +74,17 @@ public class HammerWeapon : MonoBehaviour
     public void EnableHitbox(int enable)
     {
         hitbox.enabled = enable == 0 ? false : true;
+    }
+
+    public void EnableAoeHitbox(int enable)
+    {
+        overHeadHitBox.enabled = enable == 0 ? false : true;
+    }
+
+    public void EnableSlowDown(int enable)
+    {
+        playerObject.GetComponent<PlayerMovement>().maxSpeed = 1;
+        playerObject.GetComponent<PlayerMovement>().maxSpeed = 10;
     }
 
     public void PlaySound(Object audioClip)
