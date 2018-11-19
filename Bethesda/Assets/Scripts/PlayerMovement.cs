@@ -8,8 +8,9 @@ public class PlayerMovement : Movement
 {
 
 	public int startingHealth = 100;
-    public int armorValue;
-	public int currentHealth;
+	public float fireDamagePerSecond;
+	public int armorValue;
+	public float currentHealth;
 	public Slider healthSlider;
 	public Image damageImage;
 	public float flashSpeed = 5f;
@@ -38,6 +39,7 @@ public class PlayerMovement : Movement
 	AudioSource audio;
 	public AudioClip dashSound;
 	public AudioClip damageSound;
+	Flammable flammable;
 
 	// Use this for initialization
 	protected override void Start()
@@ -49,6 +51,7 @@ public class PlayerMovement : Movement
 		GetComponent<MeshRenderer>();
 		currentHealth = startingHealth;       
 		audio = GetComponent<AudioSource>();
+		flammable = GetComponent<Flammable>();
 
 	}
 
@@ -110,6 +113,14 @@ public class PlayerMovement : Movement
 				iFrames = false;
 			}
 		}
+		if (flammable.IsBurning())
+		{
+			currentHealth -= (fireDamagePerSecond - armorValue) * Time.deltaTime;
+			healthSlider.value = currentHealth;
+			damaged = true;
+
+		}
+
 		if (damaged)
 		{
 
@@ -128,6 +139,7 @@ public class PlayerMovement : Movement
 			damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
 		}
 		damaged = false;
+
 
 		//if (iFrames)
 		//{

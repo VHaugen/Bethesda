@@ -530,6 +530,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 114259621486610228}
+  iFramesDuration: 0.5
+  knockbackMultiplier: 1
+  collideColor: {r: 1, g: 1, b: 1, a: 1}
   huntDistance: 15.86
   attackDistance: 1.12
   accelerationTime: 0.25

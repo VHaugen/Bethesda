@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4495026, g: 0.4964984, b: 0.5591477, a: 1}
+  m_IndirectSpecularColor: {r: 0.44950217, g: 0.4964974, b: 0.559147, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -428,6 +428,16 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &390865639 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1712318412317098, guid: 78ff50e7e4e45164b8488c24646c1750,
+    type: 2}
+  m_PrefabInternal: {fileID: 1328952948}
+--- !u!4 &390865649 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4397901895541616, guid: 78ff50e7e4e45164b8488c24646c1750,
+    type: 2}
+  m_PrefabInternal: {fileID: 1328952948}
 --- !u!1 &398977557 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1979996079315118, guid: 78ff50e7e4e45164b8488c24646c1750,
@@ -905,6 +915,10 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1015075552739012, guid: 6000afcaa6643ca4187668a2c971cb46, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6000afcaa6643ca4187668a2c971cb46, type: 2}
@@ -1456,6 +1470,26 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114404259714213862, guid: 78ff50e7e4e45164b8488c24646c1750,
+        type: 2}
+      propertyPath: playerObject
+      value: 
+      objectReference: {fileID: 390865639}
+    - target: {fileID: 114979195128042268, guid: 78ff50e7e4e45164b8488c24646c1750,
+        type: 2}
+      propertyPath: knockbackStrength
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114979195128042268, guid: 78ff50e7e4e45164b8488c24646c1750,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 390865649}
+    - target: {fileID: 114556223927630438, guid: 78ff50e7e4e45164b8488c24646c1750,
+        type: 2}
+      propertyPath: fireDamagePerSecond
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78ff50e7e4e45164b8488c24646c1750, type: 2}

@@ -10,6 +10,7 @@ public class TestEnemy : Enemy, IAttackable
 		Hunt,
 		Attack,
 		Dead,
+		Knockback,
 	}
 
 	[SerializeField]
@@ -194,9 +195,24 @@ public class TestEnemy : Enemy, IAttackable
 					StartCoroutine(FlashAndDie());
 				}
 				break;
+
+			case State.Knockback:
+				print("In knockback");
+				const float deacceleration = 10.0f;
+				if (rbody.velocity.magnitude <= Time.deltaTime * deacceleration)
+				{
+					rbody.velocity = Vector3.zero;
+					SetState(State.Idle);
+				}
+				else
+				{
+					rbody.velocity -= rbody.velocity.normalized * deacceleration * Time.deltaTime;
+				}
+
+				break;
 		}
 
-		if (rbody.velocity != Vector3.zero)
+		if (rbody.velocity != Vector3.zero && state != State.Knockback)
 		{
 			Quaternion rot;
 			if (state == State.Attack)
@@ -239,12 +255,26 @@ public class TestEnemy : Enemy, IAttackable
 			case State.Dead:
 				rbody.velocity = Vector3.zero;
 				break;
+			case State.Knockback:
+				//print("Knockback: " + knockbackVector);
+				rbody.velocity = knockbackVector;
+				break;
 		}
 	}
 
 	override public void TakeDamage(DamageParams args)
 	{
 		base.TakeDamage(args);
+	}
+
+	protected override void ExtraTakeDamage(DamageParams args)
+	{
+		base.ExtraTakeDamage(args);
+		print("extra take damage");
+		if (args.damageType == DamageType.Hit)
+		{
+			SetState(State.Knockback);
+		}
 	}
 
 	override protected void Die()
