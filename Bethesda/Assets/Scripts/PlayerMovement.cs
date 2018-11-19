@@ -26,7 +26,8 @@ public class PlayerMovement : Movement
 	public float coolDownPeriod;
 	public float timeStamp = 3;
 
-	public float vignette = 0.675f;
+	public float vignetteStart = 0.4f;
+	public float vignetteDead = 0.625f;
 	Vignette vignetteLayer = null;
 	public GameObject postProcessingObject;
 
@@ -113,16 +114,13 @@ public class PlayerMovement : Movement
 		{
 
 			damageImage.color = flashColour;
+			float vignetteIntensity = 0.0f;
 			if (currentHealth <= 50)
 			{
-				PostProcessVolume volume = postProcessingObject.GetComponent<PostProcessVolume>();
-				volume.profile.TryGetSettings(out vignetteLayer);
-				if (vignetteLayer != null)
-				{
-					vignetteLayer.enabled.value = true;
-					vignetteLayer.intensity.value = vignette;
-				}
+				vignetteIntensity = Mathf.Lerp(vignetteStart, vignetteDead, 1f - currentHealth / 50f);
 			}
+			print(vignetteIntensity);
+			CameraEffects.Get.SetDamageVignette(vignetteIntensity);
 
 		}
 		else
@@ -164,13 +162,13 @@ public class PlayerMovement : Movement
 		if (renderer != null)
 		{
 			renderer.material.SetColor("_TintColor", collideColor);
-			for (int i = 0; i <= 5; i++)
+			for (int i = 0; i <= 10; i++)
 			{
 				renderer.material.SetFloat("_TintAmount", 0.8f);
 				iFrames = true;
-				yield return new WaitForSeconds(.1f);
+				yield return new WaitForSeconds(.06f);
 				renderer.material.SetFloat("_TintAmount", 0.0f);
-				yield return new WaitForSeconds(.1f);
+				yield return new WaitForSeconds(.03f);
 			}
 		}
 		iFrames = false;

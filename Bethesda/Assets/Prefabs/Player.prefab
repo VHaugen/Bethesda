@@ -63,7 +63,11 @@ GameObject:
   - component: {fileID: 96399718503580172}
   - component: {fileID: 114787786082674004}
   - component: {fileID: 82724222999076436}
+<<<<<<< HEAD
   - component: {fileID: 114121561543720738}
+=======
+  - component: {fileID: 114111108481342376}
+>>>>>>> 1980b61f15e882dd088fc8751a6ffada80a7d9be
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -698,7 +702,11 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+<<<<<<< HEAD
 --- !u!114 &114121561543720738
+=======
+--- !u!114 &114111108481342376
+>>>>>>> 1980b61f15e882dd088fc8751a6ffada80a7d9be
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -763,7 +771,8 @@ MonoBehaviour:
   dashTimer: 0
   coolDownPeriod: 0
   timeStamp: 1
-  vignette: 0.675
+  vignetteStart: 0.4
+  vignetteDead: 0.625
   postProcessingObject: {fileID: 0}
   iFrames: 0
   dashSound: {fileID: 8300000, guid: 4140cc71fb263af48be647d11193f63c, type: 3}
@@ -818,7 +827,11 @@ SphereCollider:
   m_GameObject: {fileID: 1195131951586222}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
+<<<<<<< HEAD
   m_Enabled: 0
+=======
+  m_Enabled: 1
+>>>>>>> 1980b61f15e882dd088fc8751a6ffada80a7d9be
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}

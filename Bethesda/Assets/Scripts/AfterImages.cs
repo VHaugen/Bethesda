@@ -26,6 +26,7 @@ public class AfterImages : MonoBehaviour
 
 	GameObject[] imageObjects;
 	MeshFilter meshFilter;
+	Material afterImageMaterial;
 	int currentIndex = -1;
 	float timer = 0;
 
@@ -38,7 +39,7 @@ public class AfterImages : MonoBehaviour
 	{
 		imageObjects = new GameObject[numberOfImages];
 		string baseName = "AfterImage--" + gameObject.name + "--";
-		Material afterImageMaterial = CreateMaterial();
+		afterImageMaterial = CreateMaterial();
 
 		for (int i = 0; i < numberOfImages; i++)
 		{
@@ -52,7 +53,7 @@ public class AfterImages : MonoBehaviour
 
 	Material CreateMaterial()
 	{
-		Material afterImageMaterial = new Material(Shader.Find("Custom/AfterImage"));
+		afterImageMaterial = new Material(Shader.Find("Custom/AfterImage"));
 		Material ownerMaterial = GetComponent<MeshRenderer>().sharedMaterial;
 		afterImageMaterial.SetTexture("_MainTex", ownerMaterial.GetTexture("_MainTex"));
 		afterImageMaterial.SetColor("_Color", ownerMaterial.GetColor("_Color"));
@@ -65,6 +66,7 @@ public class AfterImages : MonoBehaviour
 	public void Show()
 	{
 		currentIndex = 0;
+		afterImageMaterial = CreateMaterial();
 		CreateAfterImage(0);
 		timer = 0;
 	}
@@ -96,6 +98,7 @@ public class AfterImages : MonoBehaviour
 		GameObject obj = imageObjects[index];
 		AfterImageRenderer afterImage = obj.GetComponent<AfterImageRenderer>();
 		afterImage.Show(startingOpacity, transform);
+		obj.GetComponent<MeshRenderer>().sharedMaterial = afterImageMaterial;
 		obj.GetComponent<MeshFilter>().sharedMesh = meshFilter.sharedMesh;
 	}
 }
