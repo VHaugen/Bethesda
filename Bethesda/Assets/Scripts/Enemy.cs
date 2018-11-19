@@ -1,74 +1,47 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Enemy : MonoBehaviour, IAttackable
 {
 	[SerializeField]
-	GameObject fire;
+	Slider healthSlider;
 
 	protected float health;
 	protected float fireDamagePerSecond = 0.5f;
-
-	protected float fireStatus = -1;
-	float fireSpreadTimer = 0;
+	
 	protected float poisonStatus = -1;
 	protected float iceStatus = -1;
 	protected float lightningStatus = -1;
 	protected SquashEffect squash;
-
+	protected Flammable flammable;
 
 	virtual protected void Awake()
 	{
+		flammable = GetComponent<Flammable>();
 		squash = GetComponent<SquashEffect>();
+	}
+
+	virtual protected void Start()
+	{
+		healthSlider.maxValue = health;
 	}
 
 	virtual protected void Update()
 	{
-		HandleFireStatusEffect();
-	}
-
-	virtual protected void HandleFireStatusEffect()
-	{
-		const float spreadInterval = 0.8f;
-		const float fireSpreadRadius = 3.0f;
-
-		if (fireStatus > 0)
-		{ 
-			fireStatus -= Time.deltaTime;
-
-			if (fireStatus <= 0)
-			{
-				fireStatus = -1;
-				fire.SetActive(false);
-			}
-
-			fireSpreadTimer += Time.deltaTime;
-			if (fireSpreadTimer > spreadInterval)
-			{
-				print("Spread fire!");
-				fireSpreadTimer = 0f;
-				Collider[] nearbyColliders = Physics.OverlapSphere(transform.position, fireSpreadRadius);
-				foreach (Collider colliderToMakeBurn in nearbyColliders)
-				{
-					IAttackable attackable = colliderToMakeBurn.GetComponent<IAttackable>();
-					print("CAN I PLZ BURN " + colliderToMakeBurn.gameObject.name);
-					if (attackable != null && !attackable.IsBurning())
-					{
-						print("Put this on fire!");
-						attackable.TakeDamage(new DamageParams(0, Element.Fire));
-					}
-				}
-			}
-
+		if (flammable && flammable.IsBurning())
+		{
 			health -= fireDamagePerSecond * Time.deltaTime;
+			healthSlider.value = health;
 			//print("HP after fire " + health);
 			if (health <= 0)
 			{
 				Die();
-			}
+			} 
 		}
 	}
+
 
 	virtual public void TakeDamage(DamageParams args)
 	{
@@ -79,6 +52,7 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 				if (args.amount > 0)
 				{
 					health -= args.amount;
+					healthSlider.value = health;
 					squash.DoSquash(health > 0); 
 				}
 
@@ -87,8 +61,10 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 					case Element.None:
 						break;
 					case Element.Fire:
-						fireStatus = 2.0f;
-						fire.SetActive(true);
+						if (flammable)
+						{
+							flammable.StartBurning();
+						}
 						break;
 					case Element.Ice:
 						iceStatus = 2.0f;
@@ -109,10 +85,6 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 		}
 	}
 
-	public bool IsBurning()
-	{
-		return fireStatus > 0;
-	}
 
 	abstract protected void Die();
 }
