@@ -1,0 +1,61 @@
+<<<<<<< HEAD:Bethesda/Assets/Scripts/IAttackable.cs
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public enum DamageType
+{
+	Hit,
+	Squash,
+}
+
+public struct DamageParams
+{
+	public float amount;
+	public Element element;
+	public DamageType damageType;
+	public Vector3 knockback;
+
+	public DamageParams(float amount, Element element = Element.None, DamageType damageType = DamageType.Hit)
+	{
+		this.amount = amount;
+		this.element = element;
+		this.damageType = damageType;
+		this.knockback = Vector3.zero;
+	}
+
+	public DamageParams(float amount, Element element, DamageType damageType, Vector3 knockback)
+	{
+		this.amount = amount;
+		this.element = element;
+		this.damageType = damageType;
+		this.knockback = knockback;
+	}
+}
+
+public interface IAttackable
+{
+	void TakeDamage(DamageParams args);
+}
+=======
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public struct DamageParams
+{
+	public float amount;
+	public Element element;
+
+	public DamageParams(float amount, Element element = Element.None)
+	{
+		this.amount = amount;
+		this.element = element;
+	}
+}
+
+public interface IAttackable
+{
+	void TakeDamage(DamageParams args);
+}
+>>>>>>> 25d0763f7ee49dd2cc2062811b09db0dad4457f3:Bethesda/Assets/Scripts/BattleScripts/IAttackable.cs

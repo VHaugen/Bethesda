@@ -124,19 +124,19 @@ public class PlayerMovement : Movement
 		if (damaged)
 		{
 
-			damageImage.color = flashColour;
+			//damageImage.color = flashColour;
 			float vignetteIntensity = 0.0f;
-			if (currentHealth <= 50)
-			{
-				vignetteIntensity = Mathf.Lerp(vignetteStart, vignetteDead, 1f - currentHealth / 50f);
-			}
-			print(vignetteIntensity);
+			//if (currentHealth <= 50)
+			//{
+			//	vignetteIntensity = Mathf.Lerp(vignetteStart, vignetteDead, 1f - currentHealth / 50f);
+			//}
+			//print(vignetteIntensity);
 			CameraEffects.Get.SetDamageVignette(vignetteIntensity);
 
 		}
 		else
 		{
-			damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+			//damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
 		}
 		damaged = false;
 

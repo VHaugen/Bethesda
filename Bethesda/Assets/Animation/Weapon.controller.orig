@@ -93,7 +93,11 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0
   m_TransitionOffset: 0
+<<<<<<< HEAD
+  m_ExitTime: 0
+=======
   m_ExitTime: 0.75
+>>>>>>> 25d0763f7ee49dd2cc2062811b09db0dad4457f3
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -138,7 +142,11 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0
   m_TransitionOffset: 0
+<<<<<<< HEAD
+  m_ExitTime: 0
+=======
   m_ExitTime: 0.75
+>>>>>>> 25d0763f7ee49dd2cc2062811b09db0dad4457f3
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0

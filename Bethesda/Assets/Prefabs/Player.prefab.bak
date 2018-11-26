@@ -63,7 +63,11 @@ GameObject:
   - component: {fileID: 96399718503580172}
   - component: {fileID: 114787786082674004}
   - component: {fileID: 82724222999076436}
+<<<<<<< HEAD
   - component: {fileID: 114121561543720738}
+=======
+  - component: {fileID: 114111108481342376}
+>>>>>>> 1980b61f15e882dd088fc8751a6ffada80a7d9be
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -118,7 +122,6 @@ GameObject:
   - component: {fileID: 23922061449593334}
   - component: {fileID: 136233788139837378}
   - component: {fileID: 114979195128042268}
-  - component: {fileID: 114409234694775176}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -699,7 +702,11 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+<<<<<<< HEAD
 --- !u!114 &114121561543720738
+=======
+--- !u!114 &114111108481342376
+>>>>>>> 1980b61f15e882dd088fc8751a6ffada80a7d9be
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -725,23 +732,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerObject: {fileID: 1712318412317098}
---- !u!114 &114409234694775176
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1979996079315118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 222cf6ea23d65784e9dfa4e59f95bdc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  numberOfImages: 6
-  duration: 0.04
-  fadeOutDuration: 0.2
-  startingOpacity: 0.5
-  tintColor: {r: 1, g: 1, b: 1, a: 0}
-  tintFactor: 0.307
 --- !u!114 &114441765361260314
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -767,7 +757,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 100
-  fireDamagePerSecond: 0
   armorValue: 0
   currentHealth: 0
   healthSlider: {fileID: 0}
@@ -816,11 +805,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac324006b9281341a04f6a9ed834903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 4397901895541616}
   currentElement: 4
-  damageType: 0
   damage: 1
-  knockbackStrength: 1
 --- !u!135 &135842395609884788
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -841,7 +827,11 @@ SphereCollider:
   m_GameObject: {fileID: 1195131951586222}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
+<<<<<<< HEAD
   m_Enabled: 0
+=======
+  m_Enabled: 1
+>>>>>>> 1980b61f15e882dd088fc8751a6ffada80a7d9be
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
