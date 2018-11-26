@@ -26,7 +26,7 @@ public class TestEnemy : Enemy, IAttackable
 	float stopTime;
 
 	[SerializeField]
-	float maxSpeed;
+	public float maxSpeed;
 
 	[SerializeField]
 	float wanderSpeed;

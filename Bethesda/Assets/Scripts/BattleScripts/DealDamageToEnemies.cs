@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class DealDamageToEnemies : MonoBehaviour
 {
+    int manaCharge = 5;
 	public Transform player;
 	public Element currentElement = Element.None;
 	public DamageType damageType = DamageType.Hit;
 	public float damage;
 	public float knockbackStrength = 1.0f;
+    PlayerMovement mana;
+    
+    
 
 	// Use this for initialization
 	void Start()
 	{
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        mana = player.GetComponent<PlayerMovement>();
+    }
 
-	}
-
-	void OnTriggerStay(Collider other)
+	void OnTriggerEnter(Collider other)
 	{
 		IAttackable thingICanKill = other.GetComponent<IAttackable>();
 		if (thingICanKill != null)
@@ -32,6 +37,7 @@ public class DealDamageToEnemies : MonoBehaviour
 				Debug.LogWarning("Player field not assigned in inspector");
 			}
 			thingICanKill.TakeDamage(new DamageParams(damage, currentElement, damageType, knockback));
+            mana.AddMana(manaCharge);
 		}
 	}
 }

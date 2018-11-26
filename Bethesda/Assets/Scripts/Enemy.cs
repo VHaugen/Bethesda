@@ -8,6 +8,8 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 	[SerializeField]
 	Slider healthSlider;
 
+    public float speed;
+    public float slowSpeed;
 	public float iFramesDuration = 0.5f;
 	public float knockbackMultiplier = 1.0f;
 	public Color collideColor = Color.white;
@@ -31,6 +33,7 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 		flammable = GetComponent<Flammable>();
         freezable = GetComponent<FrostBite>();
 		squash = GetComponent<SquashEffect>();
+        speed = GetComponent<TestEnemy>().maxSpeed;
 	}
 
 	virtual protected void Start()
@@ -40,6 +43,7 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 
 	virtual protected void Update()
 	{
+        speed = GetComponent<TestEnemy>().maxSpeed = 6;
 		if (flammable && flammable.IsBurning())
 		{
 			health -= fireDamagePerSecond * Time.deltaTime;
@@ -54,12 +58,14 @@ public abstract class Enemy : MonoBehaviour, IAttackable
         {
             health -= iceDamagePerSecond * Time.deltaTime;
             healthSlider.value = health;
+            slowSpeed = GetComponent<TestEnemy>().maxSpeed = 1.5f;
             print("Hp after ICE");
             if (health <= 0)
             {
                 Die();
             }
         }
+        slowSpeed = speed;
 	}
 
 
@@ -67,7 +73,7 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 	{
 		if (health > 0)
 		{
-			if (!squash.inSquash)
+			if (!squash.inSquash && iFramesTimer <= 0)
 			{
 				if (args.amount > 0)
 				{
