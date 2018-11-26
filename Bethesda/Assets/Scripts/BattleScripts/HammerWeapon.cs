@@ -14,7 +14,8 @@ public enum Element
 [RequireComponent(typeof(AudioSource))]
 public class HammerWeapon : MonoBehaviour
 {
-
+    public int overHeadCost = 20;
+    //public int manaCharge = 5;
     Collider hitbox;
     AudioSource audioSource;
     Animator anim;
@@ -23,14 +24,17 @@ public class HammerWeapon : MonoBehaviour
 	Transform impact;
 	Vector3 impactOffset;
     public GameObject playerObject;
+    PlayerMovement mana;
+    GameObject player;
 
     void Awake()
     {
         hitbox = transform.Find("Head").GetComponent<Collider>();
 
-		//impact = transform.Find("Impact");
-		//impactOffset = impact.localPosition;
-
+        //impact = transform.Find("Impact");
+        //impactOffset = impact.localPosition;
+        player = GameObject.FindGameObjectWithTag("Player");
+        mana = player.GetComponent<PlayerMovement>();
         audioSource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
         overHeadHitBox = transform.Find("AOE").GetComponent<Collider>();
@@ -43,12 +47,14 @@ public class HammerWeapon : MonoBehaviour
         {
             print("Attacku!");
             anim.SetTrigger("AttackTransitionBasic");
+            //mana.AddMana(manaCharge);
 			afterImages.Show();
 		}
-        if (Input.GetKeyDown(KeyCode.E) && !anim.GetCurrentAnimatorStateInfo(0).IsName("PlaceholderOverheadAttack") || Input.GetButtonDown("B Button") && !anim.GetCurrentAnimatorStateInfo(1).IsName("PlaceholderOverheadAttack"))
+        if (Input.GetKeyDown(KeyCode.E) && !anim.GetCurrentAnimatorStateInfo(0).IsName("PlaceholderOverheadAttack") && mana.manaSlider.value >= 20 || Input.GetButtonDown("B Button") && !anim.GetCurrentAnimatorStateInfo(1).IsName("PlaceholderOverheadAttack") && mana.manaSlider.value >= 20)
         {
             print("ROADO ROLLA DA");
             anim.SetTrigger("AttackTransitionOverhead");
+            mana.UseMana(overHeadCost);
         }
 
     }

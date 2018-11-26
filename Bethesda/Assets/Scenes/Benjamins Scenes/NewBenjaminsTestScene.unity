@@ -744,24 +744,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 507649483}
   m_CullTransparentMesh: 0
---- !u!1 &532921109 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1195131951586222, guid: 78ff50e7e4e45164b8488c24646c1750,
-    type: 2}
-  m_PrefabInternal: {fileID: 1684650793}
---- !u!114 &532921110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 532921109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c982e1689e3a3342941b66744467bd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentElement: 4
-  damage: 3
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -1814,8 +1796,7 @@ Prefab:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 770913445}
-    m_RemovedComponents:
-    - {fileID: 114195541193826366, guid: 78ff50e7e4e45164b8488c24646c1750, type: 2}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78ff50e7e4e45164b8488c24646c1750, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1834386559

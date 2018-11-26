@@ -5,7 +5,7 @@ using UnityEngine;
 public class Takedamage : MonoBehaviour {
 
     public int attackDamage = 10;
-
+    
     GameObject player;
     PlayerMovement playerHealth;
     bool playerInRange;
