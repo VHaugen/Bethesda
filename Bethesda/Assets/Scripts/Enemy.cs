@@ -44,22 +44,35 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 		{
 			health -= fireDamagePerSecond * Time.deltaTime;
 			healthSlider.value = health;
+			healthSlider.gameObject.SetActive(true);
 			//print("HP after fire " + health);
 			if (health <= 0)
 			{
 				Die();
 			} 
 		}
+
         if (freezable && freezable.IsFreezing())
         {
             health -= iceDamagePerSecond * Time.deltaTime;
             healthSlider.value = health;
-            print("Hp after ICE");
+			healthSlider.gameObject.SetActive(true);
+			print("Hp after ICE");
             if (health <= 0)
             {
                 Die();
             }
         }
+
+		if (iFramesTimer > 0)
+		{
+			iFramesTimer -= Time.deltaTime;
+			if (iFramesTimer <= 0)
+			{
+				iFramesTimer = -1;
+				GetComponent<Renderer>().material.SetFloat("_TintAmount", 0);
+			}
+		}
 	}
 
 
@@ -67,7 +80,7 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 	{
 		if (health > 0)
 		{
-			if (!squash.inSquash)
+			if (!squash.inSquash && iFramesTimer <= 0)
 			{
 				if (args.amount > 0)
 				{

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4237897761775170}
   - component: {fileID: 33354259882418676}
   - component: {fileID: 135918889331627484}
-  - component: {fileID: 114441765361260314}
+  - component: {fileID: 114528089195128472}
   m_Layer: 0
   m_Name: AOE
   m_TagString: Untagged
@@ -64,6 +64,7 @@ GameObject:
   - component: {fileID: 114787786082674004}
   - component: {fileID: 82724222999076436}
   - component: {fileID: 114121561543720738}
+  - component: {fileID: 114333221325983122}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -713,6 +714,20 @@ MonoBehaviour:
   fireSpreadRadius: 0.79
   duration: 3
   infinite: 0
+--- !u!114 &114333221325983122
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1712318412317098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8edbe62d542b04b821c92b1ff3cc56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireSpreadRadius: 0.79
+  duration: 3
+  infinite: 0
 --- !u!114 &114404259714213862
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -742,7 +757,7 @@ MonoBehaviour:
   startingOpacity: 0.5
   tintColor: {r: 1, g: 1, b: 1, a: 0}
   tintFactor: 0.307
---- !u!114 &114441765361260314
+--- !u!114 &114528089195128472
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -767,7 +782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 100
-  fireDamagePerSecond: 0
+  fireDamagePerSecond: 10
   armorValue: 0
   currentHealth: 0
   healthSlider: {fileID: 0}
@@ -820,7 +835,7 @@ MonoBehaviour:
   currentElement: 4
   damageType: 0
   damage: 1
-  knockbackStrength: 1
+  knockbackStrength: 10
 --- !u!135 &135842395609884788
 SphereCollider:
   m_ObjectHideFlags: 1

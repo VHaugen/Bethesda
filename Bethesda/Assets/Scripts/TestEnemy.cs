@@ -13,6 +13,8 @@ public class TestEnemy : Enemy, IAttackable
 		Knockback,
 	}
 
+	[SerializeField] float knockbackDuration;
+
 	[SerializeField]
 	float huntDistance;
 
@@ -26,7 +28,7 @@ public class TestEnemy : Enemy, IAttackable
 	float stopTime;
 
 	[SerializeField]
-	float maxSpeed;
+	public float maxSpeed;
 
 	[SerializeField]
 	float wanderSpeed;
@@ -197,16 +199,18 @@ public class TestEnemy : Enemy, IAttackable
 				break;
 
 			case State.Knockback:
-				print("In knockback");
-				const float deacceleration = 10.0f;
-				if (rbody.velocity.magnitude <= Time.deltaTime * deacceleration)
-				{
+				print("a/b " + knockbackVector.magnitude + "/" +  knockbackDuration);
+				float deacceleration = knockbackVector.magnitude / knockbackDuration;
+				print("In knockback " + deacceleration);
+				if (rbody.velocity.magnitude <= deacceleration * Time.fixedDeltaTime)
+				{	
+					print("Stop knockback");
 					rbody.velocity = Vector3.zero;
 					SetState(State.Idle);
 				}
 				else
 				{
-					rbody.velocity -= rbody.velocity.normalized * deacceleration * Time.deltaTime;
+					rbody.AddForce(-rbody.velocity.normalized * deacceleration);
 				}
 
 				break;
