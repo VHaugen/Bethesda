@@ -8,6 +8,8 @@ public class CameraEffects : MonoBehaviour
 
 	static public CameraEffects Get { get; private set; }
 
+	public float currentIntensity;
+
 	// Screen-shake //
 	readonly float singleShakeDuration = 0.01f;
 	float timer = -1;
@@ -19,7 +21,7 @@ public class CameraEffects : MonoBehaviour
 	// Damage vignette //
 	[Header("Damage vignette")]
 	float vignetteTargetIntensity;
-	float vignetteStartingIntensity;
+	public float vignetteStartingIntensity;
 	[SerializeField] float vignetteIntensityMinOvershootTarget = 0.5f;
 	[SerializeField] float vignetteIntensityExtraOvershoot = 0.1f;
 	[SerializeField] float vignetteIncreaseDuration = 0.1f;
@@ -64,6 +66,9 @@ public class CameraEffects : MonoBehaviour
 
 		}
 
+
+		currentIntensity = vignetteLayer.intensity.value;
+
 		// Damage vignette //
 		if (vignetteEffectState == VignetteEffectState.Increase)
 		{
@@ -106,7 +111,10 @@ public class CameraEffects : MonoBehaviour
 
 	public void SetDamageVignette(float intensity)
 	{
-		vignetteStartingIntensity = vignetteLayer.intensity.value;
+		if (vignetteEffectState == VignetteEffectState.Inactive)
+		{
+			vignetteStartingIntensity = vignetteLayer.intensity.value;
+		}
 		vignetteTargetIntensity = intensity;
 		vignetteEffectState = VignetteEffectState.Increase;
 	}

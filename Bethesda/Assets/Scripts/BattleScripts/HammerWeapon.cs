@@ -47,7 +47,7 @@ public class HammerWeapon : MonoBehaviour
         {
             print("Attacku!");
             anim.SetTrigger("AttackTransitionBasic");
-            //mana.AddMana(manaCharge);
+			//mana.AddMana(manaCharge);
 			afterImages.Show();
 		}
         if (Input.GetKeyDown(KeyCode.E) && !anim.GetCurrentAnimatorStateInfo(0).IsName("PlaceholderOverheadAttack") && mana.manaSlider.value >= 20 || Input.GetButtonDown("B Button") && !anim.GetCurrentAnimatorStateInfo(1).IsName("PlaceholderOverheadAttack") && mana.manaSlider.value >= 20)
@@ -59,6 +59,11 @@ public class HammerWeapon : MonoBehaviour
 
     }
 
+
+	public void ShowAfterImages()
+	{
+		afterImages.Show();
+	}
 
 	public void ShowImpact(int show)
 	{
@@ -87,10 +92,9 @@ public class HammerWeapon : MonoBehaviour
         overHeadHitBox.enabled = enable == 0 ? false : true;
     }
 
-    public void EnableSlowDown(int enable)
+    public void EnableSlowDown(int enableSlowness)
     {
-        playerObject.GetComponent<PlayerMovement>().maxSpeed = 1;
-        playerObject.GetComponent<PlayerMovement>().maxSpeed = 10;
+        playerObject.GetComponent<PlayerMovement>().maxSpeed = enableSlowness == 1 ? 1.0f : 10.0f;
     }
 
     public void PlaySound(Object audioClip)

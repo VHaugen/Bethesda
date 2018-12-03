@@ -130,12 +130,12 @@ public class PlayerMovement : Movement
 
             //damageImage.color = flashColour;
             float vignetteIntensity = 0.0f;
-            //if (currentHealth <= 50)
-            //{
-            //	vignetteIntensity = Mathf.Lerp(vignetteStart, vignetteDead, 1f - currentHealth / 50f);
-            //}
-            //print(vignetteIntensity);
-            CameraEffects.Get.SetDamageVignette(vignetteIntensity);
+			if (currentHealth <= 50)
+			{
+				vignetteIntensity = Mathf.Lerp(vignetteStart, vignetteDead, 1f - currentHealth / 50f);
+			}
+			//print(vignetteIntensity);
+			CameraEffects.Get.SetDamageVignette(vignetteIntensity);
 
         }
         else

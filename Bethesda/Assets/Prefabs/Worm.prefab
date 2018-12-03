@@ -545,9 +545,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 114259621486610228}
+  speed: 0
+  slowSpeed: 0
   iFramesDuration: 0.5
   knockbackMultiplier: 1
   collideColor: {r: 1, g: 1, b: 1, a: 1}
+  poisonDamagePerSecond: 0.25
+  poisonStatusDuration: 10
   knockbackDuration: 0.5
   huntDistance: 15.86
   attackDistance: 1.12

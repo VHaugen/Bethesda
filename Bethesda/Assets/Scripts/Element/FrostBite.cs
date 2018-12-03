@@ -39,6 +39,7 @@ public class FrostBite : MonoBehaviour
     public void StopFreezing()
     {
         meshRenderer.material = normalMat;
+		meshRenderer.material.SetFloat("_TintAmount", 0.0f);
         iceTimer = -1;
     }
 

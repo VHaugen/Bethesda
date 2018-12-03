@@ -21,7 +21,7 @@ public class DealAoeDamageToEnemies : MonoBehaviour
         if (thingICanKill != null)
         {
             print("IT'S TO LATE! MUDA MUDA MUDA MUDA MUDA MUDA MUDA");
-            thingICanKill.TakeDamage(new DamageParams(damage, currentElement));
+            thingICanKill.TakeDamage(new DamageParams(damage, currentElement, DamageType.Squash));
         }
     }
 }

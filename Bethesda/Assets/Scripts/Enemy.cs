@@ -20,6 +20,9 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 	protected float health;
 	protected float fireDamagePerSecond = 0.5f;
     protected float iceDamagePerSecond = 0.25f;
+	public float poisonDamagePerSecond = 0.5f;
+	public float poisonStatusDuration = 5.0f;
+	int poisonEffectIndex;
 	
 	protected float poisonStatus = -1;
 	//protected float iceStatus = -1;
@@ -46,27 +49,25 @@ public abstract class Enemy : MonoBehaviour, IAttackable
         speed = GetComponent<TestEnemy>().maxSpeed = 6;
 		if (flammable && flammable.IsBurning())
 		{
-			health -= fireDamagePerSecond * Time.deltaTime;
-			healthSlider.value = health;
-			healthSlider.gameObject.SetActive(true);
-			//print("HP after fire " + health);
-			if (health <= 0)
-			{
-				Die();
-			} 
+			SetHealth(health - fireDamagePerSecond * Time.deltaTime);
 		}
 
         if (freezable && freezable.IsFreezing())
         {
-            health -= iceDamagePerSecond * Time.deltaTime;
-            healthSlider.value = health;
-			healthSlider.gameObject.SetActive(true);
+            SetHealth(health - iceDamagePerSecond * Time.deltaTime);
             slowSpeed = GetComponent<TestEnemy>().maxSpeed = 1.5f;
-            if (health <= 0)
-            {
-                Die();
-            }
         }
+
+		if (poisonStatus > 0)
+		{
+			SetHealth(health - poisonDamagePerSecond * Time.deltaTime);
+			poisonStatus -= Time.deltaTime;
+			if (poisonStatus <= 0)
+			{
+				poisonStatus = -1;
+				PoisonCloudController.Get.StopPoison(poisonEffectIndex);
+			}
+		}
 
 		if (iFramesTimer > 0)
 		{
@@ -80,6 +81,16 @@ public abstract class Enemy : MonoBehaviour, IAttackable
         slowSpeed = speed;
 	}
 
+	protected void SetHealth(float newHealth)
+	{
+		health = newHealth;
+		healthSlider.value = health;
+		healthSlider.gameObject.SetActive(true);
+		if (health <= 0)
+		{
+			Die();
+		}
+	}
 
 	virtual public void TakeDamage(DamageParams args)
 	{
@@ -89,9 +100,7 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 			{
 				if (args.amount > 0)
 				{
-					health -= args.amount;
-					healthSlider.gameObject.SetActive(true);
-					healthSlider.value = health;
+					SetHealth(health - args.amount);
 					if (args.damageType == DamageType.Squash)
 						squash.DoSquash(health > 0);
 					else if (args.damageType == DamageType.Hit)
@@ -120,7 +129,8 @@ public abstract class Enemy : MonoBehaviour, IAttackable
                         }
 						break;
 					case Element.Poison:
-						poisonStatus = 2.0f;
+						poisonStatus = poisonStatusDuration;
+						poisonEffectIndex = PoisonCloudController.Get.NewPoisonCloud(GetComponent<MeshRenderer>());
 						break;
 					case Element.Lightning:
 						lightningStatus = 2.0f;
