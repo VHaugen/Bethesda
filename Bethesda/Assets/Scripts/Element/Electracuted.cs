@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Electracuted : MonoBehaviour {
 
-    [SerializeField]
-    Material material;
-
     Material normalMat;
 
     public float duration;
     public bool infinite = false;
 
     float elcTimer = -1;
+    protected int lightIndex = -1;
 
     MeshRenderer meshRenderer;
 
@@ -20,13 +18,16 @@ public class Electracuted : MonoBehaviour {
     private void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
-        normalMat = meshRenderer.material;
+        
     }
 
     public void ElcStart()
     {
+        if (lightIndex == -1)
+        {
+            lightIndex = ElectricControler.Get.NewLight(meshRenderer);
+        }
         elcTimer = duration;
-        meshRenderer.material = material;
     }
 
     public bool IsElc()
@@ -36,8 +37,9 @@ public class Electracuted : MonoBehaviour {
 
     public void ElcStop()
     {
-        meshRenderer.material = normalMat;
         elcTimer = -1;
+        ElectricControler.Get.StopLightning(lightIndex);
+        lightIndex = -1;
     }
 
     void Update()

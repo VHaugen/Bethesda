@@ -10,6 +10,7 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 
     public float speed;
     public float slowSpeed;
+    public float stun;
 	public float iFramesDuration = 0.5f;
 	public float knockbackMultiplier = 1.0f;
 	public Color collideColor = Color.white;
@@ -26,15 +27,17 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 	
 	protected float poisonStatus = -1;
 	//protected float iceStatus = -1;
-	protected float lightningStatus = -1;
+	//protected float lightningStatus = -1;
 	protected SquashEffect squash;
 	protected Flammable flammable;
     protected FrostBite freezable;
+    protected Electracuted electracuted;
 
 	virtual protected void Awake()
 	{
 		flammable = GetComponent<Flammable>();
         freezable = GetComponent<FrostBite>();
+        electracuted = GetComponent<Electracuted>();
 		squash = GetComponent<SquashEffect>();
         speed = GetComponent<TestEnemy>().maxSpeed;
 	}
@@ -68,6 +71,13 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 				PoisonCloudController.Get.StopPoison(poisonEffectIndex);
 			}
 		}
+        if (electracuted && electracuted.IsElc())
+        {
+            //healthSlider.value = health;
+            //healthSlider.gameObject.SetActive(true);
+            stun = GetComponent<TestEnemy>().maxSpeed = 0f;
+            print("STUNNED");
+        }
 
 		if (iFramesTimer > 0)
 		{
@@ -79,6 +89,7 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 			}
 		}
         slowSpeed = speed;
+        stun = speed;
 	}
 
 	protected void SetHealth(float newHealth)
@@ -133,7 +144,10 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 						poisonEffectIndex = PoisonCloudController.Get.NewPoisonCloud(GetComponent<MeshRenderer>());
 						break;
 					case Element.Lightning:
-						lightningStatus = 2.0f;
+                        if (electracuted)
+                        {
+                            electracuted.ElcStart();
+                        }
 						break;
 				}
 

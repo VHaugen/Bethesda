@@ -562,7 +562,10 @@ MonoBehaviour:
   healthSlider: {fileID: 114259621486610228}
   speed: 0
   slowSpeed: 0
+<<<<<<< HEAD
+=======
   stun: 0
+>>>>>>> 47955233980ef17617d669ffe27445660ef5cd97
   iFramesDuration: 0.5
   knockbackMultiplier: 1
   collideColor: {r: 1, g: 1, b: 1, a: 1}
