@@ -25,7 +25,7 @@ public class Electracuted : MonoBehaviour {
     {
         if (lightIndex == -1)
         {
-            lightIndex = ElectricControler.Get.NewLight(meshRenderer);
+            lightIndex = ParticleEffectsManager.GetEffect("Lightning").Spawn(meshRenderer);
         }
         elcTimer = duration;
     }
@@ -38,7 +38,7 @@ public class Electracuted : MonoBehaviour {
     public void ElcStop()
     {
         elcTimer = -1;
-        ElectricControler.Get.StopLightning(lightIndex);
+        ParticleEffectsManager.GetEffect("Lightning").Stop(lightIndex);
         lightIndex = -1;
     }
 

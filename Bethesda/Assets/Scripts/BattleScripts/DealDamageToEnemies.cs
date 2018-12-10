@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class DealDamageToEnemies : MonoBehaviour
 {
-    int manaCharge = 5;
+	int manaCharge = 5;
 	public Transform player;
 	public Element currentElement = Element.None;
 	public DamageType damageType = DamageType.Hit;
 	public float damage;
 	public float knockbackStrength = 1.0f;
-    PlayerMovement mana;
-    
-    
+	PlayerMovement mana;
+
+
 
 	// Use this for initialization
 	void Start()
 	{
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        mana = player.GetComponent<PlayerMovement>();
-    }
+		player = GameObject.FindGameObjectWithTag("Player").transform;
+		mana = player.GetComponent<PlayerMovement>();
+	}
 
 	void OnTriggerEnter(Collider other)
 	{
@@ -27,17 +27,13 @@ public class DealDamageToEnemies : MonoBehaviour
 		if (thingICanKill != null)
 		{
 			Vector3 knockback = Vector3.zero;
-			if (player)
-			{
-				knockback = (other.transform.position - player.position).normalized;
-				knockback *= knockbackStrength; 
-			}
-			else
-			{
-				Debug.LogWarning("Player field not assigned in inspector");
-			}
+			Transform me = player ? player : transform;
+			knockback = other.transform.position - me.position;
+			knockback.y = 1f;
+			knockback.Normalize();
+			knockback *= knockbackStrength;
 			thingICanKill.TakeDamage(new DamageParams(damage, currentElement, damageType, knockback));
-            mana.AddMana(manaCharge);
+			mana.AddMana(manaCharge);
 		}
 	}
 }

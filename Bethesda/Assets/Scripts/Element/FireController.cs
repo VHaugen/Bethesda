@@ -7,8 +7,7 @@ public class FireController : MonoBehaviour
 	[SerializeField]
 	int initialNumFires = 1;
 
-	[SerializeField]
-	ParticleSystem firePrefab;
+	public ParticleSystem firePrefab;
 
 	List<ParticleSystem> fires;
 
@@ -56,6 +55,8 @@ public class FireController : MonoBehaviour
 		}
 		// Haven't found an unused slot yet, make a new one
 		ParticleSystem newFire = Instantiate(firePrefab, transform, true);
+		//var partSettings = newFire.main;
+		//partSettings.scalingMode = ParticleSystemScalingMode.Shape;
 		EnableFire(newFire, attachToMesh);
 		fires.Add(newFire);
 
@@ -73,7 +74,10 @@ public class FireController : MonoBehaviour
 	{
 		fire.gameObject.SetActive(true);
 		fire.Play();
-		var shape = fire.shape;
-		shape.meshRenderer = attachToMesh;
+		foreach (ParticleSystem subSystem in fire.GetComponentsInChildren<ParticleSystem>())
+		{
+			var shape = subSystem.shape;
+			shape.meshRenderer = attachToMesh; 
+		}
 	}
 }

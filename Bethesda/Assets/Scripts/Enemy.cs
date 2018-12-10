@@ -68,7 +68,7 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 			if (poisonStatus <= 0)
 			{
 				poisonStatus = -1;
-				PoisonCloudController.Get.StopPoison(poisonEffectIndex);
+				ParticleEffectsManager.GetEffect("Poison").Stop(poisonEffectIndex);
 			}
 		}
         if (electracuted && electracuted.IsElc())
@@ -141,7 +141,7 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 						break;
 					case Element.Poison:
 						poisonStatus = poisonStatusDuration;
-						poisonEffectIndex = PoisonCloudController.Get.NewPoisonCloud(GetComponent<MeshRenderer>());
+						poisonEffectIndex = ParticleEffectsManager.GetEffect("Poison").Spawn(GetComponent<MeshRenderer>());
 						break;
 					case Element.Lightning:
                         if (electracuted)

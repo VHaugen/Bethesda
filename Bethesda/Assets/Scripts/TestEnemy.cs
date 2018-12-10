@@ -258,6 +258,7 @@ public class TestEnemy : Enemy, IAttackable
 				break;
 			case State.Dead:
 				rbody.velocity = Vector3.zero;
+				flammable.StopBurning();
 				break;
 			case State.Knockback:
 				//print("Knockback: " + knockbackVector);

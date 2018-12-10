@@ -23,7 +23,7 @@ public class Flammable : MonoBehaviour
 	public void StartBurning()
 	{
 		if (fireIndex == -1)
-			fireIndex = FireController.Get.NewFire(meshRenderer);
+			fireIndex = ParticleEffectsManager.GetEffect("Fire").Spawn(meshRenderer);
 		fireTimer = duration;
 	}
 
@@ -35,7 +35,8 @@ public class Flammable : MonoBehaviour
 	public void StopBurning()
 	{
 		fireTimer = -1;
-		FireController.Get.StopFire(fireIndex);
+		if (fireIndex != -1)
+			ParticleEffectsManager.GetEffect("Fire").Stop(fireIndex);
 		fireIndex = -1;
 	}
 
@@ -62,9 +63,8 @@ public class Flammable : MonoBehaviour
 				foreach (Collider colliderToMakeBurn in nearbyColliders)
 				{
 					Flammable flammable = colliderToMakeBurn.GetComponent<Flammable>();
-					if (flammable != null && !flammable.IsBurning())
+					if (flammable != null && flammable.gameObject != gameObject && !flammable.IsBurning())
 					{
-						print("Spread fire to " + flammable.gameObject.name);
 						flammable.StartBurning();
 					}
 				}
