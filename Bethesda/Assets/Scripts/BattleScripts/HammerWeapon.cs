@@ -29,15 +29,15 @@ public class HammerWeapon : MonoBehaviour
 
     void Awake()
     {
-        hitbox = transform.Find("Head").GetComponent<Collider>();
+        //hitbox = transform.Find("Head").GetComponent<Collider>();
 
         //impact = transform.Find("Impact");
         //impactOffset = impact.localPosition;
         player = GameObject.FindGameObjectWithTag("Player");
-        mana = player.GetComponent<PlayerMovement>();
+        //mana = player.GetComponent<PlayerMovement>();
         audioSource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
-        overHeadHitBox = transform.Find("AOE").GetComponent<Collider>();
+        //overHeadHitBox = transform.Find("AOE").GetComponent<Collider>();
 		afterImages = GetComponentInChildren<AfterImages>();
     }
 
@@ -46,9 +46,9 @@ public class HammerWeapon : MonoBehaviour
         if (Input.GetButtonDown("Attack") && !anim.GetCurrentAnimatorStateInfo(0).IsName("PlaceholderWeaponAttack"))
         {
             print("Attacku!");
-            anim.SetTrigger("AttackTransitionBasic");
+            anim.SetTrigger("AttackTransition");
 			//mana.AddMana(manaCharge);
-			afterImages.Show();
+			//afterImages.Show();
 		}
         if (Input.GetKeyDown(KeyCode.E) && !anim.GetCurrentAnimatorStateInfo(0).IsName("PlaceholderOverheadAttack") && mana.manaSlider.value >= 20 || Input.GetButtonDown("B Button") && !anim.GetCurrentAnimatorStateInfo(1).IsName("PlaceholderOverheadAttack") && mana.manaSlider.value >= 20)
         {

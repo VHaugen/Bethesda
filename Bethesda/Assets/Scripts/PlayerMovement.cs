@@ -43,6 +43,7 @@ public class PlayerMovement : Movement
     public AudioClip dashSound;
     public AudioClip damageSound;
     Flammable flammable;
+    Animator anim;
 
     // Use this for initialization
     protected override void Start()
@@ -56,12 +57,13 @@ public class PlayerMovement : Movement
         manaSlider.value = startingMana;
         audio = GetComponent<AudioSource>();
         flammable = GetComponent<Flammable>();
-
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         Vector3 movement;
 
 
@@ -71,14 +73,18 @@ public class PlayerMovement : Movement
         rawAxisY = Input.GetAxisRaw("Vertical");
         //rawAxisY = (float)System.Math.Round(rawAxisY);
         movement = new Vector3(rawAxisX * speed, 0, rawAxisY * speed);
+        
+        
 
         if (movement.sqrMagnitude == 0)
         {
             rb.velocity *= 0.1f;
+            anim.SetBool("StandStill", true);
         }
         else
         {
             transform.rotation = Quaternion.LookRotation(movement);
+            anim.SetBool("StandStill", false);
         }
 
         rb.AddForce(movement, ForceMode.Acceleration);
@@ -97,6 +103,7 @@ public class PlayerMovement : Movement
         }
         if (Input.GetAxis("RightBumpStick") != 0 && coolDownPeriod == 0 || Input.GetKey(KeyCode.LeftShift) && coolDownPeriod == 0)
         {
+            anim.Play("Run_cycle");
             startDashTimer = true;
             dashTimer = 0.5f;
             iFrames = true;

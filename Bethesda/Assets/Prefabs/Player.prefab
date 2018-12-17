@@ -739,6 +739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2227e3ae5dad75e4f9c6c69f34171d57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  overHeadCost: 20
   playerObject: {fileID: 1712318412317098}
 --- !u!114 &114409234694775176
 MonoBehaviour:
@@ -782,10 +783,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 100
+  startingMana: 150
   fireDamagePerSecond: 10
   armorValue: 0
   currentHealth: 0
+  currentMana: 0
   healthSlider: {fileID: 0}
+  manaSlider: {fileID: 0}
   damageImage: {fileID: 0}
   flashSpeed: 5
   flashColour: {r: 1, g: 0, b: 0, a: 0.1}

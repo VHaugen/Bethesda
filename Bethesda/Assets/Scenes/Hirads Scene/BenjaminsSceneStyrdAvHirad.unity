@@ -113,6 +113,49 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &140504224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 140504226}
+  - component: {fileID: 140504225}
+  m_Layer: 0
+  m_Name: Frost
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &140504225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 140504224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 140fa5abaa6420c41b4295fc2cfbc58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialNumIces: 1
+  frostPreFab: {fileID: 198022523507221994, guid: b0bcc9bb30527d549b50bb10bcf9bf00,
+    type: 2}
+--- !u!4 &140504226
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 140504224}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.4729776, y: 1.0397658, z: 2.978289}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &158524740
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,6 +726,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3c65521428030845a55cef3fa9c40dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentIntensity: 0
+  vignetteStartingIntensity: 0
   vignetteIntensityMinOvershootTarget: 0.5
   vignetteIntensityExtraOvershoot: 0.1
   vignetteIncreaseDuration: 0.1
@@ -709,7 +754,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 606969157}
   m_LocalRotation: {x: -0.3129069, y: -0.017952925, z: 0.0059156534, w: -0.9495957}
-  m_LocalPosition: {x: 5.5713997, y: 15.482943, z: -12.584241}
+  m_LocalPosition: {x: 5.8, y: 10.9, z: -6.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 534669905}

@@ -54,7 +54,7 @@ public class AfterImages : MonoBehaviour
 	Material CreateMaterial()
 	{
 		afterImageMaterial = new Material(Shader.Find("Custom/AfterImage"));
-		Material ownerMaterial = GetComponent<MeshRenderer>().sharedMaterial;
+		Material ownerMaterial = GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterial;
 		afterImageMaterial.SetTexture("_MainTex", ownerMaterial.GetTexture("_MainTex"));
 		afterImageMaterial.SetColor("_Color", ownerMaterial.GetColor("_Color"));
 		afterImageMaterial.SetColor("_TintColor", tintColor);

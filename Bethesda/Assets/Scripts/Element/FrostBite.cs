@@ -13,7 +13,7 @@ public class FrostBite : MonoBehaviour
     public bool infinite = false;
 
     float iceTimer = -1;
-    
+    protected int frostIndex = -1;
 
     MeshRenderer meshRenderer;
 
@@ -27,6 +27,11 @@ public class FrostBite : MonoBehaviour
     // Update is called once per frame
     public void FreezeStart()
     {
+        print("yay he froze");
+        if (frostIndex == -1)
+        {
+            frostIndex = IceControl.Get.NewFog(meshRenderer);
+        }
         iceTimer = duration;
         meshRenderer.material = material;
     }
@@ -41,6 +46,8 @@ public class FrostBite : MonoBehaviour
         meshRenderer.material = normalMat;
 		meshRenderer.material.SetFloat("_TintAmount", 0.0f);
         iceTimer = -1;
+        IceControl.Get.StopFrost(frostIndex);
+        frostIndex = -1;
     }
 
     void Update()
