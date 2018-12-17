@@ -15,6 +15,8 @@ public enum Element
 public class HammerWeapon : MonoBehaviour
 {
     public int overHeadCost = 20;
+	public int swingCost = 10;
+	public Animator swingAnim;
     //public int manaCharge = 5;
     Collider hitbox;
     AudioSource audioSource;
@@ -50,14 +52,22 @@ public class HammerWeapon : MonoBehaviour
 			//mana.AddMana(manaCharge);
 			afterImages.Show();
 		}
-        if (Input.GetKeyDown(KeyCode.E) && !anim.GetCurrentAnimatorStateInfo(0).IsName("PlaceholderOverheadAttack") && mana.manaSlider.value >= 20 || Input.GetButtonDown("B Button") && !anim.GetCurrentAnimatorStateInfo(1).IsName("PlaceholderOverheadAttack") && mana.manaSlider.value >= 20)
+        if ((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("B Button")) && !anim.GetCurrentAnimatorStateInfo(0).IsName("PlaceholderOverheadAttack") && mana.manaSlider.value >= overHeadCost)
         {
             print("ROADO ROLLA DA");
             anim.SetTrigger("AttackTransitionOverhead");
-            mana.UseMana(overHeadCost);
+			mana.UseMana(overHeadCost);
         }
 
-    }
+		if ((Input.GetKeyDown(KeyCode.Q)) && mana.manaSlider.value >= swingCost)
+		{
+			print("SWINGAROOO");
+			swingAnim.Play("SwingAttackHitbox");
+			mana.UseMana(swingCost);
+		}
+
+
+	}
 
 
 	public void ShowAfterImages()

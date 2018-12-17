@@ -1019,23 +1019,23 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114120909295000396, guid: 6a65568a0f9549f4b9b7f878546ee149,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1266439778}
     - target: {fileID: 1023513781602166, guid: 6a65568a0f9549f4b9b7f878546ee149, type: 2}
       propertyPath: m_Name
       value: StartButton
       objectReference: {fileID: 0}
     - target: {fileID: 114120909295000396, guid: 6a65568a0f9549f4b9b7f878546ee149,
         type: 2}
-      propertyPath: m_Navigation.m_Mode
-      value: 4
-      objectReference: {fileID: 0}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 1728641810}
     - target: {fileID: 114120909295000396, guid: 6a65568a0f9549f4b9b7f878546ee149,
         type: 2}
       propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 1728641810}
+    - target: {fileID: 114120909295000396, guid: 6a65568a0f9549f4b9b7f878546ee149,
+        type: 2}
+      propertyPath: m_Navigation.m_SelectOnLeft
       value: 
       objectReference: {fileID: 1728641810}
     - target: {fileID: 114120909295000396, guid: 6a65568a0f9549f4b9b7f878546ee149,
@@ -1045,14 +1045,9 @@ Prefab:
       objectReference: {fileID: 1728641810}
     - target: {fileID: 114120909295000396, guid: 6a65568a0f9549f4b9b7f878546ee149,
         type: 2}
-      propertyPath: m_Navigation.m_SelectOnUp
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1728641810}
-    - target: {fileID: 114120909295000396, guid: 6a65568a0f9549f4b9b7f878546ee149,
-        type: 2}
-      propertyPath: m_Navigation.m_SelectOnLeft
-      value: 
-      objectReference: {fileID: 1728641810}
+      objectReference: {fileID: 1266439778}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a65568a0f9549f4b9b7f878546ee149, type: 2}
   m_IsPrefabAsset: 0
