@@ -16,8 +16,7 @@ public class HammerWeapon : MonoBehaviour
 {
     public int overHeadCost = 20;
 	public int swingCost = 10;
-	public Animator swingAnim;
-    //public int manaCharge = 5;
+    public int manaCharge = 5;
     Collider hitbox;
     AudioSource audioSource;
     Animator anim;
@@ -36,7 +35,7 @@ public class HammerWeapon : MonoBehaviour
         //impact = transform.Find("Impact");
         //impactOffset = impact.localPosition;
         player = GameObject.FindGameObjectWithTag("Player");
-        //mana = player.GetComponent<PlayerMovement>();
+        mana = player.GetComponent<PlayerMovement>();
         audioSource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
         //overHeadHitBox = transform.Find("AOE").GetComponent<Collider>();
@@ -52,17 +51,17 @@ public class HammerWeapon : MonoBehaviour
 			//mana.AddMana(manaCharge);
 			//afterImages.Show();
 		}
-        if ((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("B Button")) && !anim.GetCurrentAnimatorStateInfo(0).IsName("PlaceholderOverheadAttack") && mana.manaSlider.value >= overHeadCost)
+        if ((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("B Button")) && !anim.GetCurrentAnimatorStateInfo(0).IsName("Heavy Attack") /*&& mana.manaSlider.value >= overHeadCost*/)
         {
             print("ROADO ROLLA DA");
-            anim.SetTrigger("AttackTransitionOverhead");
+            anim.SetTrigger("AttackTransitionHeavy");
 			mana.UseMana(overHeadCost);
         }
 
-		if ((Input.GetKeyDown(KeyCode.Q)) && mana.manaSlider.value >= swingCost)
+		if ((Input.GetKeyDown(KeyCode.Q)) /*&& mana.manaSlider.value >= swingCost*/)
 		{
 			print("SWINGAROOO");
-			swingAnim.Play("SwingAttackHitbox");
+            anim.SetTrigger("AttackTransitionSwing");
 			mana.UseMana(swingCost);
 		}
 
