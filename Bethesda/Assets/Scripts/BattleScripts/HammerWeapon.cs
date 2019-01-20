@@ -35,7 +35,7 @@ public class HammerWeapon : MonoBehaviour
         //impact = transform.Find("Impact");
         //impactOffset = impact.localPosition;
         player = GameObject.FindGameObjectWithTag("Player");
-        mana = player.GetComponent<PlayerMovement>();
+        //mana = player.GetComponent<PlayerMovement>();
         audioSource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
         //overHeadHitBox = transform.Find("AOE").GetComponent<Collider>();
@@ -55,14 +55,14 @@ public class HammerWeapon : MonoBehaviour
         {
             print("ROADO ROLLA DA");
             anim.SetTrigger("AttackTransitionHeavy");
-			mana.UseMana(overHeadCost);
+			//mana.UseMana(overHeadCost);
         }
 
 		if ((Input.GetKeyDown(KeyCode.Q)) /*&& mana.manaSlider.value >= swingCost*/)
 		{
 			print("SWINGAROOO");
             anim.SetTrigger("AttackTransitionSwing");
-			mana.UseMana(swingCost);
+			//mana.UseMana(swingCost);
 		}
 
 
