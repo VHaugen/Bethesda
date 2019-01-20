@@ -171,7 +171,7 @@ public class PlayerMovement : Movement
     {
         
         
-            //manaSlider.value = currentMana;
+            manaSlider.value = currentMana;
             manaSlider.value += amount;
 
         
