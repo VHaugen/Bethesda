@@ -23,6 +23,8 @@ public class FrameByFrameSlider : MonoBehaviour
 	{
 		int frameCount = frames.Length;
 		frameIdx = frameCount - (int)((newValue / slider.maxValue) * frameCount);
-		image.sprite = frames[frameIdx];
+		print("frameidx " + frameIdx);
+		if (frameIdx >= 0 && frameIdx < frames.Length)
+			image.sprite = frames[frameIdx];
 	}
 }

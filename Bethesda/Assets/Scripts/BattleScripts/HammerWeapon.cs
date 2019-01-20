@@ -24,9 +24,7 @@ public class HammerWeapon : MonoBehaviour
 	AfterImages afterImages;
 	Transform impact;
 	Vector3 impactOffset;
-    public GameObject playerObject;
-    PlayerMovement mana;
-    GameObject player;
+    PlayerMovement playerMovement;
 
     void Awake()
     {
@@ -34,7 +32,7 @@ public class HammerWeapon : MonoBehaviour
 
         //impact = transform.Find("Impact");
         //impactOffset = impact.localPosition;
-        player = GameObject.FindGameObjectWithTag("Player");
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         //mana = player.GetComponent<PlayerMovement>();
         audioSource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
@@ -48,21 +46,21 @@ public class HammerWeapon : MonoBehaviour
         {
             print("Attacku!");
             anim.SetTrigger("AttackTransition");
-			//mana.AddMana(manaCharge);
-			//afterImages.Show();
+			playerMovement.AddMana(manaCharge);
+			afterImages.Show();
 		}
-        if ((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("B Button")) && !anim.GetCurrentAnimatorStateInfo(0).IsName("Heavy Attack") /*&& mana.manaSlider.value >= overHeadCost*/)
+		if ((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("B Button")) && !anim.GetCurrentAnimatorStateInfo(0).IsName("Heavy Attack") /*&& mana.manaSlider.value >= overHeadCost*/)
         {
             print("ROADO ROLLA DA");
             anim.SetTrigger("AttackTransitionHeavy");
-			//mana.UseMana(overHeadCost);
-        }
+			playerMovement.UseMana(overHeadCost);
+		}
 
 		if ((Input.GetKeyDown(KeyCode.Q)) /*&& mana.manaSlider.value >= swingCost*/)
 		{
 			print("SWINGAROOO");
             anim.SetTrigger("AttackTransitionSwing");
-			//mana.UseMana(swingCost);
+			playerMovement.UseMana(swingCost);
 		}
 
 
@@ -103,7 +101,7 @@ public class HammerWeapon : MonoBehaviour
 
     public void EnableSlowDown(int enableSlowness)
     {
-        playerObject.GetComponent<PlayerMovement>().maxSpeed = enableSlowness == 1 ? 1.0f : 10.0f;
+        playerMovement.maxSpeed = enableSlowness == 1 ? 1.0f : 10.0f;
     }
 
     public void PlaySound(Object audioClip)

@@ -20,7 +20,7 @@ public class PlayerMovement : Movement
     public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
     private Color normalColor = new Color(0.9137255f, 0.6511509f, 0.1960784f, 1f);
     public Color collideColor = new Color(1f, 1f, 1f, 0.1f);
-    public Renderer GameMesh;
+    public Renderer meshRenderer;
 
     public float speed;
     public float maxSpeed;
@@ -52,7 +52,6 @@ public class PlayerMovement : Movement
         iFrames = false;
         tRail = GetComponent<TrailRenderer>();
         afterImages = transform.Find("front1").GetComponent<AfterImages>();
-        GetComponent<MeshRenderer>();
         currentHealth = startingHealth;
         manaSlider.value = startingMana;
         audio = GetComponent<AudioSource>();
@@ -198,16 +197,15 @@ public class PlayerMovement : Movement
     }
     IEnumerator Flasher()
     {
-        var renderer = GameMesh;
-        if (renderer != null)
+        if (meshRenderer != null)
         {
-            renderer.material.SetColor("_TintColor", collideColor);
+            meshRenderer.material.SetColor("_TintColor", collideColor);
             for (int i = 0; i <= 10; i++)
             {
-                renderer.material.SetFloat("_TintAmount", 0.8f);
+                meshRenderer.material.SetFloat("_TintAmount", 0.8f);
                 iFrames = true;
                 yield return new WaitForSeconds(.06f);
-                renderer.material.SetFloat("_TintAmount", 0.0f);
+                meshRenderer.material.SetFloat("_TintAmount", 0.0f);
                 yield return new WaitForSeconds(.03f);
             }
         }

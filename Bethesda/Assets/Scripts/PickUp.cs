@@ -23,8 +23,15 @@ public class PickUp : MonoBehaviour {
         {
             Destroy(gameObject);
 			Transform weapon = other.transform.Find("Weapon/Head");
-			weapon.GetComponent<MeshRenderer>().material = mat;
-			weapon.GetComponent<DealDamageToEnemies>().currentElement = element;
+			if (weapon)
+			{
+				weapon.GetComponent<MeshRenderer>().material = mat;
+				weapon.GetComponent<DealDamageToEnemies>().currentElement = element; 
+			}
+			else
+			{
+				Debug.LogWarning("No weapon found!");
+			}
         }
     }
 }

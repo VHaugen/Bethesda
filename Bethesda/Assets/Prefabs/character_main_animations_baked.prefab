@@ -280,6 +280,7 @@ GameObject:
   - component: {fileID: 114655946311947114}
   - component: {fileID: 82820064797588026}
   - component: {fileID: 114137934309814174}
+  - component: {fileID: 136037607212719346}
   m_Layer: 0
   m_Name: character_main_animations_baked
   m_TagString: Player
@@ -1233,7 +1234,6 @@ MonoBehaviour:
   overHeadCost: 20
   swingCost: 10
   manaCharge: 5
-  playerObject: {fileID: 1429439469475540}
 --- !u!114 &114263123184688948
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1287,8 +1287,8 @@ MonoBehaviour:
   damageImage: {fileID: 0}
   flashSpeed: 5
   flashColour: {r: 1, g: 0, b: 0, a: 0.1}
-  collideColor: {r: 1, g: 1, b: 1, a: 0.1}
-  GameMesh: {fileID: 13700000, guid: ed027ea3262cf9248b2df4fb97cb00cc, type: 3}
+  collideColor: {r: 1, g: 1, b: 1, a: 1}
+  meshRenderer: {fileID: 137272357291149486}
   speed: 100
   maxSpeed: 10
   dashSpeed: 20
@@ -1301,6 +1301,19 @@ MonoBehaviour:
   iFrames: 0
   dashSound: {fileID: 8300000, guid: 4140cc71fb263af48be647d11193f63c, type: 3}
   damageSound: {fileID: 8300000, guid: 9bce4d9478714084ab7b1f86b773e755, type: 3}
+--- !u!136 &136037607212719346
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1429439469475540}
+  m_Material: {fileID: 13400000, guid: 5c5eb7970de1b8f4d8e8fc61e2067d43, type: 2}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 3.5239844
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.2619925, z: 0}
 --- !u!137 &137272357291149486
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -1316,7 +1329,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: ed027ea3262cf9248b2df4fb97cb00cc, type: 3}
+  - {fileID: 2100000, guid: ea91194d45fa33a4bac083e655cedf96, type: 2}
   - {fileID: 2100002, guid: ed027ea3262cf9248b2df4fb97cb00cc, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
