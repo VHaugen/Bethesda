@@ -22,6 +22,7 @@ public class Set_Dungeon_Layout : MonoBehaviour
     public GameObject Connector;
     public GameObject Player;
 
+
     private string[] direction;
     public ushort size;
     [Range(10.0f, 100.0f)]
@@ -32,7 +33,7 @@ public class Set_Dungeon_Layout : MonoBehaviour
     {
         direction = new string[4] { "Höger", "Vänster", "Upp", "Ner" };
 
-        DrawGrid();
+       // DrawGrid();
         BuildDungeon();
 
 
@@ -41,18 +42,8 @@ public class Set_Dungeon_Layout : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            for (int i = 0; i < size; i++)
-            {
-                for (int k = 0; k < size; k++)
-                {
-                    Destroy(map[i, k]);
-                }
-            }
-
-            BuildDungeon();
-        }
+       
+        
     }
 
     void DrawGrid()
@@ -78,6 +69,7 @@ public class Set_Dungeon_Layout : MonoBehaviour
         //SPAWN just a path forward
 
         map[0, roomYouCameDownOn] = Instantiate(startRoom, new Vector3(roomYouCameDownOn * distanceBetweenRooms, 0, -1 * distanceBetweenRooms), Quaternion.identity) as GameObject;
+        Player.transform.position = new Vector3(roomYouCameDownOn * distanceBetweenRooms, 0, -1 * distanceBetweenRooms);
         // Player.transform.position = new Vector3(roomYouCameDownOn * distanceBetweenRooms, 0, -1 * distanceBetweenRooms);
 
         for (int i = 0; i < size; i++)
