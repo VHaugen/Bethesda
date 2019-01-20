@@ -51,7 +51,7 @@ public class PlayerMovement : Movement
         base.Start();
         iFrames = false;
         tRail = GetComponent<TrailRenderer>();
-        afterImages = GetComponent<AfterImages>();
+        afterImages = transform.Find("front1").GetComponent<AfterImages>();
         GetComponent<MeshRenderer>();
         currentHealth = startingHealth;
         manaSlider.value = startingMana;

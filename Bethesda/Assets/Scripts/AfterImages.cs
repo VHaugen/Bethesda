@@ -26,13 +26,17 @@ public class AfterImages : MonoBehaviour
 
 	GameObject[] imageObjects;
 	MeshFilter meshFilter;
+	SkinnedMeshRenderer skinnedMeshRenderer;
 	Material afterImageMaterial;
 	int currentIndex = -1;
 	float timer = 0;
+	bool hasSkinnedRenderer;
 
 	void Awake()
 	{
+		// One of these will return null, most likely
 		meshFilter = GetComponent<MeshFilter>();
+		skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer>();
 	}
 
 	void Start()
@@ -54,7 +58,7 @@ public class AfterImages : MonoBehaviour
 	Material CreateMaterial()
 	{
 		afterImageMaterial = new Material(Shader.Find("Custom/AfterImage"));
-		Material ownerMaterial = GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterial;
+		Material ownerMaterial = GetComponentInChildren<Renderer>().sharedMaterial;
 		afterImageMaterial.SetTexture("_MainTex", ownerMaterial.GetTexture("_MainTex"));
 		afterImageMaterial.SetColor("_Color", ownerMaterial.GetColor("_Color"));
 		afterImageMaterial.SetColor("_TintColor", tintColor);
@@ -99,6 +103,13 @@ public class AfterImages : MonoBehaviour
 		AfterImageRenderer afterImage = obj.GetComponent<AfterImageRenderer>();
 		afterImage.Show(startingOpacity, transform);
 		obj.GetComponent<MeshRenderer>().sharedMaterial = afterImageMaterial;
-		obj.GetComponent<MeshFilter>().sharedMesh = meshFilter.sharedMesh;
+		if (meshFilter)
+		{
+			obj.GetComponent<MeshFilter>().sharedMesh = meshFilter.sharedMesh;
+		}
+		else if (skinnedMeshRenderer)
+		{
+			skinnedMeshRenderer.BakeMesh(obj.GetComponent<MeshFilter>().mesh);
+		}
 	}
 }
