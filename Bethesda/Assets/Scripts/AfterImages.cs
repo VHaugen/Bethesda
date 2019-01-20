@@ -18,7 +18,7 @@ public class AfterImages : MonoBehaviour
 	float startingOpacity = 0.5f;
 
 	[SerializeField]
-	Color tintColor;
+	Color tintColor = Color.white;
 
 	[SerializeField]
 	[Range(0, 1)]

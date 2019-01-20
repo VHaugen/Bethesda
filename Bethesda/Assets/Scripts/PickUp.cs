@@ -22,7 +22,7 @@ public class PickUp : MonoBehaviour {
         if (other.gameObject.tag == "Player")
         {
             Destroy(gameObject);
-			Transform weapon = other.transform.Find("Weapon/Head");
+			Transform weapon = FindObjectOfType<HammerWeapon>().transform;
 			if (weapon)
 			{
 				weapon.GetComponent<MeshRenderer>().material = mat;

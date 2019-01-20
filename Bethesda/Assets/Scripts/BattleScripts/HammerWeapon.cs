@@ -4,62 +4,61 @@ using UnityEngine;
 
 public enum Element
 {
-    Fire,
-    Ice,
-    Lightning,
-    Poison,
-    None
+	Fire,
+	Ice,
+	Lightning,
+	Poison,
+	None
 }
 
 [RequireComponent(typeof(AudioSource))]
 public class HammerWeapon : MonoBehaviour
 {
-    public int overHeadCost = 20;
+	public int overHeadCost = 20;
 	public int swingCost = 10;
-    public int manaCharge = 5;
-    Collider hitbox;
-    AudioSource audioSource;
-    Animator anim;
-    Collider overHeadHitBox;
-	AfterImages afterImages;
+	public int manaCharge = 5;
+	[HideInInspector] public Collider hitbox;
+	[HideInInspector] public Collider overHeadHitBox;
+	AudioSource audioSource;
+	[HideInInspector] public AfterImages afterImages;
 	Transform impact;
 	Vector3 impactOffset;
-    PlayerMovement playerMovement;
+	PlayerMovement playerMovement;
+	Animator playerAnimator;
 
-    void Awake()
-    {
-        //hitbox = transform.Find("Head").GetComponent<Collider>();
+	void Awake()
+	{
+		hitbox = GetComponentInChildren<Collider>();
 
-        //impact = transform.Find("Impact");
-        //impactOffset = impact.localPosition;
-        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-        //mana = player.GetComponent<PlayerMovement>();
-        audioSource = GetComponent<AudioSource>();
-        anim = GetComponent<Animator>();
-        //overHeadHitBox = transform.Find("AOE").GetComponent<Collider>();
-		afterImages = GetComponentInChildren<AfterImages>();
-    }
+		//impact = transform.Find("Impact");
+		//impactOffset = impact.localPosition;
+		playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+		playerAnimator = playerMovement.GetComponent<Animator>();
+		audioSource = GetComponent<AudioSource>();
+		overHeadHitBox = transform.Find("AOE").GetComponent<Collider>();
+		afterImages = GetComponent<AfterImages>();
+	}
 
-    void Update()
-    {
-        if (Input.GetButtonDown("Attack") && !anim.GetCurrentAnimatorStateInfo(0).IsName("PlaceholderWeaponAttack"))
-        {
-            print("Attacku!");
-            anim.SetTrigger("AttackTransition");
+	void Update()
+	{
+		if (Input.GetButtonDown("Attack") && !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("PlaceholderWeaponAttack"))
+		{
+			print("Attacku!");
+			playerAnimator.SetTrigger("AttackTransition");
 			playerMovement.AddMana(manaCharge);
 			afterImages.Show();
 		}
-		if ((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("B Button")) && !anim.GetCurrentAnimatorStateInfo(0).IsName("Heavy Attack") /*&& mana.manaSlider.value >= overHeadCost*/)
-        {
-            print("ROADO ROLLA DA");
-            anim.SetTrigger("AttackTransitionHeavy");
+		if ((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("B Button")) && !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Heavy Attack") /*&& mana.manaSlider.value >= overHeadCost*/)
+		{
+			print("ROADO ROLLA DA");
+			playerAnimator.SetTrigger("AttackTransitionHeavy");
 			playerMovement.UseMana(overHeadCost);
 		}
 
 		if ((Input.GetKeyDown(KeyCode.Q)) /*&& mana.manaSlider.value >= swingCost*/)
 		{
 			print("SWINGAROOO");
-            anim.SetTrigger("AttackTransitionSwing");
+			playerAnimator.SetTrigger("AttackTransitionSwing");
 			playerMovement.UseMana(swingCost);
 		}
 
@@ -89,28 +88,15 @@ public class HammerWeapon : MonoBehaviour
 		//}
 	}
 
-    public void EnableHitbox(int enable)
-    {
-        hitbox.enabled = enable == 0 ? false : true;
-    }
+	public void EnableHitbox(int enable)
+	{
+		hitbox.enabled = enable == 0 ? false : true;
+	}
 
-    public void EnableAoeHitbox(int enable)
-    {
-        overHeadHitBox.enabled = enable == 0 ? false : true;
-    }
 
-    public void EnableSlowDown(int enableSlowness)
-    {
-        playerMovement.maxSpeed = enableSlowness == 1 ? 1.0f : 10.0f;
-    }
 
-    public void PlaySound(Object audioClip)
-    {
-        audioSource.PlayOneShot((AudioClip)audioClip);
-    }
-
-    public void ScreenShake()
-    {
-        CameraEffects.Get.Shake(0.25f, 0.4f);
-    }
+	public void PlaySound(Object audioClip)
+	{
+		audioSource.PlayOneShot((AudioClip)audioClip);
+	}
 }

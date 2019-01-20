@@ -44,6 +44,7 @@ public class PlayerMovement : Movement
     public AudioClip damageSound;
     Flammable flammable;
     Animator anim;
+	HammerWeapon weapon;
 
     // Use this for initialization
     protected override void Start()
@@ -57,6 +58,7 @@ public class PlayerMovement : Movement
         audio = GetComponent<AudioSource>();
         flammable = GetComponent<Flammable>();
         anim = GetComponent<Animator>();
+		weapon = GetComponentInChildren<HammerWeapon>();
     }
 
     // Update is called once per frame
@@ -180,7 +182,7 @@ public class PlayerMovement : Movement
     {
         //currentMana -= amount;
         manaSlider.value -= amount;
-        print("lostmana");
+        print("lostmana " + amount);
     }
 
     public void TakeDamage(int amount)
@@ -212,14 +214,42 @@ public class PlayerMovement : Movement
         iFrames = false;
     }
 
+	public void PlaySound(Object audioClip)
+	{
+		audio.PlayOneShot((AudioClip)audioClip);
+	}
 
+	public void Anim_EnableHitbox(int enable)
+	{
+		weapon.hitbox.enabled = enable == 0 ? false : true;
+	}
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.CompareTag("enemy") && iFrames == false)
-    //    {
-    //        print("dead");
-    //    }
-    //}
+	public void EnableSlowDown(int enableSlowness)
+	{
+		maxSpeed = enableSlowness == 1 ? 1.0f : 10.0f;
+	}
+
+	public void Anim_ShowAfterImages()
+	{
+		weapon.afterImages.Show();
+	}
+
+	public void Anim_EnableAoeHitbox(int enable)
+	{
+		weapon.overHeadHitBox.enabled = enable == 0 ? false : true;
+	}
+
+	public void ScreenShake()
+	{
+		CameraEffects.Get.Shake(0.25f, 0.4f);
+	}
+
+	//private void OnTriggerEnter(Collider other)
+	//{
+	//    if (other.gameObject.CompareTag("enemy") && iFrames == false)
+	//    {
+	//        print("dead");
+	//    }
+	//}
 
 }
