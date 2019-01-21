@@ -100,13 +100,13 @@ public class CameraEffects : MonoBehaviour
 
 	public void Shake(float amplitude, float duration)
 	{
-		timer = 0;
-		timerWithinSingleShake = 0;
-		PickNewPosition();
-		if (amplitude > this.amplitude)
-			this.amplitude = amplitude;
-		if (duration > this.duration)
-			this.duration = duration;
+		//timer = 0;
+		//timerWithinSingleShake = 0;
+		//PickNewPosition();
+		//if (amplitude > this.amplitude)
+		//	this.amplitude = amplitude;
+		//if (duration > this.duration)
+		//	this.duration = duration;
 	}
 
 	public void SetDamageVignette(float intensity)

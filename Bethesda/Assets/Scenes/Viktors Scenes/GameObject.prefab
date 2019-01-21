@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4314870866598572}
   - component: {fileID: 33437316366333700}
   - component: {fileID: 23023768183292290}
+  - component: {fileID: 65419806276338018}
   m_Layer: 0
   m_Name: Wall (7)
   m_TagString: Untagged
@@ -209,6 +210,7 @@ GameObject:
   - component: {fileID: 4790670275039676}
   - component: {fileID: 33840684645265142}
   - component: {fileID: 23033107086722468}
+  - component: {fileID: 65244983219042758}
   m_Layer: 0
   m_Name: Wall (5)
   m_TagString: Untagged
@@ -256,6 +258,7 @@ GameObject:
   - component: {fileID: 4035437680176584}
   - component: {fileID: 33385989951873336}
   - component: {fileID: 23480455633164540}
+  - component: {fileID: 65186742095444158}
   m_Layer: 0
   m_Name: Wall (4)
   m_TagString: Untagged
@@ -448,6 +451,7 @@ GameObject:
   - component: {fileID: 4944700687126594}
   - component: {fileID: 33694189587783848}
   - component: {fileID: 23603348788937046}
+  - component: {fileID: 65860411101209484}
   m_Layer: 0
   m_Name: Wall (6)
   m_TagString: Untagged
@@ -704,6 +708,7 @@ GameObject:
   - component: {fileID: 4319214372746494}
   - component: {fileID: 33278381334221694}
   - component: {fileID: 23232502946073352}
+  - component: {fileID: 65264332551982966}
   m_Layer: 0
   m_Name: Wall (1)
   m_TagString: Untagged
@@ -836,6 +841,7 @@ GameObject:
   - component: {fileID: 4926424265597050}
   - component: {fileID: 33490542204719986}
   - component: {fileID: 23654095656487954}
+  - component: {fileID: 65045145385289226}
   m_Layer: 0
   m_Name: Wall (2)
   m_TagString: Untagged
@@ -932,6 +938,7 @@ GameObject:
   - component: {fileID: 4155347509432878}
   - component: {fileID: 33725183205412658}
   - component: {fileID: 23232985631024994}
+  - component: {fileID: 65605479291013082}
   m_Layer: 0
   m_Name: Wall (8)
   m_TagString: Untagged
@@ -1372,6 +1379,7 @@ GameObject:
   - component: {fileID: 4444829509230064}
   - component: {fileID: 33497799567078856}
   - component: {fileID: 23388167083923706}
+  - component: {fileID: 65677673103226818}
   m_Layer: 0
   m_Name: Wall (3)
   m_TagString: Untagged
@@ -4290,6 +4298,54 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1715875814975840}
   m_Mesh: {fileID: 4300000, guid: 82785f4eef0c6e74f91effdef42b0927, type: 3}
+--- !u!65 &65045145385289226
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1654207040222182}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 14.146845, y: 6.5404086, z: 0.73569995}
+  m_Center: {x: 0, y: 0.00000035762784, z: 0}
+--- !u!65 &65186742095444158
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1156531295694126}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 14.146845, y: 6.5404086, z: 0.73569995}
+  m_Center: {x: 0, y: 0.00000035762784, z: 0}
+--- !u!65 &65244983219042758
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1127092873006114}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 14.146849, y: 6.5404086, z: 0.73570013}
+  m_Center: {x: 0, y: 0.00000035762784, z: 0}
+--- !u!65 &65264332551982966
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1557439585695302}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 14.146845, y: 6.540409, z: 0.73569995}
+  m_Center: {x: 0, y: 0.00000035762787, z: 0}
 --- !u!65 &65326687178610904
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -4308,12 +4364,48 @@ BoxCollider:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1894070551866360}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 5c5eb7970de1b8f4d8e8fc61e2067d43, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65419806276338018
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1010132480809090}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 14.146849, y: 6.5404086, z: 0.73570013}
+  m_Center: {x: 0, y: 0.00000035762784, z: 0}
+--- !u!65 &65605479291013082
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1695028233479250}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 14.146849, y: 6.5404086, z: 0.73570013}
+  m_Center: {x: 0, y: 0.00000035762784, z: 0}
+--- !u!65 &65677673103226818
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1997537833934234}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 14.146845, y: 6.5404086, z: 0.73569995}
+  m_Center: {x: 0, y: 0.00000035762784, z: 0}
 --- !u!65 &65679521447712436
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -4338,6 +4430,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65860411101209484
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1306673420695176}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 14.146849, y: 6.5404086, z: 0.73570013}
+  m_Center: {x: 0, y: 0.00000035762784, z: 0}
 --- !u!65 &65938722128599688
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -4371,7 +4475,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.54901963, g: 0.41960785, b: 0.41960785, a: 1}
   m_Intensity: 1.1
   m_Range: 42.23
   m_SpotAngle: 68
@@ -4408,7 +4512,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.54901963, g: 0.41960785, b: 0.41960785, a: 1}
   m_Intensity: 1.1
   m_Range: 42.23
   m_SpotAngle: 68
@@ -4445,7 +4549,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.54901963, g: 0.41960785, b: 0.41960785, a: 1}
   m_Intensity: 1.1
   m_Range: 42.23
   m_SpotAngle: 68
@@ -4482,7 +4586,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.54901963, g: 0.41960785, b: 0.41960785, a: 1}
   m_Intensity: 1.1
   m_Range: 42.23
   m_SpotAngle: 68
