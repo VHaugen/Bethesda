@@ -21,6 +21,7 @@ public class Set_Dungeon_Layout : MonoBehaviour
     public GameObject specialRoom;
     public GameObject Connector;
     public GameObject Player;
+    public GameObject colider;
 
     private string[] direction;
     public ushort size;
@@ -32,7 +33,7 @@ public class Set_Dungeon_Layout : MonoBehaviour
     {
         direction = new string[4] { "Höger", "Vänster", "Upp", "Ner" };
 
-        DrawGrid();
+       // DrawGrid();
         BuildDungeon();
 
 
@@ -41,18 +42,8 @@ public class Set_Dungeon_Layout : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            for (int i = 0; i < size; i++)
-            {
-                for (int k = 0; k < size; k++)
-                {
-                    Destroy(map[i, k]);
-                }
-            }
-
-            BuildDungeon();
-        }
+       
+        
     }
 
     void DrawGrid()
@@ -78,6 +69,7 @@ public class Set_Dungeon_Layout : MonoBehaviour
         //SPAWN just a path forward
 
         map[0, roomYouCameDownOn] = Instantiate(startRoom, new Vector3(roomYouCameDownOn * distanceBetweenRooms, 0, -1 * distanceBetweenRooms), Quaternion.identity) as GameObject;
+        Player.transform.position = new Vector3(roomYouCameDownOn * distanceBetweenRooms, 0, -1 * distanceBetweenRooms);
         // Player.transform.position = new Vector3(roomYouCameDownOn * distanceBetweenRooms, 0, -1 * distanceBetweenRooms);
 
         for (int i = 0; i < size; i++)
@@ -103,7 +95,7 @@ public class Set_Dungeon_Layout : MonoBehaviour
                 if (roomOnNextFloor < (size - 1))
                 {
                     map[i, roomOnNextFloor - 1] = Instantiate(specialRoom, new Vector3((roomOnNextFloor + 1) * distanceBetweenRooms, 0, i * distanceBetweenRooms), Quaternion.identity) as GameObject;
-                    Instantiate(door, map[i, roomOnNextFloor - 1].transform.Find("Vänster").transform);
+                    //*Instantiate(door, map[i, roomOnNextFloor - 1].transform.Find("Vänster").transform);
                     Instantiate(Connector, map[i, roomOnNextFloor - 1].transform.Find("Vänster").transform);
                     //setDoors
                 }
@@ -112,25 +104,26 @@ public class Set_Dungeon_Layout : MonoBehaviour
                 {
                     //Once per room on level
                     map[i, roomYouCameDownOn + k] = Instantiate(room, new Vector3((roomYouCameDownOn + k) * distanceBetweenRooms, 0, i * distanceBetweenRooms), Quaternion.identity) as GameObject;
+
                     if (roomOnNextFloor == roomYouCameDownOn)
                     {
-                        Instantiate(door, map[i, roomYouCameDownOn].transform.Find("Ner").transform);
+                        //*Instantiate(door, map[i, roomYouCameDownOn].transform.Find("Ner").transform);
                         Instantiate(Connector, map[i, roomYouCameDownOn].transform.Find("Ner").transform);
                         if (miniSpace > 0)
                         {
-                            Instantiate(door, map[i, roomYouCameDownOn].transform.Find("Höger").transform);
+                            //*Instantiate(door, map[i, roomYouCameDownOn].transform.Find("Höger").transform);
                             Instantiate(Connector, map[i, roomYouCameDownOn].transform.Find("Höger").transform);
 
                         }
                     }
                     else if (k != 0)
                     {
-                        Instantiate(door, map[i, roomYouCameDownOn + k].transform.Find("Vänster").transform);
+                        //*Instantiate(door, map[i, roomYouCameDownOn + k].transform.Find("Vänster").transform);
                         Instantiate(Connector, map[i, roomYouCameDownOn + k].transform.Find("Vänster").transform);
 
                         if (k != miniSpace)
                         {
-                            Instantiate(door, map[i, roomYouCameDownOn + k].transform.Find("Höger").transform);
+                            //*Instantiate(door, map[i, roomYouCameDownOn + k].transform.Find("Höger").transform);
                             Instantiate(Connector, map[i, roomYouCameDownOn + k].transform.Find("Höger").transform);
 
                         }
@@ -139,7 +132,7 @@ public class Set_Dungeon_Layout : MonoBehaviour
 
                     if (k == 0 && miniSpace > 0)// gör om
                     {
-                        Instantiate(door, map[i, roomYouCameDownOn + k].transform.Find("Höger").transform);
+                        //*Instantiate(door, map[i, roomYouCameDownOn + k].transform.Find("Höger").transform);
                         Instantiate(Connector, map[i, roomYouCameDownOn + k].transform.Find("Höger").transform);
 
                     }
@@ -175,19 +168,19 @@ public class Set_Dungeon_Layout : MonoBehaviour
 
                     if (k == 0 && miniSpace > 0)
                     {
-                        Instantiate(door, map[i, roomYouCameDownOn - k].transform.Find("Vänster").transform);
+                        //*Instantiate(door, map[i, roomYouCameDownOn - k].transform.Find("Vänster").transform);
                         Instantiate(Connector, map[i, roomYouCameDownOn - k].transform.Find("Vänster").transform);
 
 
                     }
                     else if (k != 0)
                     {
-                        Instantiate(door, map[i, roomYouCameDownOn - k].transform.Find("Höger").transform);
+                        //*Instantiate(door, map[i, roomYouCameDownOn - k].transform.Find("Höger").transform);
                         Instantiate(Connector, map[i, roomYouCameDownOn - k].transform.Find("Höger").transform);
 
                         if (k != miniSpace)
                         {
-                            Instantiate(door, map[i, roomYouCameDownOn - k].transform.Find("Vänster").transform);
+                            //*Instantiate(door, map[i, roomYouCameDownOn - k].transform.Find("Vänster").transform);
                             Instantiate(Connector, map[i, roomYouCameDownOn - k].transform.Find("Vänster").transform);
 
                         }
@@ -208,7 +201,7 @@ public class Set_Dungeon_Layout : MonoBehaviour
 
             // Exit from floor
 
-            Instantiate(door, map[i, roomYouCameDownOn].transform.Find("Ner").transform);
+            //*Instantiate(door, map[i, roomYouCameDownOn].transform.Find("Ner").transform);
             Instantiate(Connector, map[i, roomYouCameDownOn].transform.Find("Ner").transform);
            // Destroy(map[i, roomYouCameDownOn].transform.Find("Ner").transform.Find("Wall"));
             Destroy(map[i, roomYouCameDownOn].transform.Find("Ner").Find("Wall(Clone)").gameObject);
@@ -224,7 +217,7 @@ public class Set_Dungeon_Layout : MonoBehaviour
             // fixa att jag sätter väg på dörr
             if (i != 0)
             {
-                Instantiate(door, map[i - 1, roomYouCameDownOn].transform.Find("Upp").transform);
+                //*Instantiate(door, map[i - 1, roomYouCameDownOn].transform.Find("Upp").transform);
                 Instantiate(Connector, map[i - 1, roomYouCameDownOn].transform.Find("Upp").transform);
                // Destroy(map[i - 1, roomYouCameDownOn].transform.Find("Upp").transform.Find("Wall"));
                 Destroy(map[i - 1, roomYouCameDownOn].transform.Find("Upp").Find("Wall(Clone)").gameObject);
