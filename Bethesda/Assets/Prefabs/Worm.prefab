@@ -163,7 +163,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1015075552739012}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.523, y: 1.29, z: 0.113}
+  m_LocalPosition: {x: 10.7, y: 1.233, z: -1.73}
   m_LocalScale: {x: 0.5458336, y: 0.5458336, z: 0.5458336}
   m_Children:
   - {fileID: 224062930817392610}
@@ -565,6 +565,11 @@ MonoBehaviour:
   iFramesDuration: 0.5
   knockbackMultiplier: 1
   collideColor: {r: 1, g: 1, b: 1, a: 1}
+  powerUps:
+  - {fileID: 4755107476598356, guid: 80f448ffce6c1ea4191641de215d42a9, type: 2}
+  - {fileID: 4101058143196150, guid: 4aebfb6080c26624aa01c5c137430ee0, type: 2}
+  - {fileID: 4371749147058464, guid: cf5c2f36c7a80a742a4c261a6e028efc, type: 2}
+  - {fileID: 4828623788477582, guid: 7fdfda204aeef0841901be811e2c2d98, type: 2}
   poisonDamagePerSecond: 0.25
   poisonStatusDuration: 10
   knockbackDuration: 0.5

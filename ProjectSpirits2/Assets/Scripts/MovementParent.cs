@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class MovementParent : MonoBehaviour {
-
-    protected Rigidbody2D rb2d;
+    [HideInInspector]
+    public Rigidbody2D rb2d;
     public bool jump;
     public float jumpForce;
     public bool isGrounded;
     public bool doubleJump;
+    
     protected Animator anim;
     protected SpriteRenderer sr;
 

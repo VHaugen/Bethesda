@@ -5,55 +5,61 @@ using UnityEngine.UI;
 
 public abstract class Enemy : MonoBehaviour, IAttackable
 {
-	[SerializeField]
-	Slider healthSlider;
+    [SerializeField]
+    Slider healthSlider;
 
     public float speed;
     public float slowSpeed;
     public float stun;
-	public float iFramesDuration = 0.5f;
-	public float knockbackMultiplier = 1.0f;
-	public Color collideColor = Color.white;
-	protected Vector3 knockbackVector;
+    public float iFramesDuration = 0.5f;
+    public float knockbackMultiplier = 1.0f;
+    public Color collideColor = Color.white;
+    protected Vector3 knockbackVector;
+    public List<Transform> powerUps = new List<Transform>();
+    //public GameObject ElectricPickUp;
+    //public GameObject FirePickup;
+    //public GameObject IcePckUp;
+    //public GameObject PoisonPickup;
 
-	protected float iFramesTimer = -1.0f;
+    protected float iFramesTimer = -1.0f;
 
-	protected float health;
-	protected float fireDamagePerSecond = 0.5f;
+    protected float health;
+    protected float fireDamagePerSecond = 0.5f;
     protected float iceDamagePerSecond = 0.25f;
-	public float poisonDamagePerSecond = 0.5f;
-	public float poisonStatusDuration = 5.0f;
-	int poisonEffectIndex;
-	
-	protected float poisonStatus = -1;
-	//protected float iceStatus = -1;
-	//protected float lightningStatus = -1;
-	protected SquashEffect squash;
-	protected Flammable flammable;
+    public float poisonDamagePerSecond = 0.5f;
+    public float poisonStatusDuration = 5.0f;
+    int poisonEffectIndex;
+
+    protected float poisonStatus = -1;
+    //protected float iceStatus = -1;
+    //protected float lightningStatus = -1;
+    protected SquashEffect squash;
+    protected Flammable flammable;
     protected FrostBite freezable;
     protected Electracuted electracuted;
 
-	virtual protected void Awake()
-	{
-		flammable = GetComponent<Flammable>();
+    virtual protected void Awake()
+    {
+
+        flammable = GetComponent<Flammable>();
         freezable = GetComponent<FrostBite>();
         electracuted = GetComponent<Electracuted>();
-		squash = GetComponent<SquashEffect>();
+        squash = GetComponent<SquashEffect>();
         speed = GetComponent<TestEnemy>().maxSpeed;
-	}
+    }
 
-	virtual protected void Start()
-	{
-		healthSlider.maxValue = health;
-	}
+    virtual protected void Start()
+    {
+        healthSlider.maxValue = health;
+    }
 
-	virtual protected void Update()
-	{
+    virtual protected void Update()
+    {
         speed = GetComponent<TestEnemy>().maxSpeed = 6;
-		if (flammable && flammable.IsBurning())
-		{
-			SetHealth(health - fireDamagePerSecond * Time.deltaTime);
-		}
+        if (flammable && flammable.IsBurning())
+        {
+            SetHealth(health - fireDamagePerSecond * Time.deltaTime);
+        }
 
         if (freezable && freezable.IsFreezing())
         {
@@ -61,16 +67,16 @@ public abstract class Enemy : MonoBehaviour, IAttackable
             slowSpeed = GetComponent<TestEnemy>().maxSpeed = 1.5f;
         }
 
-		if (poisonStatus > 0)
-		{
-			SetHealth(health - poisonDamagePerSecond * Time.deltaTime);
-			poisonStatus -= Time.deltaTime;
-			if (poisonStatus <= 0)
-			{
-				poisonStatus = -1;
-				ParticleEffectsManager.GetEffect("Poison").Stop(poisonEffectIndex);
-			}
-		}
+        if (poisonStatus > 0)
+        {
+            SetHealth(health - poisonDamagePerSecond * Time.deltaTime);
+            poisonStatus -= Time.deltaTime;
+            if (poisonStatus <= 0)
+            {
+                poisonStatus = -1;
+                ParticleEffectsManager.GetEffect("Poison").Stop(poisonEffectIndex);
+            }
+        }
         if (electracuted && electracuted.IsElc())
         {
             //healthSlider.value = health;
@@ -79,242 +85,110 @@ public abstract class Enemy : MonoBehaviour, IAttackable
             print("STUNNED");
         }
 
-		if (iFramesTimer > 0)
-		{
-			iFramesTimer -= Time.deltaTime;
-			if (iFramesTimer <= 0)
-			{
-				iFramesTimer = -1;
-				GetComponent<Renderer>().material.SetFloat("_TintAmount", 0);
-			}
-		}
+        if (iFramesTimer > 0)
+        {
+            iFramesTimer -= Time.deltaTime;
+            if (iFramesTimer <= 0)
+            {
+                iFramesTimer = -1;
+                GetComponent<Renderer>().material.SetFloat("_TintAmount", 0);
+            }
+        }
         slowSpeed = speed;
         stun = speed;
-	}
+    }
 
-	protected void SetHealth(float newHealth)
-	{
-		health = newHealth;
-		healthSlider.value = health;
-		healthSlider.gameObject.SetActive(true);
-		if (health <= 0)
-		{
-			Die();
-		}
-	}
+    protected void SetHealth(float newHealth)
+    {
+        health = newHealth;
+        healthSlider.value = health;
+        healthSlider.gameObject.SetActive(true);
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
 
-	virtual public void TakeDamage(DamageParams args)
-	{
-		if (health > 0)
-		{
-			if (!squash.inSquash && iFramesTimer <= 0)
-			{
-				if (args.amount > 0)
-				{
-					SetHealth(health - args.amount);
-					if (args.damageType == DamageType.Squash)
-						squash.DoSquash(health > 0);
-					else if (args.damageType == DamageType.Hit)
-					{
-						iFramesTimer = iFramesDuration;
-						knockbackVector = knockbackMultiplier * args.knockback;
-						StartCoroutine(Flasher());
-					}
-					ExtraTakeDamage(args);
-				}
+    virtual public void TakeDamage(DamageParams args)
+    {
+        if (health > 0)
+        {
+            if (!squash.inSquash && iFramesTimer <= 0)
+            {
+                if (args.amount > 0)
+                {
+                    SetHealth(health - args.amount);
+                    if (args.damageType == DamageType.Squash)
+                        squash.DoSquash(health > 0);
+                    else if (args.damageType == DamageType.Hit)
+                    {
+                        iFramesTimer = iFramesDuration;
+                        knockbackVector = knockbackMultiplier * args.knockback;
+                        StartCoroutine(Flasher());
+                    }
+                    ExtraTakeDamage(args);
+                }
 
-				switch (args.element)
-				{
-					case Element.None:
-						break;
-					case Element.Fire:
-						if (flammable)
-						{
-							flammable.StartBurning();
-						}
-						break;
-					case Element.Ice:
+                switch (args.element)
+                {
+                    case Element.None:
+                        break;
+                    case Element.Fire:
+                        if (flammable)
+                        {
+                            flammable.StartBurning();
+                        }
+                        break;
+                    case Element.Ice:
                         if (freezable)
                         {
                             freezable.FreezeStart();
                         }
-						break;
-					case Element.Poison:
-						poisonStatus = poisonStatusDuration;
-						poisonEffectIndex = ParticleEffectsManager.GetEffect("Poison").Spawn(GetComponent<MeshRenderer>());
-						break;
-					case Element.Lightning:
+                        break;
+                    case Element.Poison:
+                        poisonStatus = poisonStatusDuration;
+                        poisonEffectIndex = ParticleEffectsManager.GetEffect("Poison").Spawn(GetComponent<MeshRenderer>());
+                        break;
+                    case Element.Lightning:
                         if (electracuted)
                         {
                             electracuted.ElcStart();
                         }
-						break;
-				}
+                        break;
+                }
 
-				if (health <= 0)
-				{
-					Die();
-				}
-			}
-		}
-	}
+                if (health <= 0)
+                {
+                    Die();                
+                    if (Random.Range(0, 5) == 1)
+                    {
+                        Instantiate(powerUps[Random.Range(0, powerUps.Count - 1)], transform.position, Quaternion.identity);
+                    }
+                }
+            }
+        }
+    }
 
-	virtual protected void ExtraTakeDamage(DamageParams args)
-	{
+    virtual protected void ExtraTakeDamage(DamageParams args)
+    {
 
-	}
+    }
 
-	abstract protected void Die();
+    abstract protected void Die();
 
-	IEnumerator Flasher()
-	{
-		var renderer = GetComponent<Renderer>();
-		if (renderer != null)
-		{
-			renderer.material.SetColor("_TintColor", collideColor);
-			while (iFramesTimer > 0)
-			{
-				renderer.material.SetFloat("_TintAmount", 0.8f);
-				yield return new WaitForSeconds(.06f);
-				renderer.material.SetFloat("_TintAmount", 0.0f);
-				yield return new WaitForSeconds(.03f);
-			}
-		}
-	}
+    IEnumerator Flasher()
+    {
+        var renderer = GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            renderer.material.SetColor("_TintColor", collideColor);
+            while (iFramesTimer > 0)
+            {
+                renderer.material.SetFloat("_TintAmount", 0.8f);
+                yield return new WaitForSeconds(.06f);
+                renderer.material.SetFloat("_TintAmount", 0.0f);
+                yield return new WaitForSeconds(.03f);
+            }
+        }
+    }
 }
-/*using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
-public abstract class Enemy : MonoBehaviour, IAttackable
-{
-	[SerializeField]
-	Slider healthSlider;
-
-	public float iFramesDuration = 0.5f;
-	public float knockbackMultiplier = 1.0f;
-	public Color collideColor = Color.white;
-	protected Vector3 knockbackVector;
-
-	protected float iFramesTimer = -1.0f;
-	protected float health;
-	protected float fireDamagePerSecond = 0.5f;
-	
-	protected float poisonStatus = -1;
-	protected float iceStatus = -1;
-	protected float lightningStatus = -1;
-	protected SquashEffect squash;
-	protected Flammable flammable;
-
-	virtual protected void Awake()
-	{
-		flammable = GetComponent<Flammable>();
-		squash = GetComponent<SquashEffect>();
-	}
-
-	virtual protected void Start()
-	{
-		healthSlider.maxValue = health;
-	}
-
-	virtual protected void Update()
-	{
-		if (flammable && flammable.IsBurning())
-		{
-			health -= fireDamagePerSecond * Time.deltaTime;
-			healthSlider.gameObject.SetActive(true);
-			healthSlider.value = health;
-			//print("HP after fire " + health);
-			if (health <= 0)
-			{
-				Die();
-			} 
-		}
-
-		if (iFramesTimer > 0)
-		{
-			iFramesTimer -= Time.deltaTime;
-			if (iFramesTimer <= 0)
-			{
-				iFramesTimer = -1;
-				GetComponent<Renderer>().material.SetFloat("_TintAmount", 0);
-			}
-		}
-	}
-
-	IEnumerator Flasher()
-	{
-		var renderer = GetComponent<Renderer>();
-		if (renderer != null)
-		{
-			renderer.material.SetColor("_TintColor", collideColor);
-			while (iFramesTimer > 0)
-			{
-				renderer.material.SetFloat("_TintAmount", 0.8f);
-				yield return new WaitForSeconds(.06f);
-				renderer.material.SetFloat("_TintAmount", 0.0f);
-				yield return new WaitForSeconds(.03f);
-			}
-		}
-	}
-
-	virtual public void TakeDamage(DamageParams args)
-	{
-		if (health > 0)
-		{
-			if (!squash.inSquash && iFramesTimer <= 0)
-			{
-				if (args.amount > 0)
-				{
-					health -= args.amount;
-					healthSlider.gameObject.SetActive(true);
-					healthSlider.value = health;
-					if (args.damageType == DamageType.Squash)
-						squash.DoSquash(health > 0);
-					else if (args.damageType == DamageType.Hit)
-					{
-						iFramesTimer = iFramesDuration;
-						knockbackVector = knockbackMultiplier * args.knockback;
-						StartCoroutine(Flasher());
-					}
-					ExtraTakeDamage(args);
-				}
-
-				switch (args.element)
-				{
-					case Element.None:
-						break;
-					case Element.Fire:
-						if (flammable)
-						{
-							flammable.StartBurning();
-						}
-						break;
-					case Element.Ice:
-						iceStatus = 2.0f;
-						break;
-					case Element.Poison:
-						poisonStatus = 2.0f;
-						break;
-					case Element.Lightning:
-						lightningStatus = 2.0f;
-						break;
-				}
-
-				if (health <= 0)
-				{
-					Die();
-				}
-			}
-		}
-	}
-	
-	virtual protected void ExtraTakeDamage(DamageParams args)
-	{
-
-	}
-
-	abstract protected void Die();
-}
-*/
