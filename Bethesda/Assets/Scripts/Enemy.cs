@@ -16,16 +16,12 @@ public abstract class Enemy : MonoBehaviour, IAttackable
     public Color collideColor = Color.white;
     protected Vector3 knockbackVector;
     public List<Transform> powerUps = new List<Transform>();
-    //public GameObject ElectricPickUp;
-    //public GameObject FirePickup;
-    //public GameObject IcePckUp;
-    //public GameObject PoisonPickup;
 
     protected float iFramesTimer = -1.0f;
 
     protected float health;
-    protected float fireDamagePerSecond = 0.5f;
-    protected float iceDamagePerSecond = 0.25f;
+    public float fireDamagePerSecond = 0.5f;
+    public float iceDamagePerSecond = 0.25f;
     public float poisonDamagePerSecond = 0.5f;
     public float poisonStatusDuration = 5.0f;
     int poisonEffectIndex;
