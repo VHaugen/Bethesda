@@ -30,7 +30,7 @@ public class FrostBite : MonoBehaviour
         print("yay he froze");
         if (frostIndex == -1)
         {
-            frostIndex = IceControl.Get.NewFog(meshRenderer);
+            frostIndex = ParticleEffectsManager.GetEffect("Ice").Spawn(meshRenderer);
         }
         iceTimer = duration;
         meshRenderer.material = material;
