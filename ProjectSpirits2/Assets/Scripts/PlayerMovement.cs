@@ -9,13 +9,15 @@ public class PlayerMovement : MovementParent
     public float rawAxisX;
     public float rawAxisY;
     public bool canMove = true;
+    public bool facingRight;
 
     // Use this for initialization
     protected override void Start()
     {
         base.Start();
         jumpForce = 2.5f;
-
+        shortJumpForce = 2f;
+        facingRight = true;
     }
 
     // Update is called once per frame
@@ -49,11 +51,13 @@ public class PlayerMovement : MovementParent
         {
             if (Input.GetAxis("Horizontal") > 0)
             {
-                sr.flipX = false;
+                facingRight = true;
+                
             }
             else if (Input.GetAxis("Horizontal") < 0)
             {
-                sr.flipX = true;
+                facingRight = false;
+                
             }
             anim.SetBool("standingStillBool", false);
 
@@ -63,6 +67,14 @@ public class PlayerMovement : MovementParent
         else if (isGrounded)
         {
             anim.SetBool("standingStillBool", true);
+        }
+        if (facingRight == true)
+        {
+            transform.localScale = new Vector3(0.581f, 0.581f, 0.581f);
+        }
+        if (facingRight == false)
+        {
+            transform.localScale = new Vector3(-0.581f, 0.581f, -0.581f);
         }
         if (canMove == false)
         {

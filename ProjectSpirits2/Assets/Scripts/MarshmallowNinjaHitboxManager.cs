@@ -30,6 +30,32 @@ public class MarshmallowNinjaHitboxManager : MonoBehaviour {
 
     public PolygonCollider2D upAir;
 
+    public PolygonCollider2D upSpecial;
+
+    public PolygonCollider2D ariAri1;
+
+    public PolygonCollider2D ariAri2;
+
+    public PolygonCollider2D ariAri3;
+
+    public PolygonCollider2D ariAri4;
+
+    public PolygonCollider2D ariAri5;
+
+    public PolygonCollider2D ariAri6;
+
+    public PolygonCollider2D ariAri7;
+
+    public PolygonCollider2D ariAri8;
+
+    public PolygonCollider2D ariAri9;
+
+    public PolygonCollider2D ariAriEnd1;
+
+    public PolygonCollider2D ariAriEnd2;
+
+    public PolygonCollider2D ariAriEnd3;
+
     private PolygonCollider2D[] colliders;
 
     private PolygonCollider2D localCollider;
@@ -49,12 +75,28 @@ public class MarshmallowNinjaHitboxManager : MonoBehaviour {
         downAir3Box,
         downAirFinalBox,
         upAirBox,
+        upSpecialBox,
+        ariAri1Box,
+        ariAri2Box,
+        ariAri3Box,
+        ariAri4Box,
+        ariAri5Box,
+        ariAri6Box,
+        ariAri7Box,
+        ariAri8Box,
+        ariAri9Box,
+        ariAriEnd1Box,
+        ariAriEnd2Box,
+        ariAriEnd3Box,
         clear
     }
 
     private void Start()
     {
-        colliders = new PolygonCollider2D[] { frame2, frame3, frame4, sideTilt, downTilt, upTilt, forwardAir, neutralAir, downAir1, downAir2, downAir3, downAirFinal, upAir };
+        colliders = new PolygonCollider2D[] { frame2, frame3, frame4, sideTilt, downTilt, upTilt, forwardAir, neutralAir,
+            downAir1, downAir2, downAir3, downAirFinal, upAir, upSpecial,
+        ariAri1, ariAri2, ariAri3, ariAri4, ariAri5, ariAri6, ariAri7, ariAri8, ariAri9,
+         ariAriEnd1, ariAriEnd2, ariAriEnd3};
 
         localCollider = gameObject.AddComponent<PolygonCollider2D>();
         localCollider.isTrigger = true;

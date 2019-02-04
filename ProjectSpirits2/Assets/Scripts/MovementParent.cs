@@ -7,6 +7,7 @@ public class MovementParent : MonoBehaviour {
     public Rigidbody2D rb2d;
     public bool jump;
     public float jumpForce;
+    public float shortJumpForce;
     public bool isGrounded;
     public bool doubleJump;
     
@@ -33,7 +34,9 @@ public class MovementParent : MonoBehaviour {
             jump = false;
             rb2d.velocity = new Vector2(rb2d.velocity.x, rb2d.velocity.y);
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
+            
         }
+        
 	}
 
     private void OnCollisionEnter2D(Collision2D other)

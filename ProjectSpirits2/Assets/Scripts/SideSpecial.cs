@@ -6,15 +6,14 @@ public class SideSpecial : MonoBehaviour {
 
     PlayerMovement player;
     Animator anim;
-    Animator anim2;
+    //Animator anim2;
     public GameObject ropedart;
 	// Use this for initialization
 	void Start ()
     {
-        ropedart = GameObject.Find("RopeDart");
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
         anim = gameObject.GetComponent<Animator>();
-        anim2 = ropedart.gameObject.GetComponent<Animator>();
+        //anim2 = ropedart.gameObject.GetComponent<Animator>();
         
 	}
 	
@@ -31,7 +30,10 @@ public class SideSpecial : MonoBehaviour {
 	}
     IEnumerator sideSpecial(float animationTime)
     {
+        player.canMove = false;
         anim.Play("SideSpecial1");
+        Instantiate(ropedart, transform.position, Quaternion.identity);
         yield return new WaitForSeconds(animationTime);
+        player.canMove = true;
     }
 }

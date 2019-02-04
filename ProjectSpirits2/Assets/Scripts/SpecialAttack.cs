@@ -33,8 +33,10 @@ public class SpecialAttack : MonoBehaviour {
     }
     IEnumerator NeturalSpecial(float animationTime)
     {
+        player.canMove = false;
         anim.Play("NeturalSpecial");
         yield return new WaitForSeconds(animationTime);
+        player.canMove = true;
         anim.Play("NeutralSpecialEnding");
     }
     IEnumerator UpSpecial(float animationTime)
