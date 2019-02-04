@@ -10,6 +10,7 @@ public class ParticleController : MonoBehaviour
 	public ParticleSystem particleSystemPrefab;
 
 	List<ParticleSystem> systems;
+	bool skinnedMeshRenderer = false;
 
 
 	void Start()
@@ -37,7 +38,7 @@ public class ParticleController : MonoBehaviour
 		}
 	}
 
-	public int Spawn(MeshRenderer attachToMesh = null)
+	public int Spawn(Renderer attachToMesh = null)
 	{
 		for (int i = 0; i < systems.Count; i++)
 		{
@@ -65,14 +66,29 @@ public class ParticleController : MonoBehaviour
 		systems[index].Clear();
 	}
 
-	void EnableSystem(ParticleSystem system, MeshRenderer attachToMesh)
+	void EnableSystem(ParticleSystem system, Renderer attachToMesh)
 	{
 		system.gameObject.SetActive(true);
 		system.Play();
 		foreach (ParticleSystem subSystem in system.GetComponentsInChildren<ParticleSystem>())
 		{
 			var shape = subSystem.shape;
-			shape.meshRenderer = attachToMesh; 
+			if (attachToMesh is MeshRenderer)
+			{
+				shape.shapeType = ParticleSystemShapeType.MeshRenderer;
+				shape.meshRenderer = (MeshRenderer)attachToMesh;
+				skinnedMeshRenderer = false;
+			}
+			else if (attachToMesh is SkinnedMeshRenderer)
+			{
+				shape.shapeType = ParticleSystemShapeType.SkinnedMeshRenderer;
+				shape.skinnedMeshRenderer = (SkinnedMeshRenderer)attachToMesh;
+				skinnedMeshRenderer = true;
+			}
+			else
+			{
+				Debug.LogWarning("Renderer must be either a MeshRenderer or SkinnedMeshRenderer " + attachToMesh.gameObject.name);
+			}
 		}
 	}
 }

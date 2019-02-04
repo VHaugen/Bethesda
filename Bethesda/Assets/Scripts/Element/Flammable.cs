@@ -13,11 +13,15 @@ public class Flammable : MonoBehaviour
 	protected int fireIndex = -1;
 	const float spreadInterval = 0.3f;
 
-	MeshRenderer meshRenderer;
+	Renderer meshRenderer;
 
 	private void Awake()
 	{
 		meshRenderer = GetComponent<MeshRenderer>();
+		if (meshRenderer == null)
+		{
+			meshRenderer = GetComponent<SkinnedMeshRenderer>();
+		}
 	}
 
 	public void StartBurning()
