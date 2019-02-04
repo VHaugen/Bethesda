@@ -21,6 +21,8 @@ public class PlayerMovement : Movement
     private Color normalColor = new Color(0.9137255f, 0.6511509f, 0.1960784f, 1f);
     public Color collideColor = new Color(1f, 1f, 1f, 0.1f);
     public Renderer meshRenderer;
+    public Image dashCooldown;
+    bool isCooldown;
 
     public float speed;
     public float maxSpeed;
@@ -105,6 +107,7 @@ public class PlayerMovement : Movement
         if (Input.GetAxis("RightBumpStick") != 0 && coolDownPeriod == 0 || Input.GetKey(KeyCode.LeftShift) && coolDownPeriod == 0)
         {
             anim.Play("Run_cycle");
+            isCooldown = true;
             startDashTimer = true;
             dashTimer = 0.5f;
             iFrames = true;
@@ -113,13 +116,15 @@ public class PlayerMovement : Movement
             CameraEffects.Get.Shake(0.1f, 0.1f);
             audio.PlayOneShot(dashSound);
         }
-        if (startDashTimer == true)
+        if (startDashTimer == true && isCooldown == true)
         {
             rb.velocity = transform.forward * dashSpeed;
+            dashCooldown.fillAmount += 1 / timeStamp * Time.deltaTime;
             dashTimer -= Time.deltaTime;
-            if (dashTimer <= 0)
+            if (dashTimer <= 0 && dashCooldown.fillAmount >= 1)
             {
                 startDashTimer = false;
+                dashCooldown.fillAmount = 0;
                 dashTimer = 0;
                 rb.velocity = new Vector3(0, 0, 0);
                 iFrames = false;
