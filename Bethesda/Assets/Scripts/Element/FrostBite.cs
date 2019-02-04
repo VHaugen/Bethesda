@@ -46,7 +46,7 @@ public class FrostBite : MonoBehaviour
         meshRenderer.material = normalMat;
 		meshRenderer.material.SetFloat("_TintAmount", 0.0f);
         iceTimer = -1;
-        IceControl.Get.StopFrost(frostIndex);
+        ParticleEffectsManager.GetEffect("Ice").Stop(frostIndex);
         frostIndex = -1;
     }
 
