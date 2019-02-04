@@ -7,6 +7,8 @@ public class Flammable : MonoBehaviour
 	public float fireSpreadRadius = 1.0f;
 	public float duration = 1.0f;
 	public bool infinite = false;
+	[Tooltip("If left blank, script will just call GetComponent<>()\nUse to put particles on a renderer on another object")]
+	[SerializeField] Renderer meshRendererOverride;
 
 	float fireTimer = -1;
 	float fireSpreadTimer = 0;
@@ -17,10 +19,15 @@ public class Flammable : MonoBehaviour
 
 	private void Awake()
 	{
-		meshRenderer = GetComponent<MeshRenderer>();
-		if (meshRenderer == null)
+		if (meshRendererOverride)
+			meshRenderer = meshRendererOverride;
+		else
 		{
-			meshRenderer = GetComponent<SkinnedMeshRenderer>();
+			meshRenderer = GetComponent<MeshRenderer>();
+			if (meshRenderer == null)
+			{
+				meshRenderer = GetComponent<SkinnedMeshRenderer>();
+			}
 		}
 	}
 
@@ -50,7 +57,7 @@ public class Flammable : MonoBehaviour
 		{
 			if (!infinite)
 			{
-				fireTimer -= Time.deltaTime; 
+				fireTimer -= Time.deltaTime;
 			}
 
 			if (fireTimer <= 0)

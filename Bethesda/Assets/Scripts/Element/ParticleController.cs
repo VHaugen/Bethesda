@@ -21,6 +21,7 @@ public class ParticleController : MonoBehaviour
 			ParticleSystem newSystem = Instantiate(particleSystemPrefab, transform, true);
 			newSystem.gameObject.SetActive(false);
 			newSystem.Stop();
+			newSystem.name += i;
 			systems.Add(newSystem);
 
 		}
@@ -30,7 +31,7 @@ public class ParticleController : MonoBehaviour
 	{
 		foreach (var system in systems)
 		{
-			if (system.shape.meshRenderer == null)
+			if (system.shape.meshRenderer == null && system.shape.skinnedMeshRenderer == null)
 			{
 				system.gameObject.SetActive(false);
 				system.Stop();
@@ -54,6 +55,7 @@ public class ParticleController : MonoBehaviour
 		//var partSettings = newFire.main;
 		//partSettings.scalingMode = ParticleSystemScalingMode.Shape;
 		EnableSystem(newSystem, attachToMesh);
+		newSystem.name += systems.Count;
 		systems.Add(newSystem);
 
 		return systems.Count - 1;
@@ -62,6 +64,9 @@ public class ParticleController : MonoBehaviour
 
 	public void Stop(int index)
 	{
+		var shape = systems[index].shape;
+		shape.skinnedMeshRenderer = null;
+		shape.meshRenderer = null;
 		systems[index].Stop();
 		systems[index].Clear();
 	}
@@ -77,13 +82,12 @@ public class ParticleController : MonoBehaviour
 			{
 				shape.shapeType = ParticleSystemShapeType.MeshRenderer;
 				shape.meshRenderer = (MeshRenderer)attachToMesh;
-				skinnedMeshRenderer = false;
 			}
 			else if (attachToMesh is SkinnedMeshRenderer)
 			{
 				shape.shapeType = ParticleSystemShapeType.SkinnedMeshRenderer;
 				shape.skinnedMeshRenderer = (SkinnedMeshRenderer)attachToMesh;
-				skinnedMeshRenderer = true;
+				print("Enable a skinnedmeshrenderer particle fx on " + attachToMesh.name + "; " + system.name);
 			}
 			else
 			{
