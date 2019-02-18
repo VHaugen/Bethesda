@@ -3,27 +3,58 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[ExecuteInEditMode]
 public class FrameByFrameSlider : MonoBehaviour
 {
 	public Sprite[] frames;
 	public Image image;
 
-	public int frameIdx;
+	[SerializeField] float _maxValue;
+	public float maxValue
+	{
+		get
+		{
+			return _maxValue;
+		}
+		set
+		{
+			_maxValue = value;
+			UpdateVisuals();
+		}
+	}
 
-	Slider slider;
+	[SerializeField] float _value;
+	public float value
+	{
+		get
+		{
+			return _value;
+		}
+		set
+		{
+			_value = value;
+			UpdateVisuals();
+		}
+	}
+
+	public int frameIdx;
 
 	// Use this for initialization
 	void Start()
 	{
-		slider = GetComponent<Slider>();
-		slider.onValueChanged.AddListener(OnValueChanged);
 	}
 	
-	void OnValueChanged(float newValue)
+	void UpdateVisuals()
 	{
 		int frameCount = frames.Length;
-		frameIdx = frameCount - (int)((newValue / slider.maxValue) * frameCount);
+		frameIdx = frameCount - (int)((value / maxValue) * frameCount);
 		if (frameIdx >= 0 && frameIdx < frames.Length)
 			image.sprite = frames[frameIdx];
+	}
+
+	private void OnValidate()
+	{
+		value = _value;
+		maxValue = _maxValue;
 	}
 }

@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 82820064797588026}
   - component: {fileID: 136037607212719346}
   m_Layer: 10
-  m_Name: character_main_animations_baked
+  m_Name: character_main_animations_baked_REMOTE_18272
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1813,6 +1813,7 @@ MonoBehaviour:
   hitbox: {fileID: 0}
   overHeadHitBox: {fileID: 0}
   afterImages: {fileID: 0}
+  rayCastPoint: {fileID: 0}
 --- !u!114 &114631074793500246
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1861,6 +1862,7 @@ MonoBehaviour:
   hitbox: {fileID: 0}
   overHeadHitBox: {fileID: 0}
   afterImages: {fileID: 0}
+  rayCastPoint: {fileID: 0}
 --- !u!114 &114753981317717450
 MonoBehaviour:
   m_ObjectHideFlags: 1

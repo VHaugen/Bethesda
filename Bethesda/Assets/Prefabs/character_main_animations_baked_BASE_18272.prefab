@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 82820064797588026}
   - component: {fileID: 136037607212719346}
   m_Layer: 10
-  m_Name: character_main_animations_baked
+  m_Name: character_main_animations_baked_BASE_18272
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1813,6 +1813,7 @@ MonoBehaviour:
   hitbox: {fileID: 0}
   overHeadHitBox: {fileID: 0}
   afterImages: {fileID: 0}
+  rayCastPoint: {fileID: 0}
 --- !u!114 &114631074793500246
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1843,6 +1844,7 @@ MonoBehaviour:
   fireSpreadRadius: 1
   duration: 1
   infinite: 0
+  meshRendererOverride: {fileID: 0}
 --- !u!114 &114724547441378844
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1860,6 +1862,7 @@ MonoBehaviour:
   hitbox: {fileID: 0}
   overHeadHitBox: {fileID: 0}
   afterImages: {fileID: 0}
+  rayCastPoint: {fileID: 0}
 --- !u!114 &114753981317717450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1900,6 +1903,7 @@ MonoBehaviour:
   flashColour: {r: 1, g: 0, b: 0, a: 0.1}
   collideColor: {r: 1, g: 1, b: 1, a: 1}
   meshRenderer: {fileID: 137272357291149486}
+  dashCooldown: {fileID: 0}
   speed: 100
   maxSpeed: 10
   dashSpeed: 20

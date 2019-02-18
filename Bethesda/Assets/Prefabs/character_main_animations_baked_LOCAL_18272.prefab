@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 136037607212719346}
   - component: {fileID: 136131101403728388}
   m_Layer: 10
-  m_Name: character_main_animations_baked
+  m_Name: character_main_animations_baked_LOCAL_18272
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1874,6 +1874,7 @@ MonoBehaviour:
   fireSpreadRadius: 1
   duration: 1
   infinite: 0
+  meshRendererOverride: {fileID: 0}
 --- !u!114 &114724547441378844
 MonoBehaviour:
   m_ObjectHideFlags: 1
