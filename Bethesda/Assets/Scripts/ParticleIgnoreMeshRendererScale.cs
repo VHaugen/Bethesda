@@ -23,7 +23,12 @@ public class ParticleIgnoreMeshRendererScale : MonoBehaviour
 	{
 		if (system.IsAlive())
 		{
-			MeshRenderer meshRenderer = shapeModule.meshRenderer;
+			Renderer meshRenderer;
+			if (shapeModule.shapeType == ParticleSystemShapeType.SkinnedMeshRenderer)
+				meshRenderer = shapeModule.skinnedMeshRenderer;
+			else
+				meshRenderer = shapeModule.meshRenderer;
+
 			if (meshRenderer)
 			{
 				Vector3 emitterScale = meshRenderer.transform.lossyScale;

@@ -10,6 +10,7 @@ public class ParticleController : MonoBehaviour
 	public ParticleSystem particleSystemPrefab;
 
 	List<ParticleSystem> systems;
+	bool skinnedMeshRenderer = false;
 
 
 	void Start()
@@ -20,6 +21,7 @@ public class ParticleController : MonoBehaviour
 			ParticleSystem newSystem = Instantiate(particleSystemPrefab, transform, true);
 			newSystem.gameObject.SetActive(false);
 			newSystem.Stop();
+			newSystem.name += i;
 			systems.Add(newSystem);
 
 		}
@@ -29,7 +31,7 @@ public class ParticleController : MonoBehaviour
 	{
 		foreach (var system in systems)
 		{
-			if (system.shape.meshRenderer == null)
+			if (system.shape.meshRenderer == null && system.shape.skinnedMeshRenderer == null)
 			{
 				system.gameObject.SetActive(false);
 				system.Stop();
@@ -37,7 +39,7 @@ public class ParticleController : MonoBehaviour
 		}
 	}
 
-	public int Spawn(MeshRenderer attachToMesh = null)
+	public int Spawn(Renderer attachToMesh = null)
 	{
 		for (int i = 0; i < systems.Count; i++)
 		{
@@ -53,6 +55,7 @@ public class ParticleController : MonoBehaviour
 		//var partSettings = newFire.main;
 		//partSettings.scalingMode = ParticleSystemScalingMode.Shape;
 		EnableSystem(newSystem, attachToMesh);
+		newSystem.name += systems.Count;
 		systems.Add(newSystem);
 
 		return systems.Count - 1;
@@ -61,18 +64,35 @@ public class ParticleController : MonoBehaviour
 
 	public void Stop(int index)
 	{
+		var shape = systems[index].shape;
+		shape.skinnedMeshRenderer = null;
+		shape.meshRenderer = null;
 		systems[index].Stop();
 		systems[index].Clear();
 	}
 
-	void EnableSystem(ParticleSystem system, MeshRenderer attachToMesh)
+	void EnableSystem(ParticleSystem system, Renderer attachToMesh)
 	{
 		system.gameObject.SetActive(true);
 		system.Play();
 		foreach (ParticleSystem subSystem in system.GetComponentsInChildren<ParticleSystem>())
 		{
 			var shape = subSystem.shape;
-			shape.meshRenderer = attachToMesh; 
+			if (attachToMesh is MeshRenderer)
+			{
+				shape.shapeType = ParticleSystemShapeType.MeshRenderer;
+				shape.meshRenderer = (MeshRenderer)attachToMesh;
+			}
+			else if (attachToMesh is SkinnedMeshRenderer)
+			{
+				shape.shapeType = ParticleSystemShapeType.SkinnedMeshRenderer;
+				shape.skinnedMeshRenderer = (SkinnedMeshRenderer)attachToMesh;
+				print("Enable a skinnedmeshrenderer particle fx on " + attachToMesh.name + "; " + system.name);
+			}
+			else
+			{
+				Debug.LogWarning("Renderer must be either a MeshRenderer or SkinnedMeshRenderer " + attachToMesh.gameObject.name);
+			}
 		}
 	}
 }
