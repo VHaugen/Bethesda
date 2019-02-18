@@ -77,7 +77,7 @@ public class HammerWeapon : MonoBehaviour
                 if (Physics.Raycast(r, out hit, 10f))
                 {
 
-                    Debug.DrawRay(rayCastPoint.transform.position, direction, Color.yellow, 10);
+                    Debug.DrawRay(rayCastPoint.transform.position, direction, Color.yellow, 80);
                     Debug.Log("WE HIT SAOMETHING");
                 }
             }
