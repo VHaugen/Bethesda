@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 82820064797588026}
   - component: {fileID: 136037607212719346}
   m_Layer: 10
-  m_Name: character_main_animations_baked
+  m_Name: character_main_animations_baked_REMOTE_18272
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1813,6 +1813,11 @@ MonoBehaviour:
   hitbox: {fileID: 0}
   overHeadHitBox: {fileID: 0}
   afterImages: {fileID: 0}
+  rayCastPoint: {fileID: 0}
+  damageType: 0
+  currentElement: 4
+  swingDamage: 0
+  knockbackStrength: 2
 --- !u!114 &114631074793500246
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1861,6 +1866,11 @@ MonoBehaviour:
   hitbox: {fileID: 0}
   overHeadHitBox: {fileID: 0}
   afterImages: {fileID: 0}
+  rayCastPoint: {fileID: 0}
+  damageType: 0
+  currentElement: 4
+  swingDamage: 0
+  knockbackStrength: 2
 --- !u!114 &114753981317717450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1902,6 +1912,11 @@ MonoBehaviour:
   collideColor: {r: 1, g: 1, b: 1, a: 1}
   meshRenderer: {fileID: 137272357291149486}
   dashCooldown: {fileID: 0}
+  rayCastPoint: {fileID: 0}
+  knockbackStrength: 2
+  swingDamage: 0
+  currentElement: 4
+  damageType: 0
   speed: 100
   maxSpeed: 10
   dashSpeed: 20

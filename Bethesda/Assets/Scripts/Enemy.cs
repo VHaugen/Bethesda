@@ -156,7 +156,7 @@ public abstract class Enemy : MonoBehaviour, IAttackable
                 if (health <= 0)
                 {
                     Die();                
-                    if (Random.Range(0, 5) == 1)
+                    if (Random.Range(1, 5) == 1)
                     {
                         Instantiate(powerUps[Random.Range(0, powerUps.Count - 1)], transform.position, Quaternion.identity);
                     }
