@@ -13,8 +13,8 @@ public class PlayerMovement : Movement
     public int armorValue;
     public float currentHealth;
     public float currentMana;
-    public Slider healthSlider;
-    public Slider manaSlider;
+    public FrameByFrameSlider healthSlider;
+    public FrameByFrameSlider manaSlider;
     public Image damageImage;
     public float flashSpeed = 5f;
     public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
@@ -62,9 +62,15 @@ public class PlayerMovement : Movement
         iFrames = false;
         tRail = GetComponent<TrailRenderer>();
         afterImages = transform.Find("front1").GetComponent<AfterImages>();
+<<<<<<< HEAD
         currentHealth = startingHealth;
         manaSlider.value = startingMana;
         audioSource = GetComponent<AudioSource>();
+=======
+        healthSlider.value = currentHealth = startingHealth;
+        manaSlider.value = currentMana = startingMana;
+        audio = GetComponent<AudioSource>();
+>>>>>>> 7100d9fc6738a4751ddfe7691588bf79b16c1305
         flammable = GetComponent<Flammable>();
         anim = GetComponent<Animator>();
 		weapon = GetComponentInChildren<HammerWeapon>();
@@ -183,18 +189,15 @@ public class PlayerMovement : Movement
     }
     public void AddMana(int amount)
     {
-        
-        
-            manaSlider.value = currentMana;
-            manaSlider.value += amount;
-
-        
+        currentMana += amount;
+        manaSlider.value = currentMana;
+		print("gained mana" + amount + " -- " + manaSlider.value);
     }
 
     public void UseMana(int amount)
     {
-        //currentMana -= amount;
-        manaSlider.value -= amount;
+		currentMana -= amount;
+		manaSlider.value -= amount;
         print("lostmana " + amount);
     }
 

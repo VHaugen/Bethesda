@@ -9,7 +9,7 @@ public class TestEnemy : Enemy, IAttackable
 		Wander,
 		Hunt,
 		Attack,
-		Dead,
+		EpicDeath,
 		Knockback,
 	}
 
@@ -191,7 +191,7 @@ public class TestEnemy : Enemy, IAttackable
 
 				break;
 
-			case State.Dead:
+			case State.EpicDeath:
 				if (!startedDeathFlashing && (squash.isFlat || !squash.inSquash))
 				{
 					StartCoroutine(FlashAndDie());
@@ -256,8 +256,7 @@ public class TestEnemy : Enemy, IAttackable
 				attack.Attack();
 				//audio.PlayOneShot(attackSound);
 				break;
-			case State.Dead:
-				rbody.velocity = Vector3.zero;
+			case State.EpicDeath:
 				if (flammable)
 					flammable.StopBurning();
 				break;
@@ -285,7 +284,7 @@ public class TestEnemy : Enemy, IAttackable
 
 	override protected void Die()
 	{
-		SetState(State.Dead);
+		SetState(State.EpicDeath);
 
 	}
 
