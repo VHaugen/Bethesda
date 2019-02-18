@@ -1965,6 +1965,7 @@ MonoBehaviour:
   iFrames: 0
   dashSound: {fileID: 8300000, guid: 4140cc71fb263af48be647d11193f63c, type: 3}
   damageSound: {fileID: 8300000, guid: 9bce4d9478714084ab7b1f86b773e755, type: 3}
+  swingSound: {fileID: 8300000, guid: 9b806b5c13c3e2e49a89cd8807066524, type: 3}
 --- !u!114 &114928558621979340
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -47,9 +47,10 @@ public class PlayerMovement : Movement
     public bool iFrames;
     TrailRenderer tRail;
     AfterImages afterImages;
-    AudioSource audio;
+    AudioSource audioSource;
     public AudioClip dashSound;
     public AudioClip damageSound;
+    public AudioClip swingSound;
     Flammable flammable;
     Animator anim;
 	HammerWeapon weapon;
@@ -63,10 +64,11 @@ public class PlayerMovement : Movement
         afterImages = transform.Find("front1").GetComponent<AfterImages>();
         currentHealth = startingHealth;
         manaSlider.value = startingMana;
-        audio = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         flammable = GetComponent<Flammable>();
         anim = GetComponent<Animator>();
 		weapon = GetComponentInChildren<HammerWeapon>();
+        
     }
 
     // Update is called once per frame
@@ -120,7 +122,7 @@ public class PlayerMovement : Movement
             coolDownPeriod = timeStamp;
             afterImages.Show();
             CameraEffects.Get.Shake(0.1f, 0.1f);
-            audio.PlayOneShot(dashSound);
+            audioSource.PlayOneShot(dashSound);
         }
         if (startDashTimer == true && isCooldown == true)
         {
@@ -206,7 +208,7 @@ public class PlayerMovement : Movement
         StartCoroutine(Flasher());
         print("newColour");
         CameraEffects.Get.Shake(0.1f, 0.5f);
-        audio.PlayOneShot(damageSound);
+        audioSource.PlayOneShot(damageSound);
     }
     IEnumerator Flasher()
     {
@@ -227,7 +229,7 @@ public class PlayerMovement : Movement
 
 	public void PlaySound(Object audioClip)
 	{
-		audio.PlayOneShot((AudioClip)audioClip);
+		audioSource.PlayOneShot((AudioClip)audioClip);
 	}
 
 	public void Anim_EnableHitbox(int enable)
@@ -281,6 +283,10 @@ public class PlayerMovement : Movement
                 }
             }
         }
+    }
+    public void SwingSound()
+    {
+        audioSource.PlayOneShot(swingSound);
     }
 
     //private void OnTriggerEnter(Collider other)
