@@ -11,6 +11,8 @@ public class DealDamageToEnemies : MonoBehaviour
 	public float damage;
 	public float knockbackStrength = 1.0f;
 	PlayerMovement mana;
+    public AudioClip impact;
+    public AudioSource audioSource;
 
 
 
@@ -19,6 +21,7 @@ public class DealDamageToEnemies : MonoBehaviour
 	{
 		player = GameObject.FindGameObjectWithTag("Player").transform;
 		mana = player.GetComponent<PlayerMovement>();
+        audioSource = GetComponent<AudioSource>();
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -34,6 +37,7 @@ public class DealDamageToEnemies : MonoBehaviour
 			knockback *= knockbackStrength;
 			thingICanKill.TakeDamage(new DamageParams(damage, currentElement, damageType, knockback));
 			mana.AddMana(manaCharge);
+            audioSource.PlayOneShot(impact, 0.3f);
 		}
 	}
 }

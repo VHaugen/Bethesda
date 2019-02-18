@@ -18,6 +18,7 @@ public class HammerWeapon : MonoBehaviour
     public int swingCost = 10;
     public int manaCharge = 5;
     int numRays = 7;
+    
     [HideInInspector] public Collider hitbox;
     [HideInInspector] public Collider overHeadHitBox;
     AudioSource audioSource;
@@ -27,6 +28,10 @@ public class HammerWeapon : MonoBehaviour
     PlayerMovement playerMovement;
     Animator playerAnimator;
     public GameObject rayCastPoint;
+    public DamageType damageType = DamageType.Hit;
+    public Element currentElement = Element.None;
+    public float swingDamage;
+    public float knockbackStrength = 2.0f;
 
 
     void Awake()
@@ -63,25 +68,6 @@ public class HammerWeapon : MonoBehaviour
             print("SWINGAROOO");
             playerAnimator.SetTrigger("AttackTransitionSwing");
             playerMovement.UseMana(swingCost);
-            for (int i = 0; i < numRays; i++)
-            {
-                Vector3 fwd = rayCastPoint.transform.forward;
-                float Afwd = Mathf.Atan2(fwd.z, fwd.x);
-                float angle = Afwd + (-40 + i * 80 / numRays) * Mathf.Deg2Rad;
-                Vector3 direction = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
-
-                direction.y = 0;
-
-                Ray r = new Ray(rayCastPoint.transform.position, direction);
-                RaycastHit hit;
-                if (Physics.Raycast(r, out hit, 10f))
-                {
-
-                    Debug.DrawRay(rayCastPoint.transform.position, direction, Color.yellow, 80);
-                    Debug.Log("WE HIT SAOMETHING");
-                }
-            }
-
         }
 
 
@@ -115,6 +101,35 @@ public class HammerWeapon : MonoBehaviour
     public void EnableHitbox(int enable)
     {
         hitbox.enabled = enable == 0 ? false : true;
+    }
+
+    public void SwingHit(int enable)
+    {
+        for (int i = 0; i < numRays; i++)
+        {
+            Vector3 fwd = rayCastPoint.transform.forward;
+            float Afwd = Mathf.Atan2(fwd.z, fwd.x);
+            float angle = Afwd + (-40 + i * 80 / numRays) * Mathf.Deg2Rad;
+            Vector3 direction = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
+
+            direction.y = 0;
+
+            Ray r = new Ray(rayCastPoint.transform.position, direction);
+            RaycastHit hit;
+            if (Physics.Raycast(r, out hit, 10f))
+            {
+                IAttackable thingICanKill = hit.collider.GetComponent<IAttackable>();
+                if (thingICanKill != null)
+                {
+                    Vector3 knockback = Vector3.zero;
+                    knockback = hit.transform.position - playerMovement.transform.position;
+                    knockback.y = 1f;
+                    knockback.Normalize();
+                    knockback *= knockbackStrength;
+                    thingICanKill.TakeDamage(new DamageParams(swingDamage, currentElement, damageType, knockback));
+                }
+            }
+        }
     }
 
 

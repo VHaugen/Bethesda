@@ -1814,10 +1814,13 @@ MonoBehaviour:
   overHeadHitBox: {fileID: 0}
   afterImages: {fileID: 0}
   rayCastPoint: {fileID: 0}
+<<<<<<< HEAD
+=======
   damageType: 0
   currentElement: 4
   swingDamage: 0
   knockbackStrength: 2
+>>>>>>> 88f925fcf0e194363f4f76eb35882a02e1f06722
 --- !u!114 &114631074793500246
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1867,10 +1870,13 @@ MonoBehaviour:
   overHeadHitBox: {fileID: 0}
   afterImages: {fileID: 0}
   rayCastPoint: {fileID: 0}
+<<<<<<< HEAD
+=======
   damageType: 0
   currentElement: 4
   swingDamage: 0
   knockbackStrength: 2
+>>>>>>> 88f925fcf0e194363f4f76eb35882a02e1f06722
 --- !u!114 &114753981317717450
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -1844,6 +1844,10 @@ MonoBehaviour:
   overHeadHitBox: {fileID: 0}
   afterImages: {fileID: 0}
   rayCastPoint: {fileID: 1121634769848508}
+  damageType: 0
+  currentElement: 4
+  swingDamage: 0
+  knockbackStrength: 2
 --- !u!114 &114631074793500246
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1893,6 +1897,10 @@ MonoBehaviour:
   overHeadHitBox: {fileID: 0}
   afterImages: {fileID: 0}
   rayCastPoint: {fileID: 0}
+  damageType: 0
+  currentElement: 4
+  swingDamage: 0
+  knockbackStrength: 2
 --- !u!114 &114753981317717450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1934,6 +1942,11 @@ MonoBehaviour:
   collideColor: {r: 1, g: 1, b: 1, a: 1}
   meshRenderer: {fileID: 137272357291149486}
   dashCooldown: {fileID: 0}
+  rayCastPoint: {fileID: 0}
+  knockbackStrength: 2
+  swingDamage: 0
+  currentElement: 4
+  damageType: 0
   speed: 100
   maxSpeed: 10
   dashSpeed: 20

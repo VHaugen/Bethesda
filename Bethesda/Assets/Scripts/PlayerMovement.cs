@@ -23,6 +23,12 @@ public class PlayerMovement : Movement
     public Renderer meshRenderer;
     public Image dashCooldown;
     bool isCooldown;
+    int numRays = 7;
+    public GameObject rayCastPoint;
+    public float knockbackStrength = 2.0f;
+    public float swingDamage;
+    public Element currentElement = Element.None;
+    public DamageType damageType = DamageType.Hit;
 
     public float speed;
     public float maxSpeed;
@@ -245,13 +251,41 @@ public class PlayerMovement : Movement
 	{
 		CameraEffects.Get.Shake(0.25f, 0.4f);
 	}
+    public void SwingHit()
+    {
+        for (int i = 0; i < numRays; i++)
+        {
+            Vector3 fwd = rayCastPoint.transform.forward;
+            float Afwd = Mathf.Atan2(fwd.z, fwd.x);
+            float angle = Afwd + (-40 + i * 80 / numRays) * Mathf.Deg2Rad;
+            Vector3 direction = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
 
-	//private void OnTriggerEnter(Collider other)
-	//{
-	//    if (other.gameObject.CompareTag("enemy") && iFrames == false)
-	//    {
-	//        print("dead");
-	//    }
-	//}
+            direction.y = 0;
+
+            Ray r = new Ray(rayCastPoint.transform.position, direction);
+            RaycastHit hit;
+            if (Physics.Raycast(r, out hit, 10f))
+            {
+                IAttackable thingICanKill = hit.collider.GetComponent<IAttackable>();
+                if (thingICanKill != null)
+                {
+                    Vector3 knockback = Vector3.zero;
+                    knockback = hit.transform.position - transform.position;
+                    knockback.y = 1f;
+                    knockback.Normalize();
+                    knockback *= knockbackStrength;
+                    thingICanKill.TakeDamage(new DamageParams(swingDamage, currentElement, damageType, knockback));
+                }
+            }
+        }
+    }
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.CompareTag("enemy") && iFrames == false)
+    //    {
+    //        print("dead");
+    //    }
+    //}
 
 }
