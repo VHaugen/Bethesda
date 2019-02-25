@@ -14,7 +14,7 @@ public class Set_Dungeon_Layout : MonoBehaviour
 
     private GameObject[,] map;
     private GameObject bossRoom;
-    public GameObject room;
+    public GameObject[] room;
     public GameObject startRoom;
     public GameObject wall;
     public GameObject door;
@@ -22,6 +22,7 @@ public class Set_Dungeon_Layout : MonoBehaviour
     public GameObject Connector;
     public GameObject Player;
     public GameObject colider;
+    public GameObject spawnObject;
 
     private string[] direction;
     public ushort size;
@@ -45,6 +46,11 @@ public class Set_Dungeon_Layout : MonoBehaviour
        
         
     }
+    private GameObject RandomRoomType()
+    {
+        return room[Random.Range(0, room.Length)];
+    }
+    
 
     void DrawGrid()
     {
@@ -70,6 +76,7 @@ public class Set_Dungeon_Layout : MonoBehaviour
 
         map[0, roomYouCameDownOn] = Instantiate(startRoom, new Vector3(roomYouCameDownOn * distanceBetweenRooms, 0, -1 * distanceBetweenRooms), Quaternion.identity) as GameObject;
         Player.transform.position = new Vector3(roomYouCameDownOn * distanceBetweenRooms, 0, -1 * distanceBetweenRooms);
+        Instantiate(spawnObject, new Vector3((roomYouCameDownOn * distanceBetweenRooms) + 1,2, -1 * distanceBetweenRooms), Quaternion.identity);
         // Player.transform.position = new Vector3(roomYouCameDownOn * distanceBetweenRooms, 0, -1 * distanceBetweenRooms);
 
         for (int i = 0; i < size; i++)
@@ -103,7 +110,7 @@ public class Set_Dungeon_Layout : MonoBehaviour
                 for (int k = 0; k < miniSpace + 1; k++)
                 {
                     //Once per room on level
-                    map[i, roomYouCameDownOn + k] = Instantiate(room, new Vector3((roomYouCameDownOn + k) * distanceBetweenRooms, 0, i * distanceBetweenRooms), Quaternion.identity) as GameObject;
+                    map[i, roomYouCameDownOn + k] = Instantiate(RandomRoomType(), new Vector3((roomYouCameDownOn + k) * distanceBetweenRooms, 0, i * distanceBetweenRooms), Quaternion.identity) as GameObject;
 
                     if (roomOnNextFloor == roomYouCameDownOn)
                     {
@@ -163,7 +170,7 @@ public class Set_Dungeon_Layout : MonoBehaviour
                 for (int k = 0; k < miniSpace + 1; k++)
                 {
                     //Once per room on level
-                    map[i, roomYouCameDownOn - k] = Instantiate(room, new Vector3((roomYouCameDownOn - k) * distanceBetweenRooms, 0, i * distanceBetweenRooms), Quaternion.identity) as GameObject;
+                    map[i, roomYouCameDownOn - k] = Instantiate(RandomRoomType(), new Vector3((roomYouCameDownOn - k) * distanceBetweenRooms, 0, i * distanceBetweenRooms), Quaternion.identity) as GameObject;
                     //Instantiate(door, map[i, roomOnNextFloor - 1].transform.Find("Höger").transform); ////// DETTA KAN GE  ERROR
 
                     if (k == 0 && miniSpace > 0)
