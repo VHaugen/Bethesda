@@ -53,7 +53,6 @@ public class HammerWeapon : MonoBehaviour
         {
             print("Attacku!");
             playerAnimator.SetTrigger("AttackTransition");
-            playerMovement.AddMana(manaCharge);
             afterImages.Show();
         }
         if ((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("B Button")) && !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Heavy Attack") /*&& mana.manaSlider.value >= overHeadCost*/)
