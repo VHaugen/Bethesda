@@ -21,7 +21,8 @@ public class HammerWeapon : MonoBehaviour
     
     [HideInInspector] public Collider hitbox;
     [HideInInspector] public Collider overHeadHitBox;
-    AudioSource audioSource;
+    public AudioSource audioSource;
+    public AudioClip impct;
     [HideInInspector] public AfterImages afterImages;
     Transform impact;
     Vector3 impactOffset;
@@ -125,6 +126,7 @@ public class HammerWeapon : MonoBehaviour
                     knockback.y = 1f;
                     knockback.Normalize();
                     knockback *= knockbackStrength;
+                    audioSource.PlayOneShot(impct, 1f);
                     thingICanKill.TakeDamage(new DamageParams(swingDamage, currentElement, damageType, knockback));
                 }
             }

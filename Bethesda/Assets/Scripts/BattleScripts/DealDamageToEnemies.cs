@@ -36,7 +36,7 @@ public class DealDamageToEnemies : MonoBehaviour
 			knockback.Normalize();
 			knockback *= knockbackStrength;
 			thingICanKill.TakeDamage(new DamageParams(damage, currentElement, damageType, knockback));
-            audioSource.PlayOneShot(impact, 0.3f);
+            audioSource.PlayOneShot(impact, 0.5f);
 			if (damageType == DamageType.Hit)
 			{
 				player.GetComponent<PlayerMovement>().AddMana(10);
