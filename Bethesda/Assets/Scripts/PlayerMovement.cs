@@ -206,6 +206,11 @@ public class PlayerMovement : Movement
         print("newColour");
         CameraEffects.Get.Shake(0.1f, 0.5f);
         audioSource.PlayOneShot(damageSound);
+
+		if (currentHealth <= 0)
+		{
+			print("DIE!");
+		}
     }
     IEnumerator Flasher()
     {
