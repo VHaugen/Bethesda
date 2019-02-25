@@ -62,15 +62,9 @@ public class PlayerMovement : Movement
         iFrames = false;
         tRail = GetComponent<TrailRenderer>();
         afterImages = transform.Find("front1").GetComponent<AfterImages>();
-<<<<<<< HEAD
-        currentHealth = startingHealth;
-        manaSlider.value = startingMana;
-        audioSource = GetComponent<AudioSource>();
-=======
         healthSlider.value = currentHealth = startingHealth;
         manaSlider.value = currentMana = startingMana;
-        audio = GetComponent<AudioSource>();
->>>>>>> 7100d9fc6738a4751ddfe7691588bf79b16c1305
+        audioSource = GetComponent<AudioSource>();
         flammable = GetComponent<Flammable>();
         anim = GetComponent<Animator>();
 		weapon = GetComponentInChildren<HammerWeapon>();
