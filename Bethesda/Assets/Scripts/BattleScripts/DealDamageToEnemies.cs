@@ -44,6 +44,7 @@ public class DealDamageToEnemies : MonoBehaviour
 			if (damageType == DamageType.Hit)
 			{
 				player.GetComponent<PlayerMovement>().AddMana(10);
+				ParticleEffectsManager.GetEffect("Hit1").Spawn(transform.position);
 			}
 		}
 	}
