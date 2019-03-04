@@ -35,6 +35,7 @@ public class HammerWeapon : MonoBehaviour
     public Element currentElement = Element.None;
     public float swingDamage;
     public float knockbackStrength = 2.0f;
+    
 
 
     void Awake()
@@ -110,10 +111,12 @@ public class HammerWeapon : MonoBehaviour
         hitbox.enabled = enable == 0 ? false : true;
     }
 
-    public void SwingHit(int enable)
+    /*public void SwingHit()
     {
+        
         for (int i = 0; i < numRays; i++)
         {
+            
             Vector3 fwd = rayCastPoint.transform.forward;
             float Afwd = Mathf.Atan2(fwd.z, fwd.x);
             float angle = Afwd + (-40 + i * 80 / numRays) * Mathf.Deg2Rad;
@@ -125,20 +128,24 @@ public class HammerWeapon : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(r, out hit, 10f))
             {
+                    print("hej1");
+
                 IAttackable thingICanKill = hit.collider.GetComponent<IAttackable>();
                 if (thingICanKill != null)
                 {
+                    print("hej2");
                     Vector3 knockback = Vector3.zero;
                     knockback = hit.transform.position - playerMovement.transform.position;
                     knockback.y = 1f;
                     knockback.Normalize();
                     knockback *= knockbackStrength;
-                    audioSource.PlayOneShot(impct, 1f);
+                    if (!audioSource.isPlaying)
+                        audioSource.PlayOneShot(impct);
                     thingICanKill.TakeDamage(new DamageParams(swingDamage, currentElement, damageType, knockback));
                 }
             }
         }
-    }
+    }*/
 
 
 
