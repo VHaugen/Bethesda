@@ -25,8 +25,12 @@ public class DealDamageToEnemies : MonoBehaviour
 	}
 
 	void OnTriggerEnter(Collider other)
-	{
-		IAttackable thingICanKill = other.GetComponent<IAttackable>();
+	{       
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(impact, 0.5f);
+        }
+        IAttackable thingICanKill = other.GetComponent<IAttackable>();
 		if (thingICanKill != null)
 		{
 			Vector3 knockback = Vector3.zero;
@@ -36,7 +40,7 @@ public class DealDamageToEnemies : MonoBehaviour
 			knockback.Normalize();
 			knockback *= knockbackStrength;
 			thingICanKill.TakeDamage(new DamageParams(damage, currentElement, damageType, knockback));
-            audioSource.PlayOneShot(impact, 0.5f);
+            
 			if (damageType == DamageType.Hit)
 			{
 				player.GetComponent<PlayerMovement>().AddMana(10);

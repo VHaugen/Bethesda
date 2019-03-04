@@ -51,9 +51,11 @@ public class PlayerMovement : Movement
     public AudioClip dashSound;
     public AudioClip damageSound;
     public AudioClip swingSound;
+    public AudioClip swingSoundHit;
     Flammable flammable;
     Animator anim;
 	HammerWeapon weapon;
+
 
     // Use this for initialization
     protected override void Start()
@@ -255,8 +257,13 @@ public class PlayerMovement : Movement
 	}
     public void SwingHit()
     {
+       
+        
+            audioSource.PlayOneShot(swingSoundHit);
+             
         for (int i = 0; i < numRays; i++)
         {
+
             Vector3 fwd = rayCastPoint.transform.forward;
             float Afwd = Mathf.Atan2(fwd.z, fwd.x);
             float angle = Afwd + (-40 + i * 80 / numRays) * Mathf.Deg2Rad;
@@ -268,6 +275,7 @@ public class PlayerMovement : Movement
             RaycastHit hit;
             if (Physics.Raycast(r, out hit, 10f))
             {
+                
                 IAttackable thingICanKill = hit.collider.GetComponent<IAttackable>();
                 if (thingICanKill != null)
                 {
@@ -276,6 +284,7 @@ public class PlayerMovement : Movement
                     knockback.y = 1f;
                     knockback.Normalize();
                     knockback *= knockbackStrength;
+                                                         
                     thingICanKill.TakeDamage(new DamageParams(swingDamage, currentElement, damageType, knockback));
                 }
             }
@@ -285,6 +294,7 @@ public class PlayerMovement : Movement
     {
         audioSource.PlayOneShot(swingSound);
     }
+    
 
     //private void OnTriggerEnter(Collider other)
     //{
