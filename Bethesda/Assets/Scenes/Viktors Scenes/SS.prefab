@@ -4626,3 +4626,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fight: {fileID: 1968543289848300, guid: 2959d68436e8f66468a31020e953ee56, type: 2}
+  puzzls: []
+  door: {fileID: 0}

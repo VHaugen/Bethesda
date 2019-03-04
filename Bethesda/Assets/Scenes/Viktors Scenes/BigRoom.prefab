@@ -1190,7 +1190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1895958963833738
 GameObject:
   m_ObjectHideFlags: 1
@@ -1654,7 +1654,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1169722997350930}
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: 0.058447, y: 5.3, z: -14.86405}
+  m_LocalPosition: {x: 0.058447, y: 5, z: -14.86405}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4932163934829776}
@@ -1680,7 +1680,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1517271651474872}
   m_LocalRotation: {x: -0.7071068, y: -0, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: 15.6, y: 5.3, z: 0}
+  m_LocalPosition: {x: 15.6, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4932163934829776}
@@ -2402,7 +2402,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1799582238752250}
   m_LocalRotation: {x: 1, y: -0.0000001872535, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 5.3, z: 26.59}
+  m_LocalPosition: {x: 0, y: 5, z: 26.59}
   m_LocalScale: {x: 1, y: 1, z: 0.5165725}
   m_Children: []
   m_Father: {fileID: 4932163934829776}
@@ -2517,7 +2517,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1558682616632616}
   m_LocalRotation: {x: 0.7071068, y: -0, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: -15.6, y: 5.3, z: 0}
+  m_LocalPosition: {x: -15.6, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4932163934829776}
@@ -4626,3 +4626,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fight: {fileID: 1968543289848300, guid: 2959d68436e8f66468a31020e953ee56, type: 2}
+  puzzls: []
+  door: {fileID: 1687522264665482, guid: 86b8902e463a7e54baee42552968683f, type: 2}
