@@ -18,6 +18,8 @@ public class HammerWeapon : MonoBehaviour
     public int swingCost = 10;
     public int manaCharge = 5;
     int numRays = 7;
+	[SerializeField] float normalAttackAfterImageDuration;
+	[SerializeField] float smashAttackAfterImageDuration;
     
     [HideInInspector] public Collider hitbox;
     [HideInInspector] public Collider overHeadHitBox;
@@ -55,15 +57,20 @@ public class HammerWeapon : MonoBehaviour
             print("Attacku!");
             playerAnimator.SetTrigger("AttackTransition");
             afterImages.Show();
+			afterImages.duration = normalAttackAfterImageDuration;
         }
-        if ((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("B Button")) && !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Heavy Attack") /*&& mana.manaSlider.value >= overHeadCost*/)
+        if ((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("B Button")) && !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Heavy Attack"))
         {
-            print("ROADO ROLLA DA");
-            playerAnimator.SetTrigger("AttackTransitionHeavy");
-            playerMovement.UseMana(overHeadCost);
+			if (playerMovement.currentMana >= overHeadCost)
+			{
+				print("ROADO ROLLA DA");
+				playerAnimator.SetTrigger("AttackTransitionHeavy");
+				playerMovement.UseMana(overHeadCost);
+				afterImages.duration = smashAttackAfterImageDuration; 
+			}
         }
 
-        if ((Input.GetKeyDown(KeyCode.Q)) /*&& mana.manaSlider.value >= swingCost*/)
+        if ((Input.GetKeyDown(KeyCode.Q)) && playerMovement.currentMana >= swingCost)
         {
             print("SWINGAROOO");
             playerAnimator.SetTrigger("AttackTransitionSwing");

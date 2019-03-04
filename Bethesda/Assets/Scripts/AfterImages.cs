@@ -7,8 +7,7 @@ public class AfterImages : MonoBehaviour
 	[SerializeField]
 	int numberOfImages = 3;
 
-	[SerializeField]
-	float duration = 1.0f;
+	public float duration = 1.0f;
 
 	[SerializeField]
 	float fadeOutDuration = 1f;
@@ -24,7 +23,7 @@ public class AfterImages : MonoBehaviour
 	[Range(0, 1)]
 	float tintFactor = 0f;
 
-	GameObject[] imageObjects;
+	AfterImageRenderer[] imageObjects;
 	MeshFilter meshFilter;
 	SkinnedMeshRenderer skinnedMeshRenderer;
 	Material afterImageMaterial;
@@ -41,7 +40,7 @@ public class AfterImages : MonoBehaviour
 
 	void Start()
 	{
-		imageObjects = new GameObject[numberOfImages];
+		imageObjects = new AfterImageRenderer[numberOfImages];
 		string baseName = "AfterImage--" + gameObject.name + "--";
 		afterImageMaterial = CreateMaterial();
 
@@ -51,7 +50,7 @@ public class AfterImages : MonoBehaviour
 			obj.SetActive(false);
 			obj.GetComponent<MeshRenderer>().sharedMaterial = afterImageMaterial;
 			obj.GetComponent<AfterImageRenderer>().fadeOutDuration = fadeOutDuration;
-			imageObjects[i] = obj;
+			imageObjects[i] = obj.GetComponent<AfterImageRenderer>();
 		}
 	}
 
@@ -99,17 +98,16 @@ public class AfterImages : MonoBehaviour
 
 	void CreateAfterImage(int index)
 	{
-		GameObject obj = imageObjects[index];
-		AfterImageRenderer afterImage = obj.GetComponent<AfterImageRenderer>();
+		AfterImageRenderer afterImage = imageObjects[index];
 		afterImage.Show(startingOpacity, transform);
-		obj.GetComponent<MeshRenderer>().sharedMaterial = afterImageMaterial;
+		afterImage.GetComponent<MeshRenderer>().sharedMaterial = afterImageMaterial;
 		if (meshFilter)
 		{
-			obj.GetComponent<MeshFilter>().sharedMesh = meshFilter.sharedMesh;
+			afterImage.GetComponent<MeshFilter>().sharedMesh = meshFilter.sharedMesh;
 		}
 		else if (skinnedMeshRenderer)
 		{
-			skinnedMeshRenderer.BakeMesh(obj.GetComponent<MeshFilter>().mesh);
+			skinnedMeshRenderer.BakeMesh(afterImage.GetComponent<MeshFilter>().mesh);
 		}
 	}
 }

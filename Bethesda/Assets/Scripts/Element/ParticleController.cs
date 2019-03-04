@@ -10,7 +10,7 @@ public class ParticleController : MonoBehaviour
 	public ParticleSystem particleSystemPrefab;
 
 	List<ParticleSystem> systems;
-	List<ParticleSystem> meshAttachedSystems;
+	public List<ParticleSystem> meshAttachedSystems;
 	bool skinnedMeshRenderer = false;
 
 
@@ -48,6 +48,7 @@ public class ParticleController : MonoBehaviour
 			var system = systems[i];
 			if (!system.isEmitting)
 			{
+				meshAttachedSystems.Add(system);
 				EnableSystem(system, attachToMesh);
 				return i;
 			}
