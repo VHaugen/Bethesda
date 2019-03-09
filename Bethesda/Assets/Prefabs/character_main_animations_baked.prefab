@@ -982,7 +982,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1031494338110460}
-  m_LocalRotation: {x: 0.70703995, y: 0.009727719, z: 0.009727699, w: 0.7070399}
+  m_LocalRotation: {x: 0.70703983, y: 0.009727867, z: 0.009727683, w: 0.70703983}
   m_LocalPosition: {x: 0.034623206, y: -0.023320632, z: 0.021347968}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1329,7 +1329,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 2f8b2fcfd79d9ab43b939de4f7fe8867, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1364,7 +1364,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 3a04b02cda5a04741b6d7e8b7852c77a, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1973,6 +1973,8 @@ MonoBehaviour:
   dashSound: {fileID: 8300000, guid: 4140cc71fb263af48be647d11193f63c, type: 3}
   damageSound: {fileID: 8300000, guid: 9bce4d9478714084ab7b1f86b773e755, type: 3}
   swingSound: {fileID: 8300000, guid: 9b806b5c13c3e2e49a89cd8807066524, type: 3}
+  swingSoundHit: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: 245524d4aa975a049bbc8701f2afb080, type: 3}
 --- !u!114 &114928558621979340
 MonoBehaviour:
   m_ObjectHideFlags: 1

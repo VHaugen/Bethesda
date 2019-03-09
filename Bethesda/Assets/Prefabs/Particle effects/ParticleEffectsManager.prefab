@@ -11,6 +11,22 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1528964151492048}
   m_IsPrefabAsset: 1
+--- !u!1 &1450880466326144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4045997061018958}
+  - component: {fileID: 114123205112790902}
+  m_Layer: 0
+  m_Name: DeathExplosion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1528964151492048
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,6 +91,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1951664130440814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4377025849693388}
+  - component: {fileID: 114418008285922492}
+  m_Layer: 0
+  m_Name: Hit1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1979797383995544
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,6 +123,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4045997061018958
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1450880466326144}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -17.75565, y: -13.311502, z: 18.611738}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4604454361201518}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4204864607162716
 Transform:
   m_ObjectHideFlags: 1
@@ -116,6 +161,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4604454361201518}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4377025849693388
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1951664130440814}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -17.75565, y: -13.311502, z: 18.611738}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4604454361201518}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4454963230494980
 Transform:
@@ -157,9 +215,41 @@ Transform:
   - {fileID: 4494764266154200}
   - {fileID: 4335839315277512}
   - {fileID: 4204864607162716}
+  - {fileID: 4377025849693388}
+  - {fileID: 4045997061018958}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114123205112790902
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1450880466326144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb4a82fe6c5c9504c9d12211365118c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialNumSystems: 6
+  particleSystemPrefab: {fileID: 198615604798483252, guid: 13e59b34d5e923a479e5031d76d3584a,
+    type: 2}
+  destroySystemWhenMeshIsNull: 0
+--- !u!114 &114418008285922492
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1951664130440814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb4a82fe6c5c9504c9d12211365118c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialNumSystems: 6
+  particleSystemPrefab: {fileID: 198363777347208036, guid: abf2f35b13e55af459683f7d02ef436e,
+    type: 2}
+  destroySystemWhenMeshIsNull: 1
 --- !u!114 &114491578902379306
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -185,6 +275,7 @@ MonoBehaviour:
   initialNumSystems: 10
   particleSystemPrefab: {fileID: 198166744699489316, guid: e85c71cbbf491034fad84840dea24ad6,
     type: 2}
+  destroySystemWhenMeshIsNull: 1
 --- !u!114 &114682238529573768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -196,9 +287,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4a82fe6c5c9504c9d12211365118c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialNumSystems: 1
+  initialNumSystems: 6
   particleSystemPrefab: {fileID: 198022523507221994, guid: b0bcc9bb30527d549b50bb10bcf9bf00,
     type: 2}
+  destroySystemWhenMeshIsNull: 1
 --- !u!114 &114904812393304176
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -210,9 +302,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4a82fe6c5c9504c9d12211365118c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialNumSystems: 5
+  initialNumSystems: 6
   particleSystemPrefab: {fileID: 198201645356787946, guid: 297b36a342f593849bc6d9b006db84d6,
     type: 2}
+  destroySystemWhenMeshIsNull: 1
 --- !u!114 &114981395165679620
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -224,6 +317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4a82fe6c5c9504c9d12211365118c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialNumSystems: 5
+  initialNumSystems: 6
   particleSystemPrefab: {fileID: 198967756929801084, guid: 8d09a43dd1bcd474799eddc1a0b21b31,
     type: 2}
+  destroySystemWhenMeshIsNull: 1

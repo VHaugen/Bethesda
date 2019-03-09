@@ -52,6 +52,7 @@ public class PlayerMovement : Movement
     public AudioClip damageSound;
     public AudioClip swingSound;
     public AudioClip swingSoundHit;
+	public AudioClip deathSound;
     Flammable flammable;
     Animator anim;
 	HammerWeapon weapon;
@@ -145,6 +146,10 @@ public class PlayerMovement : Movement
             currentHealth -= (fireDamagePerSecond - armorValue) * Time.deltaTime;
             healthSlider.value = currentHealth;
             damaged = true;
+			if (currentHealth <= 0)
+			{
+				Die();
+			}
 
         }
 
@@ -185,9 +190,9 @@ public class PlayerMovement : Movement
     }
     public void AddMana(int amount)
     {
-        currentMana += amount;
+        currentMana = Mathf.Min(currentMana + amount, manaSlider.maxValue);
         manaSlider.value = currentMana;
-		print("gained mana" + amount + " -- " + manaSlider.value);
+		//print("gained mana" + amount + " -- " + manaSlider.value);
     }
 
     public void UseMana(int amount)
@@ -211,9 +216,17 @@ public class PlayerMovement : Movement
 
 		if (currentHealth <= 0)
 		{
-			print("DIE!");
+			Die();
 		}
     }
+
+	public void Die()
+	{
+		ParticleEffectsManager.GetEffect("DeathExplosion").Spawn(meshRenderer);
+		Sound.Play(deathSound);
+		gameObject.SetActive(false);
+	}
+
     IEnumerator Flasher()
     {
         if (meshRenderer != null)
