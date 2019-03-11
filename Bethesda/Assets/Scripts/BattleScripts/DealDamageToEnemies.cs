@@ -4,48 +4,49 @@ using UnityEngine;
 
 public class DealDamageToEnemies : MonoBehaviour
 {
-	int manaCharge = 5;
-	public Transform player;
-	public Element currentElement = Element.None;
-	public DamageType damageType = DamageType.Hit;
-	public float damage;
-	public float knockbackStrength = 1.0f;
-	PlayerMovement mana;
+    int manaCharge = 5;
+    public Transform player;
+    public Element currentElement = Element.None;
+    public DamageType damageType = DamageType.Hit;
+    public float damage;
+    public float knockbackStrength = 1.0f;
+    PlayerMovement mana;
     public AudioClip impact;
     public AudioSource audioSource;
 
 
 
-	// Use this for initialization
-	void Start()
-	{
-		player = GameObject.FindGameObjectWithTag("Player").transform;
-		mana = player.GetComponent<PlayerMovement>();
+    // Use this for initialization
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        mana = player.GetComponent<PlayerMovement>();
         audioSource = GetComponent<AudioSource>();
-	}
+    }
 
-	void OnTriggerEnter(Collider other)
-	{       
-        if (!audioSource.isPlaying)
-        {
-            audioSource.PlayOneShot(impact, 0.5f);
-        }
+    void OnTriggerEnter(Collider other)
+    {
+
         IAttackable thingICanKill = other.GetComponent<IAttackable>();
-		if (thingICanKill != null)
-		{
-			Vector3 knockback = Vector3.zero;
-			Transform me = player ? player : transform;
-			knockback = other.transform.position - me.position;
-			knockback.y = 1f;
-			knockback.Normalize();
-			knockback *= knockbackStrength;
-			thingICanKill.TakeDamage(new DamageParams(damage, currentElement, damageType, knockback));
-            
-			if (damageType == DamageType.Hit)
-			{
-				player.GetComponent<PlayerMovement>().AddMana(10);
-				ParticleEffectsManager.GetEffect("Hit1").Spawn(transform.position);
-			}
-		}
-	}
+        if (thingICanKill != null)
+        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(impact, 0.5f);
+            }
+            Vector3 knockback = Vector3.zero;
+            Transform me = player ? player : transform;
+            knockback = other.transform.position - me.position;
+            knockback.y = 1f;
+            knockback.Normalize();
+            knockback *= knockbackStrength;
+            thingICanKill.TakeDamage(new DamageParams(damage, currentElement, damageType, knockback));
+
+            if (damageType == DamageType.Hit)
+            {
+                player.GetComponent<PlayerMovement>().AddMana(10);
+                ParticleEffectsManager.GetEffect("Hit1").Spawn(transform.position);
+            }
+        }
+    }
 }

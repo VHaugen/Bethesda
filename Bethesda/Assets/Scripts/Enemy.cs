@@ -16,6 +16,11 @@ public abstract class Enemy : MonoBehaviour, IAttackable
     public Color collideColor = Color.white;
     protected Vector3 knockbackVector;
     public List<Transform> powerUps = new List<Transform>();
+    public AudioSource audioSource;
+    public AudioClip burn;
+    public AudioClip slow;
+    public AudioClip paralysis;
+    public AudioClip poisoned;
 
     protected float iFramesTimer = -1.0f;
 
@@ -42,6 +47,7 @@ public abstract class Enemy : MonoBehaviour, IAttackable
         electracuted = GetComponent<Electracuted>();
         squash = GetComponent<SquashEffect>();
         speed = GetComponent<TestEnemy>().maxSpeed;
+        audioSource = GetComponent<AudioSource>();
     }
 
     virtual protected void Start()
@@ -55,18 +61,30 @@ public abstract class Enemy : MonoBehaviour, IAttackable
         if (flammable && flammable.IsBurning())
         {
             SetHealth(health - fireDamagePerSecond * Time.deltaTime);
+            if (!audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(burn, 0.5f);
+            }
         }
 
         if (freezable && freezable.IsFreezing())
         {
             SetHealth(health - iceDamagePerSecond * Time.deltaTime);
             slowSpeed = GetComponent<TestEnemy>().maxSpeed = 1.5f;
+            if (!audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(slow, 1f);
+            }
         }
 
         if (poisonStatus > 0)
         {
             SetHealth(health - poisonDamagePerSecond * Time.deltaTime);
             poisonStatus -= Time.deltaTime;
+            if (!audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(poisoned, 1f);
+            }
             if (poisonStatus <= 0)
             {
                 poisonStatus = -1;
@@ -78,6 +96,10 @@ public abstract class Enemy : MonoBehaviour, IAttackable
             //healthSlider.value = health;
             //healthSlider.gameObject.SetActive(true);
             stun = GetComponent<TestEnemy>().maxSpeed = 0f;
+            if (!audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(paralysis, 0.10f);
+            }
             print("STUNNED");
         }
 
@@ -155,7 +177,7 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 
                 if (health <= 0)
                 {
-                    Die();                
+                    Die();
                     if (Random.Range(1, 5) == 1)
                     {
                         Instantiate(powerUps[Random.Range(0, powerUps.Count - 1)], transform.position, Quaternion.identity);

@@ -54,7 +54,7 @@ public class PlayerMovement : Movement
     public AudioClip swingSoundHit;
     Flammable flammable;
     Animator anim;
-	HammerWeapon weapon;
+    HammerWeapon weapon;
 
 
     // Use this for initialization
@@ -69,14 +69,14 @@ public class PlayerMovement : Movement
         audioSource = GetComponent<AudioSource>();
         flammable = GetComponent<Flammable>();
         anim = GetComponent<Animator>();
-		weapon = GetComponentInChildren<HammerWeapon>();
-        
+        weapon = GetComponentInChildren<HammerWeapon>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
         Vector3 movement;
 
 
@@ -86,8 +86,8 @@ public class PlayerMovement : Movement
         rawAxisY = Input.GetAxisRaw("Vertical");
         //rawAxisY = (float)System.Math.Round(rawAxisY);
         movement = new Vector3(rawAxisX * speed, 0, rawAxisY * speed);
-        
-        
+
+
 
         if (movement.sqrMagnitude == 0)
         {
@@ -153,12 +153,12 @@ public class PlayerMovement : Movement
 
             //damageImage.color = flashColour;
             float vignetteIntensity = 0.0f;
-			if (currentHealth <= 50)
-			{
-				vignetteIntensity = Mathf.Lerp(vignetteStart, vignetteDead, 1f - currentHealth / 50f);
-			}
-			//print(vignetteIntensity);
-			CameraEffects.Get.SetDamageVignette(vignetteIntensity);
+            if (currentHealth <= 50)
+            {
+                vignetteIntensity = Mathf.Lerp(vignetteStart, vignetteDead, 1f - currentHealth / 50f);
+            }
+            //print(vignetteIntensity);
+            CameraEffects.Get.SetDamageVignette(vignetteIntensity);
 
         }
         else
@@ -187,13 +187,13 @@ public class PlayerMovement : Movement
     {
         currentMana += amount;
         manaSlider.value = currentMana;
-		print("gained mana" + amount + " -- " + manaSlider.value);
+        print("gained mana" + amount + " -- " + manaSlider.value);
     }
 
     public void UseMana(int amount)
     {
-		currentMana -= amount;
-		manaSlider.value -= amount;
+        currentMana -= amount;
+        manaSlider.value -= amount;
         print("lostmana " + amount);
     }
 
@@ -209,10 +209,10 @@ public class PlayerMovement : Movement
         CameraEffects.Get.Shake(0.1f, 0.5f);
         audioSource.PlayOneShot(damageSound);
 
-		if (currentHealth <= 0)
-		{
-			print("DIE!");
-		}
+        if (currentHealth <= 0)
+        {
+            print("DIE!");
+        }
     }
     IEnumerator Flasher()
     {
@@ -231,41 +231,37 @@ public class PlayerMovement : Movement
         iFrames = false;
     }
 
-	public void PlaySound(Object audioClip)
-	{
-		audioSource.PlayOneShot((AudioClip)audioClip);
-	}
+    public void PlaySound(Object audioClip)
+    {
+        audioSource.PlayOneShot((AudioClip)audioClip);
+    }
 
-	public void Anim_EnableHitbox(int enable)
-	{
-		weapon.hitbox.enabled = enable == 0 ? false : true;
-	}
+    public void Anim_EnableHitbox(int enable)
+    {
+        weapon.hitbox.enabled = enable == 0 ? false : true;
+    }
 
-	public void EnableSlowDown(int enableSlowness)
-	{
-		maxSpeed = enableSlowness == 1 ? 1.0f : 10.0f;
-	}
+    public void EnableSlowDown(int enableSlowness)
+    {
+        maxSpeed = enableSlowness == 1 ? 1.0f : 10.0f;
+    }
 
-	public void Anim_ShowAfterImages()
-	{
-		weapon.afterImages.Show();
-	}
+    public void Anim_ShowAfterImages()
+    {
+        weapon.afterImages.Show();
+    }
 
-	public void Anim_EnableAoeHitbox(int enable)
-	{
-		weapon.overHeadHitBox.enabled = enable == 0 ? false : true;
-	}
+    public void Anim_EnableAoeHitbox(int enable)
+    {
+        weapon.overHeadHitBox.enabled = enable == 0 ? false : true;
+    }
 
-	public void ScreenShake()
-	{
-		CameraEffects.Get.Shake(0.25f, 0.4f);
-	}
+    public void ScreenShake()
+    {
+        CameraEffects.Get.Shake(0.25f, 0.4f);
+    }
     public void SwingHit()
     {
-       
-        
-            audioSource.PlayOneShot(swingSoundHit);
-             
         for (int i = 0; i < numRays; i++)
         {
 
@@ -280,16 +276,19 @@ public class PlayerMovement : Movement
             RaycastHit hit;
             if (Physics.Raycast(r, out hit, 10f))
             {
-                
+
                 IAttackable thingICanKill = hit.collider.GetComponent<IAttackable>();
                 if (thingICanKill != null)
                 {
+
+                    audioSource.PlayOneShot(swingSoundHit, 0.5f);
+
                     Vector3 knockback = Vector3.zero;
                     knockback = hit.transform.position - transform.position;
                     knockback.y = 1f;
                     knockback.Normalize();
                     knockback *= knockbackStrength;
-                                                         
+
                     thingICanKill.TakeDamage(new DamageParams(swingDamage, currentElement, damageType, knockback));
                 }
             }
@@ -299,7 +298,7 @@ public class PlayerMovement : Movement
     {
         audioSource.PlayOneShot(swingSound);
     }
-    
+
 
     //private void OnTriggerEnter(Collider other)
     //{
