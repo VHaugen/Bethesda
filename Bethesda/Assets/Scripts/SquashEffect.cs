@@ -115,11 +115,7 @@ public class SquashEffect : MonoBehaviour
 					timer += Time.deltaTime;
 					if (timer >= recoverDuration)
 					{
-						SetScale(1f);
-						state = State.Still;
-						timer = 0f;
-						animator.enabled = animatorWasEnabled;
-						transform.position = basePosition;
+						CancelSquash();
 					}
 
 					break;
@@ -155,5 +151,14 @@ public class SquashEffect : MonoBehaviour
 		{
 			audio.Play();
 		}
+	}
+
+	public void CancelSquash()
+	{
+		SetScale(1f);
+		state = State.Still;
+		timer = 0f;
+		animator.enabled = animatorWasEnabled;
+		transform.position = basePosition;
 	}
 }

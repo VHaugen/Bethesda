@@ -193,7 +193,7 @@ public class TestEnemy : Enemy, IAttackable
 				break;
 
 			case State.EpicDeath:
-				if (!startedDeathFlashing && (squash.isFlat || !squash.inSquash))
+				if (!startedDeathFlashing && (!squash.isFlat || !squash.inSquash))
 				{
 					rbody.velocity = Vector3.zero;
 					StartCoroutine(ShakeAndDie());
@@ -311,6 +311,7 @@ public class TestEnemy : Enemy, IAttackable
 			rbody.position = basePosition + Random.onUnitSphere * radius;
 			yield return new WaitForSeconds(0.05f - i * 0.02f);
 		}
+		transform.localScale = Vector3.one;
 		ParticleEffectsManager.GetEffect("DeathExplosion").Spawn(GetComponent<MeshRenderer>());
 		Sound.Play(deathSound);
 		Destroy(gameObject);

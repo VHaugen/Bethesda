@@ -25,14 +25,14 @@ public class DealDamageToEnemies : MonoBehaviour
 	}
 
 	void OnTriggerEnter(Collider other)
-	{       
-        if (!audioSource.isPlaying)
-        {
-            audioSource.PlayOneShot(impact, 0.5f);
-        }
+	{
         IAttackable thingICanKill = other.GetComponent<IAttackable>();
 		if (thingICanKill != null)
 		{
+			if (!audioSource.isPlaying)
+			{
+				audioSource.PlayOneShot(impact, 0.5f);
+			}
 			Vector3 knockback = Vector3.zero;
 			Transform me = player ? player : transform;
 			knockback = other.transform.position - me.position;
