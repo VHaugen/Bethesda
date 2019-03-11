@@ -52,6 +52,7 @@ public class PlayerMovement : Movement
     public AudioClip damageSound;
     public AudioClip swingSound;
     public AudioClip swingSoundHit;
+	public AudioClip deathSound;
     Flammable flammable;
     Animator anim;
     HammerWeapon weapon;
@@ -125,19 +126,21 @@ public class PlayerMovement : Movement
             afterImages.Show();
             CameraEffects.Get.Shake(0.1f, 0.1f);
             audioSource.PlayOneShot(dashSound);
+			dashCooldown.fillAmount = 1;
         }
         if (startDashTimer == true && isCooldown == true)
         {
             rb.velocity = transform.forward * dashSpeed;
-            dashCooldown.fillAmount += 1 / timeStamp * Time.deltaTime;
+            dashCooldown.fillAmount -= 1 / timeStamp * Time.deltaTime;
             dashTimer -= Time.deltaTime;
-            if (dashTimer <= 0 && dashCooldown.fillAmount >= 1)
+            if (dashTimer <= 0 && dashCooldown.fillAmount <= 0)
             {
                 startDashTimer = false;
                 dashCooldown.fillAmount = 0;
                 dashTimer = 0;
                 rb.velocity = new Vector3(0, 0, 0);
                 iFrames = false;
+				dashCooldown.GetComponent<Fadeplosion>().Perform();
             }
         }
         if (flammable.IsBurning())
@@ -145,6 +148,10 @@ public class PlayerMovement : Movement
             currentHealth -= (fireDamagePerSecond - armorValue) * Time.deltaTime;
             healthSlider.value = currentHealth;
             damaged = true;
+			if (currentHealth <= 0)
+			{
+				Die();
+			}
 
         }
 
@@ -185,9 +192,9 @@ public class PlayerMovement : Movement
     }
     public void AddMana(int amount)
     {
-        currentMana += amount;
+        currentMana = Mathf.Min(currentMana + amount, manaSlider.maxValue);
         manaSlider.value = currentMana;
-        print("gained mana" + amount + " -- " + manaSlider.value);
+       //print("gained mana" + amount + " -- " + manaSlider.value);
     }
 
     public void UseMana(int amount)
@@ -209,11 +216,19 @@ public class PlayerMovement : Movement
         CameraEffects.Get.Shake(0.1f, 0.5f);
         audioSource.PlayOneShot(damageSound);
 
-        if (currentHealth <= 0)
-        {
-            print("DIE!");
-        }
+     if (currentHealth <= 0)
+		{
+			Die();
+		}
     }
+
+	public void Die()
+	{
+		ParticleEffectsManager.GetEffect("DeathExplosion").Spawn(meshRenderer);
+		Sound.Play(deathSound);
+		gameObject.SetActive(false);
+	}
+
     IEnumerator Flasher()
     {
         if (meshRenderer != null)

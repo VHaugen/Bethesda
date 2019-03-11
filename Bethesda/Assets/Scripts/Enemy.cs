@@ -165,7 +165,10 @@ public abstract class Enemy : MonoBehaviour, IAttackable
                         break;
                     case Element.Poison:
                         poisonStatus = poisonStatusDuration;
-                        poisonEffectIndex = ParticleEffectsManager.GetEffect("Poison").Spawn(GetComponent<MeshRenderer>());
+						if (poisonStatus > 0)
+						{
+							poisonEffectIndex = ParticleEffectsManager.GetEffect("Poison").Spawn(GetComponent<MeshRenderer>());
+						}
                         break;
                     case Element.Lightning:
                         if (electracuted)

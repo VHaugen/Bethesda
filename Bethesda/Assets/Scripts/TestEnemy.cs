@@ -50,8 +50,9 @@ public class TestEnemy : Enemy, IAttackable
 	Animator animator;
 	AttackHitBox attack;
 
-	AudioSource audio;
+	AudioSource sound;
 	[SerializeField] AudioClip attackSound;
+	[SerializeField] AudioClip deathSound;
 
 	Quaternion targetRotation;
 	Vector3 hunt_playerOffset;
@@ -70,7 +71,7 @@ public class TestEnemy : Enemy, IAttackable
 		state = State.Idle;
 		startPosition = transform.position;
 		rbody = GetComponent<Rigidbody>();
-		audio = GetComponent<AudioSource>();
+		sound = GetComponent<AudioSource>();
 		animator = GetComponent<Animator>();
 		var eventsInvoker = animator.GetBehaviour<AnimationEventsInvoker>();
 		eventsInvoker.stateEndEvent.AddListener(OnAnimationEnd);
@@ -192,9 +193,10 @@ public class TestEnemy : Enemy, IAttackable
 				break;
 
 			case State.EpicDeath:
-				if (!startedDeathFlashing && (squash.isFlat || !squash.inSquash))
+				if (!startedDeathFlashing && (!squash.isFlat || !squash.inSquash))
 				{
-					StartCoroutine(FlashAndDie());
+					rbody.velocity = Vector3.zero;
+					StartCoroutine(ShakeAndDie());
 				}
 				break;
 
@@ -205,8 +207,15 @@ public class TestEnemy : Enemy, IAttackable
 				if (rbody.velocity.magnitude <= deacceleration * Time.fixedDeltaTime)
 				{	
 					print("Stop knockback");
-					rbody.velocity = Vector3.zero;
-					SetState(State.Idle);
+					if (health > 0)
+					{
+						rbody.velocity = Vector3.zero;
+						SetState(State.Idle); 
+					}
+					else
+					{
+						SetState(State.EpicDeath);
+					}
 				}
 				else
 				{
@@ -216,7 +225,7 @@ public class TestEnemy : Enemy, IAttackable
 				break;
 		}
 
-		if (rbody.velocity != Vector3.zero && state != State.Knockback)
+		if (rbody.velocity != Vector3.zero && state != State.Knockback && state != State.EpicDeath)
 		{
 			Quaternion rot;
 			if (state == State.Attack)
@@ -284,21 +293,27 @@ public class TestEnemy : Enemy, IAttackable
 
 	override protected void Die()
 	{
-		SetState(State.EpicDeath);
-
+		if (state != State.Knockback)
+		{
+			SetState(State.EpicDeath);
+		}
 	}
 
-	IEnumerator FlashAndDie()
+	IEnumerator ShakeAndDie()
 	{
 		startedDeathFlashing = true;
 		Renderer renderer = GetComponent<Renderer>();
-		for (int i = 0; i < 6; i++)
+		Vector3 basePosition = rbody.position;
+		rbody.isKinematic = true;
+		float radius = 0.2f;
+		for (int i = 0; i < 20; i++)
 		{
-			renderer.enabled = false;
-			yield return new WaitForSeconds(0.1f - i * 0.01f);
-			renderer.enabled = true;
-			yield return new WaitForSeconds(0.05f - i * 0.01f);
+			rbody.position = basePosition + Random.onUnitSphere * radius;
+			yield return new WaitForSeconds(0.05f - i * 0.02f);
 		}
+		transform.localScale = Vector3.one;
+		ParticleEffectsManager.GetEffect("DeathExplosion").Spawn(GetComponent<MeshRenderer>());
+		Sound.Play(deathSound);
 		Destroy(gameObject);
 	}
 

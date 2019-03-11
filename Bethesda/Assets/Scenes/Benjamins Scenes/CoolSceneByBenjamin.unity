@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38073996, b: 0.35872692, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -217,12 +217,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 608e70242badce746b04b06ae1043beb, type: 2}
   m_IsPrefabAsset: 0
---- !u!114 &185422889 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114134444843138682, guid: db2c3f0b4dae91049b5cd7d44cc7eeff,
-    type: 2}
-  m_PrefabInternal: {fileID: 301919054}
-  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &222419579
 Prefab:
   m_ObjectHideFlags: 0
@@ -265,6 +259,12 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d45a92b9b714414ca648494b7645812, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &255749435 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114424057558268884, guid: db2c3f0b4dae91049b5cd7d44cc7eeff,
+    type: 2}
+  m_PrefabInternal: {fileID: 301919054}
+  m_Script: {fileID: 11500000, guid: 6b3783e6b64ac2f49a5be75267412728, type: 3}
 --- !u!1 &288011254
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,7 +423,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1057217513030766, guid: db2c3f0b4dae91049b5cd7d44cc7eeff, type: 2}
       propertyPath: m_Name
-      value: Canvas (1)
+      value: Canvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db2c3f0b4dae91049b5cd7d44cc7eeff, type: 2}
@@ -579,12 +579,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &690859916 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114352926843687316, guid: db2c3f0b4dae91049b5cd7d44cc7eeff,
-    type: 2}
-  m_PrefabInternal: {fileID: 301919054}
-  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &989349856
 GameObject:
   m_ObjectHideFlags: 0
@@ -991,6 +985,12 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8c2f63999082184a8b7c8959ac92686, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &1571434544 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114380651122589348, guid: db2c3f0b4dae91049b5cd7d44cc7eeff,
+    type: 2}
+  m_PrefabInternal: {fileID: 301919054}
+  m_Script: {fileID: 11500000, guid: 6b3783e6b64ac2f49a5be75267412728, type: 3}
 --- !u!1 &1618896103
 GameObject:
   m_ObjectHideFlags: 0
@@ -1119,7 +1119,7 @@ Prefab:
         type: 2}
       propertyPath: manaSlider
       value: 
-      objectReference: {fileID: 185422889}
+      objectReference: {fileID: 255749435}
     - target: {fileID: 135898459732532172, guid: 3b325a361c6c6744684250d68a2228b1,
         type: 2}
       propertyPath: m_Enabled
@@ -1129,7 +1129,7 @@ Prefab:
         type: 2}
       propertyPath: healthSlider
       value: 
-      objectReference: {fileID: 690859916}
+      objectReference: {fileID: 1571434544}
     - target: {fileID: 114889301802305810, guid: 3b325a361c6c6744684250d68a2228b1,
         type: 2}
       propertyPath: dashTimer

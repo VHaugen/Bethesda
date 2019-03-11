@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23083437762759358}
   - component: {fileID: 135818185323236796}
   - component: {fileID: 114946909726382410}
+  - component: {fileID: 114267213827688866}
   m_Layer: 0
   m_Name: ElectricPickUp
   m_TagString: Untagged
@@ -37,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1889300568046642}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5656586, y: 0.9, z: 5.809894}
+  m_LocalPosition: {x: -5.7045593, y: 1.27, z: -2.3753376}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -85,6 +86,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1889300568046642}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114267213827688866
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1889300568046642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f36fc4d12ba12c4bb0dadad21e00624, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  period: 2
+  height: 0.5
+  basePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114946909726382410
 MonoBehaviour:
   m_ObjectHideFlags: 1

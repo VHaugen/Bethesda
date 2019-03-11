@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class ParticleController : MonoBehaviour
 {
-	[SerializeField]
-	int initialNumSystems = 1;
-
-	public ParticleSystem particleSystemPrefab;
+	[SerializeField] int initialNumSystems = 1;
+	[SerializeField] ParticleSystem particleSystemPrefab;
+	[SerializeField] bool destroySystemWhenMeshIsNull = true;
 
 	List<ParticleSystem> systems;
 	List<ParticleSystem> meshAttachedSystems;
 	bool skinnedMeshRenderer = false;
-
 
 	void Start()
 	{
@@ -31,6 +29,9 @@ public class ParticleController : MonoBehaviour
 
 	private void Update()
 	{
+		if (!destroySystemWhenMeshIsNull)
+			return;
+
 		foreach (var system in meshAttachedSystems)
 		{
 			if (system.shape.meshRenderer == null && system.shape.skinnedMeshRenderer == null)
@@ -48,6 +49,7 @@ public class ParticleController : MonoBehaviour
 			var system = systems[i];
 			if (!system.isEmitting)
 			{
+				meshAttachedSystems.Add(system);
 				EnableSystem(system, attachToMesh);
 				return i;
 			}
@@ -121,6 +123,12 @@ public class ParticleController : MonoBehaviour
 				{
 					Debug.LogWarning("Renderer must be either a MeshRenderer or SkinnedMeshRenderer " + attachToMesh.gameObject.name);
 				} 
+
+				var textureSetter = system.GetComponent<GetParticleShapeTextureFromRenderer>();
+				if (textureSetter)
+				{
+					textureSetter.MakeTextureTheRightOne();
+				}
 			}
 			else
 			{
