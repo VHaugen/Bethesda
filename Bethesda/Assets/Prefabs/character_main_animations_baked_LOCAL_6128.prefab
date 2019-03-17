@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 136037607212719346}
   - component: {fileID: 136131101403728388}
   m_Layer: 10
-  m_Name: character_main_animations_baked
+  m_Name: character_main_animations_baked_LOCAL_6128
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1938,6 +1938,8 @@ MonoBehaviour:
   overHeadCost: 100
   swingCost: 10
   manaCharge: 5
+  normalAttackAfterImageDuration: 0
+  smashAttackAfterImageDuration: 0
   hitbox: {fileID: 0}
   overHeadHitBox: {fileID: 0}
   audioSource: {fileID: 82275170278496262}
@@ -1995,6 +1997,8 @@ MonoBehaviour:
   overHeadCost: 100
   swingCost: 10
   manaCharge: 5
+  normalAttackAfterImageDuration: 0
+  smashAttackAfterImageDuration: 0
   hitbox: {fileID: 0}
   overHeadHitBox: {fileID: 0}
   audioSource: {fileID: 0}
@@ -2067,6 +2071,7 @@ MonoBehaviour:
   damageSound: {fileID: 8300000, guid: 9bce4d9478714084ab7b1f86b773e755, type: 3}
   swingSound: {fileID: 8300000, guid: 9b806b5c13c3e2e49a89cd8807066524, type: 3}
   swingSoundHit: {fileID: 8300000, guid: d0e2cac3076126544861cb8570e9e3ee, type: 3}
+  deathSound: {fileID: 0}
 --- !u!114 &114928558621979340
 MonoBehaviour:
   m_ObjectHideFlags: 1
