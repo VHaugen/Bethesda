@@ -6,13 +6,17 @@ public class BreakObject : MonoBehaviour {
 
 
     public Transform smallStone;
+   
+    public AudioClip impact;
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+    {
+
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		
 	}
 
@@ -20,6 +24,7 @@ public class BreakObject : MonoBehaviour {
     {
         if (col.gameObject.tag == "AOE")
         {
+            Sound.Play(impact, 5f);
             Destroy(gameObject);
             for (int i = 0; i < 10; i++)
             {

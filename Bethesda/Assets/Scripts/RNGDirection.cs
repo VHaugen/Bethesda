@@ -11,7 +11,7 @@ public class RNGDirection : MonoBehaviour
     void Start()
     {
         rbd = GetComponent<Rigidbody>();
-        rbd.AddForce(new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(5.0f, 10.0f), Random.Range(-10.0f, 10.0f))* zebulonPOW, ForceMode.Impulse);
+        rbd.AddForce(new Vector3(Random.Range(-5.0f, 5.0f), Random.Range(5.0f, 10.0f), Random.Range(-5.0f, 5.0f))* zebulonPOW, ForceMode.Impulse);
     }
 
     // Update is called once per frame
