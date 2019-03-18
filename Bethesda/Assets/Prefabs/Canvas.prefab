@@ -559,8 +559,8 @@ MonoBehaviour:
   whitenessImage: {fileID: 114650765349555848}
   whitenessDuration: 1
   _maxValue: 100
-  _value: 73.97
-  frameIdx: 4
+  _value: 100
+  frameIdx: 0
 --- !u!114 &114395857338897436
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -681,7 +681,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: e11b678c3236aef409fb35b2ba611030, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e4950ada40a29a949947c018f7c6e1ff, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -849,7 +849,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 1d8f09ffe91e16c479558e62267b8596, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e4950ada40a29a949947c018f7c6e1ff, type: 3}
   m_Type: 3
   m_PreserveAspect: 1
   m_FillCenter: 1

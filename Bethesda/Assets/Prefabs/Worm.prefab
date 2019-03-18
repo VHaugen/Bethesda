@@ -164,7 +164,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1015075552739012}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.21, y: 1.233, z: 19.2}
+  m_LocalPosition: {x: 0.523, y: 0.95, z: 0.113}
   m_LocalScale: {x: 0.5458336, y: 0.5458336, z: 0.5458336}
   m_Children:
   - {fileID: 224062930817392610}
@@ -683,7 +683,7 @@ MonoBehaviour:
   maxSpeed: 6
   wanderSpeed: 3
   wanderAreaRadius: 14.79
-  state: 0
+  surroundRadius: 10
   idleDurationMin: 0.75
   idleDurationMax: 2
   attackSound: {fileID: 8300000, guid: 312287b5e1f6fbc4da6bddfd41fece6a, type: 3}

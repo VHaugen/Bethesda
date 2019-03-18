@@ -459,6 +459,7 @@ GameObject:
   - component: {fileID: 135159560227932388}
   - component: {fileID: 114928558621979340}
   - component: {fileID: 82897803638287678}
+  - component: {fileID: 82403924336137986}
   m_Layer: 0
   m_Name: AOE
   m_TagString: Untagged
@@ -953,8 +954,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1429439469475540}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.2172704, y: 0.19328737, z: 13.414935}
+  m_LocalRotation: {x: -0, y: -0.046710495, z: -0, w: 0.99890846}
+  m_LocalPosition: {x: 3.397812, y: 0.12, z: 6.4651775}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4348658295867596}
@@ -1000,7 +1001,7 @@ Transform:
   m_GameObject: {fileID: 1624343428825934}
   m_LocalRotation: {x: -0.27992398, y: 0.22783376, z: -0.74322563, w: 0.5633382}
   m_LocalPosition: {x: -0.066, y: 0.934, z: -0.018}
-  m_LocalScale: {x: 7.375663, y: 6.4042706, z: 5.460912}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4174617460493192}
   m_RootOrder: 0
@@ -1646,6 +1647,101 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!82 &82403924336137986
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1624343428825934}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!82 &82820064797588026
 AudioSource:
   m_ObjectHideFlags: 1
@@ -1903,7 +1999,7 @@ MonoBehaviour:
   duration: 0.4
   fadeOutDuration: 0.75
   startingOpacity: 0.728
-  tintColor: {r: 1, g: 0.013784842, b: 0, a: 0}
+  tintColor: {r: 0.8254717, g: 1, b: 0.99654025, a: 0}
   tintFactor: 0.584
 --- !u!114 &114287580465800896
 MonoBehaviour:
@@ -2070,6 +2166,7 @@ MonoBehaviour:
   damageSound: {fileID: 8300000, guid: 9bce4d9478714084ab7b1f86b773e755, type: 3}
   swingSound: {fileID: 8300000, guid: 9b806b5c13c3e2e49a89cd8807066524, type: 3}
   swingSoundHit: {fileID: 8300000, guid: d0e2cac3076126544861cb8570e9e3ee, type: 3}
+  deathSound: {fileID: 0}
 --- !u!114 &114928558621979340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2087,7 +2184,7 @@ MonoBehaviour:
   damage: 3
   knockbackStrength: 0
   impact: {fileID: 8300000, guid: f87afec9bdb3d434d86ee25a9a7007e3, type: 3}
-  audioSource: {fileID: 82897803638287678}
+  audioSource: {fileID: 82403924336137986}
 --- !u!135 &135159560227932388
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -2098,7 +2195,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 3.7
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135898459732532172
 SphereCollider:
