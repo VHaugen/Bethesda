@@ -89,23 +89,6 @@ public class HammerWeapon : MonoBehaviour
         afterImages.Show();
     }
 
-    public void ShowImpact(int show)
-    {
-        //if (show == 0)
-        //{
-        //	impact.gameObject.SetActive(false);
-        //	impact.parent = transform;
-        //	impact.localPosition = impactOffset;
-        //	impact.localRotation = Quaternion.identity;
-        //}
-        //else
-        //{
-        //	impact.gameObject.SetActive(true);
-        //	impact.parent = null;
-        //	impact.rotation = Quaternion.Euler(90, 90, Random.Range(0f, 360f));;
-        //}
-    }
-
     public void EnableHitbox(int enable)
     {
         hitbox.enabled = enable == 0 ? false : true;
