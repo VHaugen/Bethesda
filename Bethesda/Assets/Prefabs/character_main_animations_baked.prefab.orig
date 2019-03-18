@@ -460,10 +460,10 @@ GameObject:
   - component: {fileID: 114928558621979340}
   - component: {fileID: 82897803638287678}
 <<<<<<< HEAD
-  - component: {fileID: 82403924336137986}
 =======
   - component: {fileID: 114003750397979012}
->>>>>>> 8f74cb30ffd2472d1667e6483a2a505976e66c81
+  - component: {fileID: 82403924336137986}
+>>>>>>> 1dce7a79050dd4436c39111eb1528d3e6bade986
   m_Layer: 0
   m_Name: AOE
   m_TagString: AOE
@@ -1852,7 +1852,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1954,6 +1954,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+<<<<<<< HEAD
 --- !u!114 &114003750397979012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1965,6 +1966,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af33d9d66fcb7c479bdfa4c75a2b2b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smallStone: {fileID: 0}
+=======
+>>>>>>> d8cdf2c85377ed3d293f4036d2b39e891b666b3a
 --- !u!114 &114048911232527432
 MonoBehaviour:
   m_ObjectHideFlags: 1
