@@ -73,11 +73,9 @@ public class FrameByFrameSlider : MonoBehaviour
 			}
 		}
 		int frameCount = frames.Length;
-		frameIdx = frameCount - (int)((value / maxValue) * frameCount);
-		if (frameIdx >= 0 && frameIdx < frames.Length)
-		{ 
-			image.sprite = frames[frameIdx];
-		}
+		frameIdx = frameCount - Mathf.CeilToInt((value / maxValue) * frameCount);
+		frameIdx = Mathf.Clamp(frameIdx, 0, frames.Length - 1);
+		image.sprite = frames[frameIdx];
 	}
 
 	private void OnValidate()

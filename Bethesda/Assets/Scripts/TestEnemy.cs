@@ -7,6 +7,7 @@ public class TestEnemy : Enemy, IAttackable
 	{
 		Idle,
 		Wander,
+		HuntSurround,
 		Hunt,
 		Attack,
 		EpicDeath,
@@ -37,6 +38,8 @@ public class TestEnemy : Enemy, IAttackable
 	float wanderAreaRadius;
 
 	[SerializeField]
+	float surroundRadius = 1.0f;
+
 	State state;
 
 	[SerializeField]
@@ -117,7 +120,7 @@ public class TestEnemy : Enemy, IAttackable
 			case State.Attack:
 				if (stateInfo.IsName("EnemyAttack"))
 				{
-					SetState(State.Hunt);
+					SetState(State.HuntSurround);
 				}
 				break;
 			default:
@@ -132,7 +135,7 @@ public class TestEnemy : Enemy, IAttackable
 			case State.Wander:
 				if (GetDistanceToPlayer() <= huntDistance)
 				{
-					SetState(State.Hunt);
+					SetState(State.HuntSurround);
 					break;
 				}
 
@@ -149,7 +152,7 @@ public class TestEnemy : Enemy, IAttackable
 			case State.Idle:
 				if (GetDistanceToPlayer() <= huntDistance)
 				{
-					SetState(State.Hunt);
+					SetState(State.HuntSurround);
 					break;
 				}
 
@@ -167,27 +170,55 @@ public class TestEnemy : Enemy, IAttackable
 
 				break;
 
-			case State.Hunt:
-				float distance = GetDistanceToPlayer();
-				if (distance > attackDistance)
+			case State.HuntSurround:
 				{
-					WalkToPoint(player.position + hunt_playerOffset, maxSpeed);
-
-					if (distance > huntDistance)
+					Vector3 meToTarget = (player.position + hunt_playerOffset) - transform.position;
+					meToTarget.y = 0;
+					float distance = meToTarget.magnitude;
+					if (distance > attackDistance)
+					{
+						WalkToPoint(player.position + hunt_playerOffset, maxSpeed);
+					}
+					else
+					{
+						SetState(State.Hunt);
+					}
+					float distanceToPlayer = GetDistanceToPlayer();
+					if (distanceToPlayer > huntDistance)
 					{
 						SetState(State.Idle);
 					}
+					else if (distanceToPlayer < attackDistance)
+					{
+						SetState(State.Attack);
+					}
+
+					break;
 				}
-				else
+
+			case State.Hunt:
 				{
-					SetState(State.Attack);
+					float distance = GetDistanceToPlayer();
+					if (distance > attackDistance)
+					{
+						WalkToPoint(player.position + hunt_playerOffset, maxSpeed);
+
+						if (distance > huntDistance)
+						{
+							SetState(State.Idle);
+						}
+					}
+					else
+					{
+						SetState(State.Attack);
+					}
+					break;
 				}
-				break;
 
 			case State.Attack:
 				if (squash.inSquash)
 				{
-					SetState(State.Hunt);
+					SetState(State.HuntSurround);
 				}
 
 				break;
@@ -201,16 +232,16 @@ public class TestEnemy : Enemy, IAttackable
 				break;
 
 			case State.Knockback:
-				print("a/b " + knockbackVector.magnitude + "/" +  knockbackDuration);
+				print("a/b " + knockbackVector.magnitude + "/" + knockbackDuration);
 				float deacceleration = knockbackVector.magnitude / knockbackDuration;
 				print("In knockback " + deacceleration);
 				if (rbody.velocity.magnitude <= deacceleration * Time.fixedDeltaTime)
-				{	
+				{
 					print("Stop knockback");
 					if (health > 0)
 					{
 						rbody.velocity = Vector3.zero;
-						SetState(State.Idle); 
+						SetState(State.Idle);
 					}
 					else
 					{
@@ -254,6 +285,10 @@ public class TestEnemy : Enemy, IAttackable
 				break;
 			case State.Wander:
 				RandomizeNewTargetPosition();
+				break;
+			case State.HuntSurround:
+				hunt_playerOffset = Random.insideUnitSphere * surroundRadius;
+				hunt_playerOffset.y = 0;
 				break;
 			case State.Hunt:
 				hunt_playerOffset = Random.insideUnitSphere * 1.0f;
@@ -324,5 +359,7 @@ public class TestEnemy : Enemy, IAttackable
 		Gizmos.color = Color.grey;
 		Gizmos.DrawWireSphere(transform.position, wanderAreaRadius);
 		Gizmos.DrawSphere(idle_targetPosition, 0.1f);
+		Gizmos.color = Color.yellow;
+		Gizmos.DrawWireSphere(GameObject.FindGameObjectWithTag("Player").transform.position, surroundRadius);
 	}
 }
