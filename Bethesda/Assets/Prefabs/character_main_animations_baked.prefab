@@ -459,10 +459,11 @@ GameObject:
   - component: {fileID: 135159560227932388}
   - component: {fileID: 114928558621979340}
   - component: {fileID: 82897803638287678}
+  - component: {fileID: 114003750397979012}
   - component: {fileID: 82403924336137986}
   m_Layer: 0
   m_Name: AOE
-  m_TagString: Untagged
+  m_TagString: AOE
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1950,6 +1951,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114003750397979012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1624343428825934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af33d9d66fcb7c479bdfa4c75a2b2b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114048911232527432
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -341,6 +341,21 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.6201232
+        functionName: PlaySound
+        data: 
+        objectReferenceParameter: {fileID: 8300000, guid: f87afec9bdb3d434d86ee25a9a7007e3,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.6271552
+        functionName: ScreenShake
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.62882096
         functionName: Anim_EnableAoeHitbox
         data: 
@@ -357,13 +372,6 @@ ModelImporter:
         messageOptions: 0
       - time: 0.99216723
         functionName: Anim_EnableAoeHitbox
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.6271552
-        functionName: ScreenShake
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
