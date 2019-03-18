@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 82820064797588026}
   - component: {fileID: 136037607212719346}
   m_Layer: 10
-  m_Name: character_main_animations_baked
+  m_Name: character_main_animations_baked_REMOTE_6128
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

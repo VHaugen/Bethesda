@@ -61,30 +61,21 @@ public abstract class Enemy : MonoBehaviour, IAttackable
         if (flammable && flammable.IsBurning())
         {
             SetHealth(health - fireDamagePerSecond * Time.deltaTime);
-            if (!audioSource.isPlaying)
-            {
-                audioSource.PlayOneShot(burn, 0.5f);
-            }
+         
         }
 
         if (freezable && freezable.IsFreezing())
         {
             SetHealth(health - iceDamagePerSecond * Time.deltaTime);
             slowSpeed = GetComponent<TestEnemy>().maxSpeed = 1.5f;
-            if (!audioSource.isPlaying)
-            {
-                audioSource.PlayOneShot(slow, 1f);
-            }
+            
         }
 
         if (poisonStatus > 0)
         {
             SetHealth(health - poisonDamagePerSecond * Time.deltaTime);
             poisonStatus -= Time.deltaTime;
-            if (!audioSource.isPlaying)
-            {
-                audioSource.PlayOneShot(poisoned, 1f);
-            }
+            
             if (poisonStatus <= 0)
             {
                 poisonStatus = -1;
@@ -96,10 +87,7 @@ public abstract class Enemy : MonoBehaviour, IAttackable
             //healthSlider.value = health;
             //healthSlider.gameObject.SetActive(true);
             stun = GetComponent<TestEnemy>().maxSpeed = 0f;
-            if (!audioSource.isPlaying)
-            {
-                audioSource.PlayOneShot(paralysis, 0.10f);
-            }
+            
             print("STUNNED");
         }
 
@@ -155,12 +143,20 @@ public abstract class Enemy : MonoBehaviour, IAttackable
                         if (flammable)
                         {
                             flammable.StartBurning();
+                            if (!audioSource.isPlaying)
+                            {
+                                audioSource.PlayOneShot(burn, 0.5f);
+                            }
                         }
                         break;
                     case Element.Ice:
                         if (freezable)
                         {
                             freezable.FreezeStart();
+                            if (!audioSource.isPlaying)
+                            {
+                                audioSource.PlayOneShot(slow, 1f);
+                            }
                         }
                         break;
                     case Element.Poison:
@@ -168,12 +164,20 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 						if (poisonStatus > 0)
 						{
 							poisonEffectIndex = ParticleEffectsManager.GetEffect("Poison").Spawn(GetComponent<MeshRenderer>());
-						}
+                            if (!audioSource.isPlaying)
+                            {
+                                audioSource.PlayOneShot(poisoned, 1f);
+                            }
+                        }
                         break;
                     case Element.Lightning:
                         if (electracuted)
                         {
                             electracuted.ElcStart();
+                            if (!audioSource.isPlaying)
+                            {
+                                audioSource.PlayOneShot(paralysis, 0.10f);
+                            }
                         }
                         break;
                 }
