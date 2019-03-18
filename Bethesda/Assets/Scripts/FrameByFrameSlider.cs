@@ -8,6 +8,8 @@ public class FrameByFrameSlider : MonoBehaviour
 {
 	public Sprite[] frames;
 	public Image image;
+	public Image whitenessImage;
+	public float whitenessDuration = 1.0f;
 
 	[SerializeField] float _maxValue;
 	public float maxValue
@@ -43,13 +45,39 @@ public class FrameByFrameSlider : MonoBehaviour
 	void Start()
 	{
 	}
-	
+
+	void Update()
+	{
+		if (whitenessImage)
+		{
+			if (whitenessImage.color.a > 0)
+			{
+				Color col = whitenessImage.color;
+				col.a -= Time.deltaTime / whitenessDuration;
+				whitenessImage.color = col;
+			}
+		}
+	}
+
 	void UpdateVisuals()
 	{
+		if (whitenessImage)
+		{
+			if (whitenessImage.color.a < 0.5f)
+			{
+				if (whitenessImage.color.a < 0.1f)
+				{
+					whitenessImage.sprite = image.sprite;
+				}
+				whitenessImage.color = Color.white; 
+			}
+		}
 		int frameCount = frames.Length;
 		frameIdx = frameCount - (int)((value / maxValue) * frameCount);
 		if (frameIdx >= 0 && frameIdx < frames.Length)
+		{ 
 			image.sprite = frames[frameIdx];
+		}
 	}
 
 	private void OnValidate()
