@@ -66,14 +66,14 @@ public class ParticleController : MonoBehaviour
 		return systems.Count - 1;
 	}
 
-	public int Spawn(Vector3 position)
+	public int Spawn(Vector3 position, Quaternion rotation)
 	{
 		for (int i = 0; i < systems.Count; i++)
 		{
 			var system = systems[i];
 			if (!system.isEmitting)
 			{
-				EnableSystem(system, null, position);
+				EnableSystem(system, null, position, rotation);
 				return i;
 			}
 		}
@@ -86,6 +86,16 @@ public class ParticleController : MonoBehaviour
 		systems.Add(newSystem);
 
 		return systems.Count - 1;
+	}
+
+	public int Spawn(Vector3 position)
+	{
+		return Spawn(position, Quaternion.identity);
+	}
+
+	public int Spawn(Transform transform)
+	{
+		return Spawn(transform.position, transform.rotation);
 	}
 
 
