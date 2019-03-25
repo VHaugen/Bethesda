@@ -25,6 +25,7 @@ public class BreakObject : MonoBehaviour {
         if (col.gameObject.tag == "AOE")
         {
             Sound.Play(impact, 5f);
+            ParticleEffectsManager.GetEffect("ObjectBreak").Spawn(transform.position);
             Destroy(gameObject);
             for (int i = 0; i < 10; i++)
             {
