@@ -296,6 +296,7 @@ public class PlayerMovement : Movement
 	{
 		for (int i = 0; i < numRays; i++)
 		{
+			ParticleEffectsManager.GetEffect("SwingFX").Spawn(rayCastPoint.transform.position);
 
 			Vector3 fwd = rayCastPoint.transform.forward;
 			float Afwd = Mathf.Atan2(fwd.z, fwd.x);
