@@ -115,7 +115,7 @@ public class PlayerMovement : Movement
 		{
 			coolDownPeriod = 0;
 		}
-		if (Input.GetAxis("RightBumpStick") != 0 && coolDownPeriod == 0 || Input.GetKey(KeyCode.LeftShift) && coolDownPeriod == 0)
+		if (Input.GetAxis("RightBumpStick") != 0 && coolDownPeriod == 0 || Input.GetKeyDown(KeyCode.LeftShift) && coolDownPeriod == 0)
 		{
 			anim.Play("Run_cycle");
 			isCooldown = true;
@@ -271,14 +271,32 @@ public class PlayerMovement : Movement
 		weapon.overHeadHitBox.enabled = enable == 0 ? false : true;
 	}
 
+	public void PlayParticleEffect(string effectName)
+	{
+		ParticleEffectsManager.GetEffect(effectName).Spawn(weapon.overHeadHitBox.transform.position);
+	}
+
+	public void HeavyAttackImpactEvent()
+	{
+		PlayParticleEffect("Slam");
+		CameraEffects.Get.Shake(0.5f, 0.2f);
+		Anim_EnableAoeHitbox(1);
+		foreach (Rigidbody rbody in FindObjectsOfType<Rigidbody>())
+		{
+			rbody.AddForce(Vector3.up * Random.Range(8.0f, 12.0f), ForceMode.Impulse);
+		}
+
+	}
+
 	public void ScreenShake()
 	{
-		CameraEffects.Get.Shake(0.25f, 0.4f);
+		CameraEffects.Get.Shake(0.5f, 0.2f);
 	}
 	public void SwingHit()
 	{
 		for (int i = 0; i < numRays; i++)
 		{
+			ParticleEffectsManager.GetEffect("SwingFX").Spawn(rayCastPoint.transform.position);
 
 			Vector3 fwd = rayCastPoint.transform.forward;
 			float Afwd = Mathf.Atan2(fwd.z, fwd.x);

@@ -99,7 +99,7 @@ public class ParticleController : MonoBehaviour
 		meshAttachedSystems.Remove(systems[index]);
 	}
 
-	void EnableSystem(ParticleSystem system, Renderer attachToMesh, Vector3 position = new Vector3())
+	void EnableSystem(ParticleSystem system, Renderer attachToMesh, Vector3 position = new Vector3(), Quaternion rotation = new Quaternion())
 	{
 		system.gameObject.SetActive(true);
 		system.Play();
@@ -133,6 +133,7 @@ public class ParticleController : MonoBehaviour
 			else
 			{
 				system.transform.position = position;
+				system.transform.rotation = rotation;
 			}
 		}
 	}
