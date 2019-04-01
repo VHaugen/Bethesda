@@ -6,7 +6,7 @@ public class PickUp : MonoBehaviour {
 
     public Material mat;
 	public Element element;
-
+    public AudioClip impact;
 	// Use this for initialization
 	void Start () {
         GetComponent<MeshRenderer>();
@@ -22,6 +22,7 @@ public class PickUp : MonoBehaviour {
         if (other.gameObject.tag == "Player")
         {
             Destroy(gameObject);
+            Sound.Play(impact, 1f);
 			Transform weapon = FindObjectOfType<HammerWeapon>().transform;
 			if (weapon)
 			{

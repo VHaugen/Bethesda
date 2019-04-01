@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mat: {fileID: 2100000, guid: b9ca969b7e75bba4098d3ccfd459ecf5, type: 2}
   element: 1
+  impact: {fileID: 8300000, guid: 5e804c07445d7b644a34e2021736fa12, type: 3}
 --- !u!114 &114958131770050258
 MonoBehaviour:
   m_ObjectHideFlags: 1
