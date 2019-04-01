@@ -56,6 +56,7 @@ public class PlayerMovement : Movement
 	Flammable flammable;
 	Animator anim;
 	HammerWeapon weapon;
+	[HideInInspector] public bool inAttack;
 
 
 	// Use this for initialization
@@ -97,7 +98,7 @@ public class PlayerMovement : Movement
 		}
 		else
 		{
-			transform.rotation = Quaternion.LookRotation(movement);
+			transform.rotation = Quaternion.LookRotation(movement); 
 			anim.SetBool("StandStill", false);
 		}
 
@@ -296,7 +297,7 @@ public class PlayerMovement : Movement
 	{
 		for (int i = 0; i < numRays; i++)
 		{
-			ParticleEffectsManager.GetEffect("SwingFX").Spawn(rayCastPoint.transform.position);
+			ParticleEffectsManager.GetEffect("SwingFX").Spawn(rayCastPoint.transform.position, transform.rotation);
 
 			Vector3 fwd = rayCastPoint.transform.forward;
 			float Afwd = Mathf.Atan2(fwd.z, fwd.x);
@@ -323,6 +324,8 @@ public class PlayerMovement : Movement
 					knockback *= knockbackStrength;
 
 					thingICanKill.TakeDamage(new DamageParams(swingDamage, currentElement, damageType, knockback));
+
+					ParticleEffectsManager.GetEffect("Hit1").Spawn(hit.transform.position);
 				}
 			}
 		}
