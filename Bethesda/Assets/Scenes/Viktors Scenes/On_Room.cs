@@ -2,33 +2,64 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class On_Room : MonoBehaviour {
+public class On_Room : MonoBehaviour
+{
 
     public GameObject fight;
     public GameObject[] puzzls;
     public GameObject door;
-    GameObject lathis;
+    private List<GameObject> tempDoors;
 
-	// Use this for initialization
-	void Start () {
-        lathis = this.gameObject;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    // Use this for initialization
+    void Start()
+    {
+        tempDoors = new List<GameObject>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
             Instantiate(fight, new Vector3(transform.root.position.x, transform.root.position.y, transform.root.position.z), Quaternion.identity);
-           // transform.parent.transform.Find("Bridge(Clone)");
-            Instantiate(door, this.transform.parent.transform.Find("Höger/Bridge(Clone)"));
-            Instantiate(door, this.transform.parent.transform.Find("Vänster/Bridge(Clone)"));
+            Instantiate(RandPuzzel(), new Vector3(transform.root.position.x, transform.root.position.y, transform.root.position.z), Quaternion.identity);
+            // transform.parent.transform.Find("Bridge(Clone)");
+            if (transform.parent.transform.Find("Höger/Bridge(Clone)"))
+                tempDoors.Add(Instantiate(door, transform.parent.transform.Find("Höger")));
 
-            print(this.transform.parent);
-            Destroy(this.gameObject);
+            if (transform.parent.transform.Find("Vänster/Bridge(Clone)"))
+                tempDoors.Add(Instantiate(door, transform.parent.transform.Find("Vänster")));
+
+            if (transform.parent.transform.Find("Upp/Bridge(Clone)"))
+                tempDoors.Add(Instantiate(door, transform.parent.transform.Find("Upp")));
+
+            if (transform.parent.transform.Find("Ner/Bridge(Clone)"))
+                tempDoors.Add(Instantiate(door, transform.parent.transform.Find("Ner")));
+
+            print(GameObject.Find("World"));
+    
+            print(tempDoors.Count);
+            for (int i = 0; i < tempDoors.Count; i++)
+            {
+                GameObject.Find("World").GetComponent<PuzzleHandler>().Doors.Add(tempDoors[i]);
+            }
+    
+
+
+            //instantiate Puzzle
+            Destroy(transform.GetComponent<On_Room>());
+
+
         }
+    }
+    private GameObject RandPuzzel()
+    {
+        int k = Random.Range(0, puzzls.Length);
+
+        return puzzls[k];
     }
 }
