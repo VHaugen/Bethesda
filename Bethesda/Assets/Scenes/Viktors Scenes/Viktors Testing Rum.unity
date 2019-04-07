@@ -394,7 +394,6 @@ GameObject:
   - component: {fileID: 630348109}
   - component: {fileID: 630348108}
   - component: {fileID: 630348112}
-  - component: {fileID: 630348111}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -462,17 +461,6 @@ Transform:
   m_Father: {fileID: 1984213965}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 60.087, y: 0, z: 0}
---- !u!114 &630348111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 630348107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad2e43761e99a1e4aa0897270da9ecbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &630348112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1005,10 +993,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 14
       objectReference: {fileID: 0}
-    - target: {fileID: 1882963639332720, guid: 5705bf4aa37c4214985dfb2717d70249, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5705bf4aa37c4214985dfb2717d70249, type: 2}
   m_IsPrefabAsset: 0
@@ -1070,7 +1054,7 @@ Prefab:
     - target: {fileID: 114889301802305810, guid: b3000bd02b224e548b552288524b282c,
         type: 2}
       propertyPath: coolDownPeriod
-      value: 5.91
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114889301802305810, guid: b3000bd02b224e548b552288524b282c,
         type: 2}
