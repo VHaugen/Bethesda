@@ -55,6 +55,8 @@ public class PlayerMovement : Movement
 	public AudioClip deathSound;
 	Flammable flammable;
 	Animator anim;
+    SkinnedMeshRenderer meshRen;
+    public ParticleSystem armorPickUp;
 	HammerWeapon weapon;
 	[HideInInspector] public bool inAttack;
 
@@ -65,6 +67,7 @@ public class PlayerMovement : Movement
 		base.Start();
 		iFrames = false;
 		tRail = GetComponent<TrailRenderer>();
+        meshRen = GetComponent<SkinnedMeshRenderer>();
 		afterImages = transform.Find("front1").GetComponent<AfterImages>();
 		healthSlider.value = currentHealth = startingHealth;
 		manaSlider.value = currentMana = startingMana;
@@ -335,13 +338,21 @@ public class PlayerMovement : Movement
 		audioSource.PlayOneShot(swingSound);
 	}
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "armor")
+        {
+            armorPickUp.Play();
+        }
+    }
 
-	//private void OnTriggerEnter(Collider other)
-	//{
-	//    if (other.gameObject.CompareTag("enemy") && iFrames == false)
-	//    {
-	//        print("dead");
-	//    }
-	//}
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.CompareTag("enemy") && iFrames == false)
+    //    {
+    //        print("dead");
+    //    }
+    //}
 
 }

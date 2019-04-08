@@ -8,6 +8,7 @@ TagManager:
   - Armor
   - AOE
   - breakable
+  - armor
   layers:
   - Default
   - TransparentFX
