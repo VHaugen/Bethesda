@@ -445,7 +445,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1057217513030766, guid: db2c3f0b4dae91049b5cd7d44cc7eeff, type: 2}
       propertyPath: m_Name
-      value: Canvas (1)
+      value: Canvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db2c3f0b4dae91049b5cd7d44cc7eeff, type: 2}
@@ -1005,11 +1005,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1429439469475540, guid: 3b325a361c6c6744684250d68a2228b1,
     type: 2}
   m_PrefabInternal: {fileID: 2118433433}
---- !u!4 &1334593093 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4434244054422164, guid: 3b325a361c6c6744684250d68a2228b1,
-    type: 2}
-  m_PrefabInternal: {fileID: 2118433433}
 --- !u!1001 &1362099420
 Prefab:
   m_ObjectHideFlags: 0
@@ -1141,7 +1136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c5ba55f83f3ac84a81b1a0ba46e2f68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1334593093}
+  target: {fileID: 0}
   distance: 17.3
 --- !u!4 &1984213965
 Transform:
@@ -1155,7 +1150,7 @@ Transform:
   m_Children:
   - {fileID: 630348110}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 57.94, y: 0, z: 0}
 --- !u!114 &1998897676 stripped
 MonoBehaviour:
