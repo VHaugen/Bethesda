@@ -22,7 +22,7 @@ public class Set_Dungeon_Layout : MonoBehaviour
     public GameObject Connector;
     public GameObject Player;
     public GameObject colider;
-    public GameObject spawnObject;
+    
 
     private string[] direction;
     public ushort size;
@@ -76,7 +76,7 @@ public class Set_Dungeon_Layout : MonoBehaviour
 
         map[0, roomYouCameDownOn] = Instantiate(startRoom, new Vector3(roomYouCameDownOn * distanceBetweenRooms, 0, -1 * distanceBetweenRooms), Quaternion.identity) as GameObject;
         Player.transform.position = new Vector3(roomYouCameDownOn * distanceBetweenRooms, 0, -1 * distanceBetweenRooms);
-        Instantiate(spawnObject, new Vector3((roomYouCameDownOn * distanceBetweenRooms) + 1,2, -1 * distanceBetweenRooms), Quaternion.identity);
+        
         // Player.transform.position = new Vector3(roomYouCameDownOn * distanceBetweenRooms, 0, -1 * distanceBetweenRooms);
 
         for (int i = 0; i < size; i++)
