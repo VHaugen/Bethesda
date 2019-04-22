@@ -26,7 +26,7 @@ public class Set_Dungeon_Layout : MonoBehaviour
 
     private string[] direction;
     public ushort size;
-    [Range(10.0f, 100.0f)]
+    [Range(10.0f, 400.0f)]
     public float distanceBetweenRooms;
 
     // Use this for initialization
