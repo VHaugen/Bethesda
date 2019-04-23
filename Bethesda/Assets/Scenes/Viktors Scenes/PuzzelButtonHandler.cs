@@ -7,6 +7,7 @@ public class PuzzelButtonHandler : MonoBehaviour
 
     private PuzzleHandler PuzzelHandler;
     public int triggers = 3;
+    public GameObject[] powerUpp;
     // Use this for initialization
     void Start()
     {
@@ -25,9 +26,17 @@ public class PuzzelButtonHandler : MonoBehaviour
         triggers--;
         if (triggers == 0)
         {
+            Instantiate(RandPoweupp(), transform);
             PuzzelHandler.PuzzelIsCleared();
-
+            
         }
 
+    }
+    public GameObject RandPoweupp()
+    {
+
+        int k = Random.Range(0, powerUpp.Length - 1);
+
+        return powerUpp[k];
     }
 }

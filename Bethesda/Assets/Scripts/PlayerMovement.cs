@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : Movement
 {
@@ -231,6 +232,7 @@ public class PlayerMovement : Movement
 		ParticleEffectsManager.GetEffect("DeathExplosion").Spawn(meshRenderer);
 		Sound.Play(deathSound);
 		gameObject.SetActive(false);
+		Application.LoadLevel(Application.loadedLevel);
 	}
 
 	IEnumerator Flasher()

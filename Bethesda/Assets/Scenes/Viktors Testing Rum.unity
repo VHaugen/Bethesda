@@ -236,7 +236,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   room:
-  - {fileID: 1882963639332720, guid: 5705bf4aa37c4214985dfb2717d70249, type: 2}
   - {fileID: 1312619713406724, guid: e8c2f63999082184a8b7c8959ac92686, type: 2}
   - {fileID: 1674016626707480, guid: 806ee6e410926de45bf1b3d7152d2954, type: 2}
   startRoom: {fileID: 1941779355412630, guid: 89ee41fb31e61e04891babeaf1d10ace, type: 2}
@@ -248,7 +247,7 @@ MonoBehaviour:
   Player: {fileID: 1919924513}
   colider: {fileID: 0}
   size: 15
-  distanceBetweenRooms: 99
+  distanceBetweenRooms: 126.86
 --- !u!4 &288011256
 Transform:
   m_ObjectHideFlags: 0
