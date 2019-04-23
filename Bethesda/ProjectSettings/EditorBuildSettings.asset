@@ -9,7 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Benjamins Scenes/MainMenuBenjamin.unity
     guid: 998b01fccdd92074180613c17a7699d5
   - enabled: 1
-    path: Assets/Scenes/Viktors Scenes/Viktors Testing Rum.unity
+    path: Assets/Scenes/Main.unity
+    guid: 4a041de7d044e4fd1af0ea55d9fc0dda
+  - enabled: 0
+    path: Assets/Scenes/Viktors Testing Rum.unity
     guid: d7bd87c80d0f64d458f83f35b9da2d8b
   - enabled: 1
     path: Assets/Scenes/Benjamins Scenes/BenjaminsHiradBasedScene.unity
