@@ -187,6 +187,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1293987801778318
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4440334453445712}
+  m_Layer: 0
+  m_Name: Bridge(Clone)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1294133634737770
 GameObject:
   m_ObjectHideFlags: 1
@@ -421,6 +436,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1725972602598852
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4659279089447978}
+  - component: {fileID: 33707039956518524}
+  m_Layer: 0
+  m_Name: Upp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1730702339850074
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,22 +484,6 @@ GameObject:
   - component: {fileID: 23379927606460526}
   m_Layer: 0
   m_Name: Wall (7)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1767314736539030
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4844200272010580}
-  - component: {fileID: 33525967351985962}
-  m_Layer: 0
-  m_Name: Bridge (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -623,9 +638,9 @@ Transform:
   - {fileID: 4105526140978406}
   - {fileID: 4669854859376814}
   - {fileID: 4816796476262696}
-  - {fileID: 4844200272010580}
   - {fileID: 4845451745262258}
   - {fileID: 4466729622289634}
+  - {fileID: 4659279089447978}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -747,6 +762,19 @@ Transform:
   m_Father: {fileID: 4832971508175818}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -117.700005, z: 25.198002}
+--- !u!4 &4440334453445712
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1293987801778318}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4659279089447978}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4461627337934846
 Transform:
   m_ObjectHideFlags: 1
@@ -771,7 +799,7 @@ Transform:
   m_LocalScale: {x: 18.199999, y: 0.99999994, z: 25.416372}
   m_Children: []
   m_Father: {fileID: 4131006877763854}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4481639353662946
 Transform:
@@ -838,6 +866,20 @@ Transform:
   m_Father: {fileID: 4669854859376814}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4659279089447978
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1725972602598852}
+  m_LocalRotation: {x: 1, y: -0.0000001872535, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 5, z: 15.11}
+  m_LocalScale: {x: 1.3374599, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4440334453445712}
+  m_Father: {fileID: 4131006877763854}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 180.00002}
 --- !u!4 &4664210874381838
 Transform:
   m_ObjectHideFlags: 1
@@ -947,19 +989,6 @@ Transform:
   m_Father: {fileID: 4816796476262696}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 25.198002}
---- !u!4 &4844200272010580
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1767314736539030}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 5.29, z: 13.299485}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4131006877763854}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!4 &4845451745262258
 Transform:
   m_ObjectHideFlags: 1
@@ -975,7 +1004,7 @@ Transform:
   - {fileID: 4321020724720180}
   - {fileID: 4214731069033502}
   m_Father: {fileID: 4131006877763854}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4863078751728986
 Transform:
@@ -1871,13 +1900,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1070688306024754}
   m_Mesh: {fileID: 4300000, guid: 64dfa5b10562eeb499dd76ed0406a384, type: 3}
---- !u!33 &33525967351985962
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1767314736539030}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &33536451556660518
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -1913,6 +1935,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1473595694936106}
   m_Mesh: {fileID: 4300000, guid: 64dfa5b10562eeb499dd76ed0406a384, type: 3}
+--- !u!33 &33707039956518524
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1725972602598852}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &33734038472467964
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -1998,8 +2027,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 18.331337, y: 6.823491, z: 3.4330554}
-  m_Center: {x: -0.45048806, y: 2.911745, z: 6.3337946}
+  m_Size: {x: 18.331337, y: 6.823491, z: 18.132887}
+  m_Center: {x: -0.45048806, y: 2.911745, z: -1.0161105}
 --- !u!65 &65198735385419864
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -2352,7 +2381,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Fights: []
   puzzls:
-  - {fileID: 1074990307029838, guid: d564eb2f01e5a4c3caf2d45856c73dc8, type: 2}
+  - {fileID: 1284497433710934, guid: 78b863df7caf7fd44bd10d037402b2ae, type: 2}
+  layout: []
   door: {fileID: 1687522264665482, guid: 86b8902e463a7e54baee42552968683f, type: 2}
   tempDoors: []
   isFirstRoom: 1
