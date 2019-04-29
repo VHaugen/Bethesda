@@ -2399,7 +2399,7 @@ Transform:
   m_GameObject: {fileID: 1799582238752250}
   m_LocalRotation: {x: 1, y: -0.0000001872535, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 5, z: 26.59}
-  m_LocalScale: {x: 1, y: 1, z: 0.2187891}
+  m_LocalScale: {x: 1, y: 1, z: 0.72852993}
   m_Children: []
   m_Father: {fileID: 4932163934829776}
   m_RootOrder: 6
@@ -4481,7 +4481,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e06daa83e084d6499a70ee4941c9bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fight: {fileID: 1968543289848300, guid: 2959d68436e8f66468a31020e953ee56, type: 2}
+  Fights:
+  - {fileID: 1968543289848300, guid: 2959d68436e8f66468a31020e953ee56, type: 2}
   puzzls:
   - {fileID: 1128735571917748, guid: 8b62113077c8bc847be15ed174820797, type: 2}
+  layout: []
   door: {fileID: 1687522264665482, guid: 86b8902e463a7e54baee42552968683f, type: 2}
+  tempDoors: []
+  isFirstRoom: 0
+  uppThing: {fileID: 0}
