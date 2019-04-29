@@ -1213,6 +1213,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &937154650 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1231960629997300, guid: 0d45a92b9b714414ca648494b7645812,
+    type: 2}
+  m_PrefabInternal: {fileID: 282392025}
+--- !u!114 &937154652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 937154650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb4a82fe6c5c9504c9d12211365118c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialNumSystems: 6
+  particleSystemPrefab: {fileID: 198363777347208036, guid: abf2f35b13e55af459683f7d02ef436e,
+    type: 2}
+  destroySystemWhenMeshIsNull: 0
 --- !u!1001 &1013801195
 Prefab:
   m_ObjectHideFlags: 0
@@ -2335,6 +2355,11 @@ Prefab:
         type: 2}
       propertyPath: m_Center.y
       value: 1.2426839
+      objectReference: {fileID: 0}
+    - target: {fileID: 114167350112674526, guid: b3000bd02b224e548b552288524b282c,
+        type: 2}
+      propertyPath: startingOpacity
+      value: 0.845
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3000bd02b224e548b552288524b282c, type: 2}

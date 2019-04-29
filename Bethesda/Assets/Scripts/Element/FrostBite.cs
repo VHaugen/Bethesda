@@ -15,12 +15,12 @@ public class FrostBite : MonoBehaviour
     float iceTimer = -1;
     protected int frostIndex = -1;
 
-    MeshRenderer meshRenderer;
+    Renderer meshRenderer;
 
     // Use this for initialization
     private void Awake()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
+        meshRenderer = GetComponentInChildren<MeshRenderer>();
         normalMat = meshRenderer.material;
     }
 

@@ -8,9 +8,9 @@ public class CameraSee : MonoBehaviour
     public Color transColor;
     private Color initColor;
 
-    void start()
+    void Start()
     {   
-        initColor = renderer.material.color;
+        initColor = GetComponent<Renderer>().material.color;
     }
     public void SetTransparent()
     {
