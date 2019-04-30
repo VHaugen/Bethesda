@@ -20,7 +20,7 @@ public class FrostBite : MonoBehaviour
     // Use this for initialization
     private void Awake()
     {
-        meshRenderer = GetComponentInChildren<MeshRenderer>();
+        meshRenderer = GetComponentInChildren<Renderer>();
         normalMat = meshRenderer.material;
     }
 

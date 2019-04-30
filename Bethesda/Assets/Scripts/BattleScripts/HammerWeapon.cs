@@ -30,6 +30,8 @@ public class HammerWeapon : MonoBehaviour
     Vector3 impactOffset;
     PlayerMovement playerMovement;
     Animator playerAnimator;
+	MeshRenderer meshRenderer;
+
     public GameObject rayCastPoint;
     public DamageType damageType = DamageType.Hit;
     public Element currentElement = Element.None;
@@ -49,6 +51,7 @@ public class HammerWeapon : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         overHeadHitBox = transform.Find("AOE").GetComponent<Collider>();
         afterImages = GetComponent<AfterImages>();
+		meshRenderer = GetComponent<MeshRenderer>();
     }
 
     void Update()
@@ -81,8 +84,23 @@ public class HammerWeapon : MonoBehaviour
 
     }
 
+	public void SetMaterial(Material newMaterial)
+	{
+		StartCoroutine(ChangeMaterialCoroutine(newMaterial));
+	}
 
-
+	IEnumerator ChangeMaterialCoroutine(Material newMaterial)
+	{
+		Material oldMaterial = meshRenderer.material;
+		for (int i = 0; i < 10; i++)
+		{
+			meshRenderer.material = newMaterial;
+			yield return new WaitForSeconds(0.075f);
+			meshRenderer.material = oldMaterial;
+			yield return new WaitForSeconds(0.0375f);
+		}
+		meshRenderer.material = newMaterial;
+	}
 
     public void ShowAfterImages()
     {

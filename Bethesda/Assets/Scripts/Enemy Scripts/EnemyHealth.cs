@@ -214,15 +214,14 @@ class EnemyHealth : MonoBehaviour, IAttackable
 
 	IEnumerator Flasher()
 	{
-		var renderer = GetComponent<Renderer>();
-		if (renderer != null)
+		if (meshRenderer != null)
 		{
-			renderer.material.SetColor("_TintColor", collideColor);
+			meshRenderer.material.SetColor("_TintColor", collideColor);
 			while (iFramesTimer > 0)
 			{
-				renderer.material.SetFloat("_TintAmount", 0.8f);
+				meshRenderer.material.SetFloat("_TintAmount", 0.8f);
 				yield return new WaitForSeconds(.06f);
-				renderer.material.SetFloat("_TintAmount", 0.0f);
+				meshRenderer.material.SetFloat("_TintAmount", 0.0f);
 				yield return new WaitForSeconds(.03f);
 			}
 		}
@@ -231,7 +230,6 @@ class EnemyHealth : MonoBehaviour, IAttackable
 	IEnumerator ShakeAndDie()
 	{
 		startedDeathFlashing = true;
-		Renderer renderer = GetComponent<Renderer>();
 		Vector3 basePosition = rbody.position;
 		rbody.isKinematic = true;
 		float radius = 0.2f;

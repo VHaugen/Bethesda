@@ -122,12 +122,14 @@ public class ParticleController : MonoBehaviour
 				{
 					shape.shapeType = ParticleSystemShapeType.MeshRenderer;
 					shape.meshRenderer = (MeshRenderer)attachToMesh;
+					shape.skinnedMeshRenderer = null;
 				}
 				else if (attachToMesh is SkinnedMeshRenderer)
 				{
 					shape.shapeType = ParticleSystemShapeType.SkinnedMeshRenderer;
 					shape.skinnedMeshRenderer = (SkinnedMeshRenderer)attachToMesh;
 					print("Enable a skinnedmeshrenderer particle fx on " + attachToMesh.name + "; " + system.name);
+					shape.meshRenderer = null;
 				}
 				else
 				{

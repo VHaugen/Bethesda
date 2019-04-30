@@ -7,6 +7,8 @@
 		_TintColor ("Tint Color", Color) = (1, 1, 1, 1)
 		_TintAmount ("Tint Amount", Range(0, 1)) = 0.0
 		_Opacity ("Opacity", Range(0, 1)) = 1.0
+		[HDR] _EmissionColor ("Emission (blend color)", Color) = (0,0,0,0)
+		_EmissionTexture("Emission (texture)", 2D) = "white" {}
 	}
 	SubShader {
 		Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent" }
@@ -26,9 +28,11 @@
 		#pragma target 3.0
 
 		sampler2D _MainTex;
+		sampler2D _EmissionTexture;
 
 		struct Input {
 			float2 uv_MainTex;
+			float2 uv_EmissionTexture;
 		};
 
 		half _Glossiness;
@@ -37,6 +41,7 @@
 		fixed4 _TintColor;
 		float _TintAmount;
 		fixed _Opacity;
+		fixed3 _EmissionColor;
 
 		// Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
 		// See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
@@ -54,6 +59,7 @@
 			o.Metallic = _Metallic;
 			o.Smoothness = _Glossiness;
 			o.Alpha = c.a * _Opacity;
+			o.Emission = _EmissionColor * tex2D(_EmissionTexture, IN.uv_EmissionTexture).rgb;
 		}
 
 		void modifyColor(Input IN, SurfaceOutputStandard o, inout fixed4 color)

@@ -38,6 +38,7 @@ public abstract class Enemy : MonoBehaviour, IAttackable
     protected Flammable flammable;
     protected FrostBite freezable;
     protected Electracuted electracuted;
+	protected Renderer meshRenderer;
 
     virtual protected void Awake()
     {
@@ -48,7 +49,8 @@ public abstract class Enemy : MonoBehaviour, IAttackable
         squash = GetComponent<SquashEffect>();
         speed = GetComponent<TestEnemy>().maxSpeed;
         audioSource = GetComponent<AudioSource>();
-    }
+		meshRenderer = GetComponentInChildren<Renderer>();
+	}
 
     virtual protected void Start()
     {
@@ -204,15 +206,14 @@ public abstract class Enemy : MonoBehaviour, IAttackable
 
     IEnumerator Flasher()
     {
-        var renderer = GetComponent<Renderer>();
-        if (renderer != null)
+        if (meshRenderer != null)
         {
-            renderer.material.SetColor("_TintColor", collideColor);
+            meshRenderer.material.SetColor("_TintColor", collideColor);
             while (iFramesTimer > 0)
             {
-                renderer.material.SetFloat("_TintAmount", 0.8f);
+                meshRenderer.material.SetFloat("_TintAmount", 0.8f);
                 yield return new WaitForSeconds(.06f);
-                renderer.material.SetFloat("_TintAmount", 0.0f);
+                meshRenderer.material.SetFloat("_TintAmount", 0.0f);
                 yield return new WaitForSeconds(.03f);
             }
         }
