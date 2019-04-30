@@ -232,7 +232,7 @@ public class PlayerMovement : Movement
 		ParticleEffectsManager.GetEffect("DeathExplosion").Spawn(meshRenderer);
 		Sound.Play(deathSound);
 		gameObject.SetActive(false);
-		Application.LoadLevel(Application.loadedLevel);
+        SceneManager.LoadScene("Game OVer");
 	}
 
 	IEnumerator Flasher()
