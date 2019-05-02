@@ -118,4 +118,17 @@ public class CameraEffects : MonoBehaviour
 		vignetteTargetIntensity = intensity;
 		vignetteEffectState = VignetteEffectState.Increase;
 	}
+
+	public void FreezeFrames(float duration, float delay = 0)
+	{
+		StartCoroutine(FreezeFramesCouroutine(duration, delay));
+	}
+
+	IEnumerator FreezeFramesCouroutine(float duration, float delay)
+	{
+		yield return new WaitForSecondsRealtime(delay);
+		Time.timeScale = 0;
+		yield return new WaitForSecondsRealtime(duration);
+		Time.timeScale = 1;
+	}
 }

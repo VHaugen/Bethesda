@@ -147,6 +147,8 @@ class EnemyHealth : MonoBehaviour, IAttackable
 					TakeDamageEvent.Invoke(args);
 				}
 
+				CameraEffects.Get.FreezeFrames(0.15f, 0.01f);
+
 				switch (args.element)
 				{
 					case Element.None:
