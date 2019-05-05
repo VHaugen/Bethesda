@@ -16,12 +16,10 @@ public class AfterImages : MonoBehaviour
 	[Range(0, 1)]
 	float startingOpacity = 0.5f;
 
-	[SerializeField]
-	Color tintColor = Color.white;
+	public Color tintColor = Color.white;
 
-	[SerializeField]
 	[Range(0, 1)]
-	float tintFactor = 0f;
+	public float tintFactor = 0f;
 
 	AfterImageRenderer[] imageObjects;
 	MeshFilter meshFilter;
@@ -79,7 +77,7 @@ public class AfterImages : MonoBehaviour
 		if (currentIndex != -1)
 		{
 			timer += Time.deltaTime;
-			float timeBetweenImages = duration / numberOfImages;
+			float timeBetweenImages = duration / (float)numberOfImages;
 			if (timer > timeBetweenImages)
 			{
 				currentIndex++;

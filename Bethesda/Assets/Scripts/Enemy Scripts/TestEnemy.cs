@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class TestEnemy : Enemy, IAttackable
+public class TestEnemy : OldEnemyParent, IAttackable
 {
 	enum State
 	{
@@ -80,6 +80,7 @@ public class TestEnemy : Enemy, IAttackable
 		eventsInvoker.stateEndEvent.AddListener(OnAnimationEnd);
 
 		attack = GetComponentInChildren<AttackHitBox>();
+
 	}
 
 	protected override void Start()

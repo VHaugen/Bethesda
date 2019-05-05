@@ -21,7 +21,7 @@ class EnemyHealth : MonoBehaviour, IAttackable
 	[SerializeField] AudioClip poisoned;
 	[SerializeField] AudioClip deathSound;
 	[SerializeField] GameObject canvasPrefab;
-	[SerializeField] GameObject[] powerUps; 
+	[SerializeField] GameObject[] powerUps;
 
 	[SerializeField] float fireDamagePerSecond = 0.5f;
 	[SerializeField] float iceDamagePerSecond = 0.25f;
@@ -63,6 +63,7 @@ class EnemyHealth : MonoBehaviour, IAttackable
 	private void Start()
 	{
 		healthSlider.maxValue = health;
+		MusicController.PlayBattleMusic();
 	}
 
 	// Update is called once per frame

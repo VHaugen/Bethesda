@@ -16,10 +16,6 @@ public class PlayerMovement : Movement
 	public float currentMana;
 	public FrameByFrameSlider healthSlider;
 	public FrameByFrameSlider manaSlider;
-	public Image damageImage;
-	public float flashSpeed = 5f;
-	public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
-	private Color normalColor = new Color(0.9137255f, 0.6511509f, 0.1960784f, 1f);
 	public Color collideColor = new Color(1f, 1f, 1f, 0.1f);
 	public Renderer meshRenderer;
 	public Image dashCooldown;
@@ -98,19 +94,21 @@ public class PlayerMovement : Movement
 		if (movement.sqrMagnitude == 0)
 		{
 			rb.velocity *= 0.1f;
-			anim.SetBool("StandStill", true);
+			anim.SetFloat("Speed", 0.0f);
 		}
 		else
 		{
-			transform.rotation = Quaternion.LookRotation(movement); 
-			anim.SetBool("StandStill", false);
+			transform.rotation = Quaternion.LookRotation(movement);
+			anim.SetFloat("Speed", 1.0f);
 		}
 
 		rb.AddForce(movement, ForceMode.Acceleration);
 
-		if (rb.velocity.sqrMagnitude > maxSpeed * maxSpeed)
+		float currentSpeed = rb.velocity.magnitude;
+
+		if (currentSpeed > maxSpeed)
 		{
-			rb.velocity = rb.velocity.normalized * maxSpeed;
+			rb.velocity = (rb.velocity / currentSpeed) * maxSpeed;
 		}
 		if (coolDownPeriod >= 0)
 		{
@@ -120,12 +118,15 @@ public class PlayerMovement : Movement
 		{
 			coolDownPeriod = 0;
 		}
-		if (Input.GetAxis("RightBumpStick") != 0 && coolDownPeriod == 0 || Input.GetKeyDown(KeyCode.LeftShift) && coolDownPeriod == 0)
+		if ((Input.GetAxis("RightBumpStick") != 0 || Input.GetKeyDown(KeyCode.LeftShift)) && coolDownPeriod == 0)
 		{
 			anim.Play("Run_cycle");
 			isCooldown = true;
 			startDashTimer = true;
 			dashTimer = 0.5f;
+			afterImages.duration = dashTimer * 2; // No idea why *2 is needed here, but it is
+			meshRenderer.material.SetFloat("_TintAmount", afterImages.tintFactor);
+			meshRenderer.material.SetColor("_TintColor", afterImages.tintColor);
 			iFrames = true;
 			coolDownPeriod = timeStamp;
 			afterImages.Show();
@@ -136,6 +137,7 @@ public class PlayerMovement : Movement
 		if (startDashTimer == true && isCooldown == true)
 		{
 			rb.velocity = transform.forward * dashSpeed;
+			anim.SetFloat("Speed", 2.5f);
 			dashCooldown.fillAmount -= 1 / timeStamp * Time.deltaTime;
 			dashTimer -= Time.deltaTime;
 			if (dashTimer <= 0 && dashCooldown.fillAmount <= 0)
@@ -146,6 +148,7 @@ public class PlayerMovement : Movement
 				rb.velocity = new Vector3(0, 0, 0);
 				iFrames = false;
 				dashCooldown.GetComponent<Fadeplosion>().Perform();
+				meshRenderer.material.SetFloat("_TintAmount", 0);
 			}
 		}
 		if (flammable.IsBurning())
