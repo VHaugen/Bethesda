@@ -140,7 +140,9 @@ public abstract class OldEnemyParent : MonoBehaviour, IAttackable
                     ExtraTakeDamage(args);
                 }
 
-                switch (args.element)
+				CameraEffects.Get.FreezeFrames(0.15f, 0.01f);
+
+				switch (args.element)
                 {
                     case Element.None:
                         break;

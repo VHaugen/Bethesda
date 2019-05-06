@@ -30,10 +30,12 @@ public class PlayerMovement : Movement
 	public float speed;
 	public float maxSpeed;
 	public float dashSpeed;
-	private bool startDashTimer;
-	public float dashTimer;
-	public float coolDownPeriod;
-	public float timeStamp = 3;
+	public float dashCooldownDuration = 3;
+	public float dashDuration = 0.5f;
+
+	bool startDashTimer;
+	float dashTimer;
+	float dashCooldownTimer;
 
 	public float vignetteStart = 0.4f;
 	public float vignetteDead = 0.625f;
@@ -79,78 +81,81 @@ public class PlayerMovement : Movement
 	void Update()
 	{
 
-		Vector3 movement;
-
-
-		float rawAxisX, rawAxisY;
-		rawAxisX = Input.GetAxisRaw("Horizontal");
-		//rawAxisX = (float)System.Math.Round(rawAxisX);        
-		rawAxisY = Input.GetAxisRaw("Vertical");
-		//rawAxisY = (float)System.Math.Round(rawAxisY);
-		movement = new Vector3(rawAxisX * speed, 0, rawAxisY * speed);
-
-
-
-		if (movement.sqrMagnitude == 0)
+		if (!startDashTimer)
 		{
-			rb.velocity *= 0.1f;
-			anim.SetFloat("Speed", 0.0f);
+			Vector3 movement;
+
+
+			float rawAxisX, rawAxisY;
+			rawAxisX = Input.GetAxisRaw("Horizontal");
+			//rawAxisX = (float)System.Math.Round(rawAxisX);        
+			rawAxisY = Input.GetAxisRaw("Vertical");
+			//rawAxisY = (float)System.Math.Round(rawAxisY);
+			movement = new Vector3(rawAxisX * speed, 0, rawAxisY * speed);
+
+
+
+			if (movement.sqrMagnitude == 0)
+			{
+				rb.velocity *= 0.1f;
+				anim.SetFloat("Speed", 0.0f);
+			}
+			else
+			{
+				transform.rotation = Quaternion.LookRotation(movement);
+				anim.SetFloat("Speed", 1.0f);
+			}
+
+			rb.AddForce(movement, ForceMode.Acceleration);
+
+			float currentSpeed = rb.velocity.magnitude;
+
+			if (currentSpeed > maxSpeed)
+			{
+				rb.velocity = (rb.velocity / currentSpeed) * maxSpeed;
+			} 
 		}
-		else
-		{
-			transform.rotation = Quaternion.LookRotation(movement);
-			anim.SetFloat("Speed", 1.0f);
-		}
 
-		rb.AddForce(movement, ForceMode.Acceleration);
-
-		float currentSpeed = rb.velocity.magnitude;
-
-		if (currentSpeed > maxSpeed)
+		if (dashCooldownTimer > 0)
 		{
-			rb.velocity = (rb.velocity / currentSpeed) * maxSpeed;
+			dashCooldownTimer -= Time.deltaTime;
+			dashCooldown.fillAmount -= 1 / dashCooldownDuration * Time.deltaTime;
+			if (dashCooldownTimer < 0)
+			{
+				dashCooldownTimer = 0;
+				dashCooldown.fillAmount = 0;
+				dashCooldown.GetComponent<Fadeplosion>().Perform();
+			}
 		}
-		if (coolDownPeriod >= 0)
+		if ((Input.GetAxis("RightBumpStick") != 0 || Input.GetKeyDown(KeyCode.LeftShift)) && dashCooldownTimer == 0)
 		{
-			coolDownPeriod -= Time.deltaTime;
-		}
-		if (coolDownPeriod < 0)
-		{
-			coolDownPeriod = 0;
-		}
-		if ((Input.GetAxis("RightBumpStick") != 0 || Input.GetKeyDown(KeyCode.LeftShift)) && coolDownPeriod == 0)
-		{
-			anim.Play("Run_cycle");
-			isCooldown = true;
 			startDashTimer = true;
-			dashTimer = 0.5f;
-			afterImages.duration = dashTimer * 2; // No idea why *2 is needed here, but it is
+			dashTimer = dashDuration;
+			afterImages.duration = dashDuration - dashDuration / afterImages.numberOfImages;
 			meshRenderer.material.SetFloat("_TintAmount", afterImages.tintFactor);
 			meshRenderer.material.SetColor("_TintColor", afterImages.tintColor);
 			iFrames = true;
-			coolDownPeriod = timeStamp;
+			dashCooldownTimer = dashCooldownDuration;
 			afterImages.Show();
 			CameraEffects.Get.Shake(0.1f, 0.1f);
 			audioSource.PlayOneShot(dashSound);
 			dashCooldown.fillAmount = 1;
 		}
-		if (startDashTimer == true && isCooldown == true)
+		if (startDashTimer == true)
 		{
 			rb.velocity = transform.forward * dashSpeed;
 			anim.SetFloat("Speed", 2.5f);
-			dashCooldown.fillAmount -= 1 / timeStamp * Time.deltaTime;
 			dashTimer -= Time.deltaTime;
-			if (dashTimer <= 0 && dashCooldown.fillAmount <= 0)
+			if (dashTimer <= 0)
 			{
 				startDashTimer = false;
-				dashCooldown.fillAmount = 0;
 				dashTimer = 0;
 				rb.velocity = new Vector3(0, 0, 0);
 				iFrames = false;
-				dashCooldown.GetComponent<Fadeplosion>().Perform();
 				meshRenderer.material.SetFloat("_TintAmount", 0);
 			}
 		}
+
 		if (flammable.IsBurning())
 		{
 			currentHealth -= (fireDamagePerSecond - armorValue) * Time.deltaTime;

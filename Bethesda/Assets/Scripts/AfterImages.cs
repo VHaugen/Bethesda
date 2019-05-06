@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class AfterImages : MonoBehaviour
 {
-	[SerializeField]
-	int numberOfImages = 3;
-
+	public int numberOfImages = 3;
 	public float duration = 1.0f;
 
 	[SerializeField]
