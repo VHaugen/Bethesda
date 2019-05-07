@@ -30,7 +30,7 @@ public class PuzzleHandler : MonoBehaviour
     {
 
         yield return new WaitForSeconds(3.2f);
-        print(Time.time + "destroy");
+
         for (int i = 0; i < Doors.Count; i++)
         {
             Destroy(Doors[i]);
@@ -47,11 +47,7 @@ public class PuzzleHandler : MonoBehaviour
                 yield return new WaitForSeconds(0.1f);
                 Doors[i].transform.Translate(Vector3.up);
             }
-
-            print("iran");
         }
-
-        print(Time.time + "rigid body and colider");
 
     }
 }
