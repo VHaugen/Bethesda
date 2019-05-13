@@ -28,12 +28,11 @@ GameObject:
   - component: {fileID: 95165833674917836}
   - component: {fileID: 114189833405615660}
   - component: {fileID: 82131808054357394}
-  - component: {fileID: 114825556112992526}
   - component: {fileID: 114869466379054504}
   - component: {fileID: 114220054909771238}
   - component: {fileID: 82146349550364124}
   m_Layer: 11
-  m_Name: NewWorm
+  m_Name: NewFireWorm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,7 +98,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: ea91194d45fa33a4bac083e655cedf96, type: 2}
+  - {fileID: 2100000, guid: 7b7213a57df189945a3bb20179854e57, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -414,12 +413,9 @@ MonoBehaviour:
   canvasPrefab: {fileID: 1188155905061226, guid: 71d6d39199c75f846a0918538fb9a2d4,
     type: 2}
   powerUps:
-  - {fileID: 1889300568046642, guid: 80f448ffce6c1ea4191641de215d42a9, type: 2}
   - {fileID: 1954170978069972, guid: 4aebfb6080c26624aa01c5c137430ee0, type: 2}
-  - {fileID: 1615907181456188, guid: cf5c2f36c7a80a742a4c261a6e028efc, type: 2}
-  - {fileID: 1507346809346552, guid: 7fdfda204aeef0841901be811e2c2d98, type: 2}
   fireDamagePerSecond: 0.5
-  iceDamagePerSecond: 0.25
+  iceDamagePerSecond: 0.35
   poisonDamagePerSecond: 0.25
   poisonStatusDuration: 10
   iFramesDuration: 0.5
@@ -472,21 +468,6 @@ MonoBehaviour:
   idleDurationMax: 2
   rotationAdd: {x: 0, y: -90, z: 0}
   attackSound: {fileID: 8300000, guid: 312287b5e1f6fbc4da6bddfd41fece6a, type: 3}
---- !u!114 &114825556112992526
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1168511880583564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc8edbe62d542b04b821c92b1ff3cc56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireSpreadRadius: 1.57
-  duration: 2
-  infinite: 0
-  meshRendererOverride: {fileID: 0}
 --- !u!114 &114869466379054504
 MonoBehaviour:
   m_ObjectHideFlags: 1

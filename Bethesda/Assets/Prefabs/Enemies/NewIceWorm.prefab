@@ -29,11 +29,10 @@ GameObject:
   - component: {fileID: 114189833405615660}
   - component: {fileID: 82131808054357394}
   - component: {fileID: 114825556112992526}
-  - component: {fileID: 114869466379054504}
   - component: {fileID: 114220054909771238}
   - component: {fileID: 82146349550364124}
   m_Layer: 11
-  m_Name: NewWorm
+  m_Name: NewIceWorm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,7 +98,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: ea91194d45fa33a4bac083e655cedf96, type: 2}
+  - {fileID: 2100000, guid: aff8988775aa0c448a3630de7b24f0b2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -414,12 +413,9 @@ MonoBehaviour:
   canvasPrefab: {fileID: 1188155905061226, guid: 71d6d39199c75f846a0918538fb9a2d4,
     type: 2}
   powerUps:
-  - {fileID: 1889300568046642, guid: 80f448ffce6c1ea4191641de215d42a9, type: 2}
-  - {fileID: 1954170978069972, guid: 4aebfb6080c26624aa01c5c137430ee0, type: 2}
   - {fileID: 1615907181456188, guid: cf5c2f36c7a80a742a4c261a6e028efc, type: 2}
-  - {fileID: 1507346809346552, guid: 7fdfda204aeef0841901be811e2c2d98, type: 2}
-  fireDamagePerSecond: 0.5
-  iceDamagePerSecond: 0.25
+  fireDamagePerSecond: 1
+  iceDamagePerSecond: 0.1
   poisonDamagePerSecond: 0.25
   poisonStatusDuration: 10
   iFramesDuration: 0.5
@@ -487,20 +483,6 @@ MonoBehaviour:
   duration: 2
   infinite: 0
   meshRendererOverride: {fileID: 0}
---- !u!114 &114869466379054504
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1168511880583564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa0a575d88f91b542a6188e279f0eed7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: 4a27960c60c3c4f4d9b6d1a2530b7e73, type: 2}
-  duration: 2
-  infinite: 0
 --- !u!135 &135357180007368798
 SphereCollider:
   m_ObjectHideFlags: 1

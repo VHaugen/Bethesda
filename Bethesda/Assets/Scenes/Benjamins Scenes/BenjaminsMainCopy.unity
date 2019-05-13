@@ -751,6 +751,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTrans: {fileID: 1778294595}
+  tempColorReturn: {r: 0, g: 0, b: 0, a: 0}
+  hitObjects: []
 --- !u!1 &1778294587 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1429439469475540, guid: b3000bd02b224e548b552288524b282c,
@@ -872,6 +874,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114525726594914150, guid: 0d45a92b9b714414ca648494b7645812, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 0d45a92b9b714414ca648494b7645812, type: 2}
   m_IsPrefabAsset: 0

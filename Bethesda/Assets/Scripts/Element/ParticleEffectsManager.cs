@@ -11,12 +11,19 @@ public class ParticleEffectsManager : MonoBehaviour
 		effectControllers = new Dictionary<string, ParticleController>(transform.childCount);
 		foreach (ParticleController effect in GetComponentsInChildren<ParticleController>())
 		{
+			print("Effect: " + effect.name);
 			effectControllers.Add(effect.gameObject.name, effect);
 		}
 	}
 
 	public static ParticleController GetEffect(string name)
 	{
-		return effectControllers[name];
+		if (effectControllers.ContainsKey(name))
+			return effectControllers[name];
+		else
+		{
+			print("!!!!!! Couldn't find particle effect " + name);
+			return null;
+		}
 	}
 }

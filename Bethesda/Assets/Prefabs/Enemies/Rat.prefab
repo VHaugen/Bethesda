@@ -1367,10 +1367,14 @@ MonoBehaviour:
   slow: {fileID: 8300000, guid: b2a0cc2ce36eed34d90f51e1781fdcd8, type: 3}
   paralysis: {fileID: 8300000, guid: 3a232b20a10f6004eb4813a73a1d97ba, type: 3}
   poisoned: {fileID: 8300000, guid: 3d2c94c5e6b298d4995704cfaf865ac3, type: 3}
-  deathSound: {fileID: 8300000, guid: 14b0d35539b3cb24f94dcf9c19f6cac4, type: 3}
+  deathSound: {fileID: 8300000, guid: 245524d4aa975a049bbc8701f2afb080, type: 3}
   canvasPrefab: {fileID: 1188155905061226, guid: 71d6d39199c75f846a0918538fb9a2d4,
     type: 2}
-  powerUps: []
+  powerUps:
+  - {fileID: 1889300568046642, guid: 80f448ffce6c1ea4191641de215d42a9, type: 2}
+  - {fileID: 1954170978069972, guid: 4aebfb6080c26624aa01c5c137430ee0, type: 2}
+  - {fileID: 1615907181456188, guid: cf5c2f36c7a80a742a4c261a6e028efc, type: 2}
+  - {fileID: 1507346809346552, guid: 7fdfda204aeef0841901be811e2c2d98, type: 2}
   fireDamagePerSecond: 0.5
   iceDamagePerSecond: 0.25
   poisonDamagePerSecond: 0.5
