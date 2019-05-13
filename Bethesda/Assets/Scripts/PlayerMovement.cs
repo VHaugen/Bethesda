@@ -58,6 +58,7 @@ public class PlayerMovement : Movement
     public ParticleSystem armorPickUp;
 	HammerWeapon weapon;
 	[HideInInspector] public bool inAttack;
+    public AudioClip[] walkingSounds;
 
 
 	// Use this for initialization
@@ -356,6 +357,10 @@ public class PlayerMovement : Movement
         }
     }
 
+    public void PlayWalkSounds()
+    {
+        Sound.Play(walkingSounds[Random.Range(0, walkingSounds.Length)]);
+    }
 
     //private void OnTriggerEnter(Collider other)
     //{
