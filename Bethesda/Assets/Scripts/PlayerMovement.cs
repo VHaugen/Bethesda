@@ -241,7 +241,8 @@ public class PlayerMovement : Movement
 		ParticleEffectsManager.GetEffect("DeathExplosion").Spawn(meshRenderer);
 		Sound.Play(deathSound);
 		gameObject.SetActive(false);
-        SceneManager.LoadScene("Game OVer");
+		GameObject go = new GameObject("PlayerDeath", typeof(PlayerDeath));
+		go.GetComponent<PlayerDeath>().Die();
 	}
 
 	IEnumerator Flasher()

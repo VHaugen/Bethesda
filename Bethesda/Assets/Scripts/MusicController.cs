@@ -19,7 +19,7 @@ public class MusicController : MonoBehaviour
 	public AudioSource battleMusicSource;
 	public AudioSource calmMusicSource;
 
-	static MusicController instance;
+	public static MusicController instance { get; private set; }
 
 	float battleVolume;
 	float calmVolume;
@@ -31,6 +31,12 @@ public class MusicController : MonoBehaviour
 		calmVolume = calmMusicSource.volume;
 		currentSong = Music.Calm;
 		instance = this;
+	}
+
+	static public void DisableMusic()
+	{
+		instance.battleMusicSource.enabled = false;
+		instance.calmMusicSource.enabled = false;
 	}
 
 	static public void PlayBattleMusic()
