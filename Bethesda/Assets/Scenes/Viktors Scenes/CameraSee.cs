@@ -5,9 +5,9 @@ using UnityEngine;
 public class CameraSee : MonoBehaviour
 {
     public Transform playerTrans;
-    private Color tempColorReturn;
+    public Color tempColorReturn;
     private Color tempColor;
-    private List<GameObject> hitObjects;
+    public List<GameObject> hitObjects; // public for debug
 
 
     private void Start()
@@ -21,7 +21,7 @@ public class CameraSee : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(0.2f);
             Vector3 dir = (playerTrans.position - Camera.main.transform.position).normalized;
             RaycastHit raycCastHit;
 
@@ -29,19 +29,30 @@ public class CameraSee : MonoBehaviour
             {
                 if (raycCastHit.collider.gameObject.tag == "Wall")
                 {
+
+                    raycCastHit.collider.gameObject.tag = "Hit";
                     hitObjects.Add(raycCastHit.collider.gameObject);
                     tempColorReturn = raycCastHit.collider.gameObject.GetComponent<Renderer>().material.color;
                     tempColor = raycCastHit.collider.gameObject.GetComponent<Renderer>().material.color;
                     tempColor.a = 0.2f;
                     raycCastHit.collider.gameObject.GetComponent<Renderer>().material.color = tempColor;
+
+
                 }
-                if (raycCastHit.collider.gameObject.tag != "Wall" && hitObjects.Count > 0)
+                if (raycCastHit.collider.gameObject.tag == "Hit")
+                {
+                    //break;
+                }
+                if (raycCastHit.collider.gameObject.tag != "Wall" && raycCastHit.collider.gameObject.tag != "Hit" && hitObjects.Count > 0)
                 {
                     for (int i = 0; i < hitObjects.Count; i++)
                     {
                         hitObjects[i].GetComponent<Renderer>().material.color = tempColorReturn;
+                        hitObjects[i].gameObject.tag = "Wall";
                     }
+                    print(tempColorReturn);
                     hitObjects.Clear();
+                    print("HELOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
 
                 }
                 else
