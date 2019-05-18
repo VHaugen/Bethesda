@@ -74,7 +74,7 @@ public class HammerWeapon : MonoBehaviour
             }
         }
 
-        if ((Input.GetKeyDown(KeyCode.Q)) && playerMovement.currentMana >= swingCost)
+        if ((Input.GetKeyDown(KeyCode.Q) || Input.GetButtonDown("Y Button")) && !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Swing Attack")  && playerMovement.currentMana >= swingCost)
         {
             print("SWINGAROOO");
             playerAnimator.SetTrigger("AttackTransitionSwing");

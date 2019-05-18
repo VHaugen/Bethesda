@@ -52,6 +52,7 @@ public class PlayerMovement : Movement
 	public AudioClip swingSound;
 	public AudioClip swingSoundHit;
 	public AudioClip deathSound;
+	public AudioClip deathSound2;
 	Flammable flammable;
 	Animator anim;
     SkinnedMeshRenderer meshRen;
@@ -240,6 +241,7 @@ public class PlayerMovement : Movement
 	{
 		ParticleEffectsManager.GetEffect("DeathExplosion").Spawn(meshRenderer);
 		Sound.Play(deathSound);
+		Sound.Play(deathSound2);
 		gameObject.SetActive(false);
 		GameObject go = new GameObject("PlayerDeath", typeof(PlayerDeath));
 		go.GetComponent<PlayerDeath>().Die();
@@ -360,13 +362,13 @@ public class PlayerMovement : Movement
 
     public void PlayWalkSounds()
     {
-        Sound.Play(walkingSounds[Random.Range(0, walkingSounds.Length)]);
+        Sound.Play(walkingSounds[Random.Range(0, walkingSounds.Length)], 0.5f);
     }
 
     //private void OnTriggerEnter(Collider other)
     //{
     //    if (other.gameObject.CompareTag("enemy") && iFrames == false)
-    //    {
+    //    {puzzl
     //        print("dead");
     //    }
     //}

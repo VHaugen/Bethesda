@@ -4,50 +4,64 @@ using UnityEngine;
 
 public class PuzzleHandler : MonoBehaviour
 {
-    public List<GameObject> Doors;
+	public List<GameObject> Doors;
+	public AudioClip openSound;
 
-    // Use this for initialization
-    void Start()
-    {
-        Doors = new List<GameObject>();
-    }
+	// Use this for initialization
+	void Start()
+	{
+		Doors = new List<GameObject>();
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
+	public void PuzzelIsCleared()
+	{
 
-    }
-    public void PuzzelIsCleared()
-    {
-
-        StartCoroutine(WaitIguess2());
-        StartCoroutine(WaitIguess());
+		StartCoroutine(WaitIguess2());
 
 
+	}
+	IEnumerator WaitIguess()
+	{
 
-    }
-    IEnumerator WaitIguess()
-    {
+		yield return new WaitForSeconds(3.2f);
 
-        yield return new WaitForSeconds(3.2f);
+		for (int i = 0; i < Doors.Count; i++)
+		{
+			Destroy(Doors[i]);
+		}
 
-        for (int i = 0; i < Doors.Count; i++)
-        {
-            Destroy(Doors[i]);
-        }
+	}
+	IEnumerator WaitIguess2()
+	{
+		yield return new WaitForSeconds(0.7f);
 
-    }
-    IEnumerator WaitIguess2()
-    {
-        for (int i = 0; i < Doors.Count; i++)
-        {
-            Destroy(Doors[i].GetComponent<BoxCollider>());
-            for (int p = 0; p < 20; p++)
-            {
-                yield return new WaitForSeconds(0.1f);
-                Doors[i].transform.Translate(Vector3.up);
-            }
-        }
+		Sound.Play(openSound);
 
-    }
+		for (int i = 0; i < Doors.Count; i++)
+		{
+			if (Doors[i] != null)
+				Destroy(Doors[i].GetComponentInChildren<BoxCollider>());
+		}
+
+		float distanceTravelled = 0;
+		while (distanceTravelled < 20)
+		{
+			for (int i = 0; i < Doors.Count; i++)
+			{
+				if (Doors[i] != null)
+				{
+					float deltaMove = Time.deltaTime * 10;
+					Doors[i].transform.Translate(Vector3.up * deltaMove);
+					distanceTravelled += deltaMove;
+				}
+			}
+			yield return null;
+		}
+
+		for (int i = 0; i < Doors.Count; i++)
+		{
+			Destroy(Doors[i]);
+		}
+
+	}
 }

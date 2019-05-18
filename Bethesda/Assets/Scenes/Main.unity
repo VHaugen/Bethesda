@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657552, g: 0.49641162, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -253,29 +253,9 @@ Prefab:
       propertyPath: dashCooldown
       value: 
       objectReference: {fileID: 1473013671}
-    - target: {fileID: 114889301802305810, guid: b3000bd02b224e548b552288524b282c,
-        type: 2}
-      propertyPath: postProcessingObject
-      value: 
-      objectReference: {fileID: 221995922}
-    - target: {fileID: 23787952779263844, guid: b3000bd02b224e548b552288524b282c,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3a04b02cda5a04741b6d7e8b7852c77a, type: 2}
-    - target: {fileID: 23155434556318078, guid: b3000bd02b224e548b552288524b282c,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 2f8b2fcfd79d9ab43b939de4f7fe8867, type: 2}
     - target: {fileID: 1429439469475540, guid: b3000bd02b224e548b552288524b282c, type: 2}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 54463202554535960, guid: b3000bd02b224e548b552288524b282c,
-        type: 2}
-      propertyPath: m_UseGravity
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3000bd02b224e548b552288524b282c, type: 2}
@@ -429,6 +409,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 4463026631159712, guid: 86b8902e463a7e54baee42552968683f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1687522264665482, guid: 86b8902e463a7e54baee42552968683f, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86b8902e463a7e54baee42552968683f, type: 2}
   m_IsPrefabAsset: 0
@@ -516,6 +504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Doors: []
+  openSound: {fileID: 8300000, guid: 0521bdd67c4ac594b9c6fd9e04ec3c45, type: 3}
 --- !u!114 &1586569940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -732,17 +721,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1429439469475540, guid: b3000bd02b224e548b552288524b282c,
     type: 2}
   m_PrefabInternal: {fileID: 1080307596}
---- !u!114 &1778294588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1778294587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49fc5e7689d8c114e82a4093eefe4d4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1778294595 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4434244054422164, guid: b3000bd02b224e548b552288524b282c,
@@ -773,8 +751,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 0.09433961, g: 0.09147426, b: 0.08365966, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 0.1745283, g: 0.5399836, b: 0.6981132, a: 1}
+  m_Intensity: 1.37
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -807,13 +785,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1844962632}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.02996281, y: 0.90402716, z: -0.4215546, w: 0.06425608}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 50.000004, y: 171.869, z: 0}
 --- !u!114 &1860801123 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114424057558268884, guid: db2c3f0b4dae91049b5cd7d44cc7eeff,
@@ -858,6 +836,10 @@ Prefab:
     - target: {fileID: 4149879334384140, guid: eb86b3cba553d0249af441b68d9a6314, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1470996688641470, guid: eb86b3cba553d0249af441b68d9a6314, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb86b3cba553d0249af441b68d9a6314, type: 2}

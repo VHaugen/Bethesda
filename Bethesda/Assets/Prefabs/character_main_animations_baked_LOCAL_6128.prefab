@@ -1002,7 +1002,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1429439469475540}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.3322067, y: 0.15, z: 5.3646116}
+  m_LocalPosition: {x: 2.362732, y: 1.87, z: -4.696987}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4832696035839570}
@@ -2132,6 +2132,7 @@ MonoBehaviour:
   swingSound: {fileID: 8300000, guid: 9b806b5c13c3e2e49a89cd8807066524, type: 3}
   swingSoundHit: {fileID: 8300000, guid: d0e2cac3076126544861cb8570e9e3ee, type: 3}
   deathSound: {fileID: 8300000, guid: 245524d4aa975a049bbc8701f2afb080, type: 3}
+  deathSound2: {fileID: 8300000, guid: 001ba3ca27505cf48a19da71d173915d, type: 3}
   armorPickUp: {fileID: 198630033440771502}
   inAttack: 0
   walkingSounds:

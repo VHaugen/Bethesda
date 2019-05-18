@@ -26,10 +26,10 @@ public class PuzzelButtonHandler : MonoBehaviour
         triggers--;
         if (triggers == 0)
         {
-            Instantiate(RandPoweupp(), transform);
-            PuzzelHandler.PuzzelIsCleared();
-            
-        }
+            Instantiate(RandPoweupp()).transform.position = transform.position + Vector3.up * 2;
+			PuzzelHandler.PuzzelIsCleared();
+
+		}
 
     }
     public GameObject RandPoweupp()

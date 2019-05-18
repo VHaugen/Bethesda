@@ -7,26 +7,26 @@ public class OneEnemy : MonoBehaviour
 	public GameObject enemyPrefab;
 
 	// Use this for initialization
-	void Start()
+	void Awake()
 	{
-		Instantiate(enemyPrefab);
+		Instantiate(enemyPrefab, transform.position, transform.rotation);
 	}
 
 	private void OnDrawGizmos()
 	{
 		if (enemyPrefab)
 		{
-			MeshFilter meshFilter = enemyPrefab.GetComponent<MeshFilter>();
+			MeshFilter meshFilter = enemyPrefab.GetComponentInChildren<MeshFilter>();
 			if (meshFilter)
 			{
-				Gizmos.DrawWireMesh(meshFilter.sharedMesh, transform.position + enemyPrefab.transform.position, transform.rotation * enemyPrefab.transform.rotation, Vector3.Scale(transform.lossyScale, enemyPrefab.transform.lossyScale));
+				Gizmos.DrawWireMesh(meshFilter.sharedMesh, transform.position, transform.rotation * enemyPrefab.transform.rotation, Vector3.Scale(transform.lossyScale, enemyPrefab.transform.lossyScale));
 			}
 			else
 			{
-				SkinnedMeshRenderer meshRenderer = enemyPrefab.GetComponent<SkinnedMeshRenderer>();
+				SkinnedMeshRenderer meshRenderer = enemyPrefab.GetComponentInChildren<SkinnedMeshRenderer>();
 				if (meshRenderer)
 				{
-					Gizmos.DrawWireMesh(meshRenderer.sharedMesh, transform.position + enemyPrefab.transform.position, transform.rotation * enemyPrefab.transform.rotation, Vector3.Scale(transform.lossyScale, enemyPrefab.transform.lossyScale));
+					Gizmos.DrawWireMesh(meshRenderer.sharedMesh, transform.position, transform.rotation * enemyPrefab.transform.rotation, Vector3.Scale(transform.lossyScale, enemyPrefab.transform.lossyScale));
 				}
 			}
 		}

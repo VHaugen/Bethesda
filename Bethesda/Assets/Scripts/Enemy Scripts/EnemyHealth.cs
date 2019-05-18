@@ -6,6 +6,9 @@ using UnityEngine.UI;
 [RequireComponent(typeof(SquashEffect), typeof(Rigidbody), typeof(AudioSource))]
 class EnemyHealth : MonoBehaviour, IAttackable
 {
+	static public int numEnemies { get; private set; }
+	static float lastDeathSoundTime = 0;
+
 	public delegate void TakeDamageEventHandler(DamageParams args);
 	public event TakeDamageEventHandler TakeDamageEvent;
 	public delegate void DieEventHandler();
@@ -37,6 +40,9 @@ class EnemyHealth : MonoBehaviour, IAttackable
 	int poisonEffectIndex = -1;
 	bool startedDeathFlashing = false;
 
+	bool created = false;
+	bool destroyed = false;
+
 	SquashEffect squash;
 	Flammable flammable;
 	FrostBite freezable;
@@ -45,6 +51,7 @@ class EnemyHealth : MonoBehaviour, IAttackable
 	Rigidbody rbody;
 	Slider healthSlider;
 	Renderer meshRenderer;
+	PuzzleHandler puzzleHandler;
 
 	// Use this for initialization
 	void Awake()
@@ -58,12 +65,47 @@ class EnemyHealth : MonoBehaviour, IAttackable
 		healthSlider = Instantiate(canvasPrefab, transform, false).GetComponentInChildren<Slider>();
 		rbody = GetComponent<Rigidbody>();
 		meshRenderer = GetComponentInChildren<Renderer>();
+		puzzleHandler = GameObject.Find("World").GetComponent<PuzzleHandler>();
+
+		AddMe();
+	}
+
+	void OnDestroy()
+	{
+		RemoveMe();
 	}
 
 	private void Start()
 	{
 		healthSlider.maxValue = health;
 		MusicController.PlayBattleMusic();
+	}
+
+	public void AddMe()
+	{
+		if (!created)
+		{
+			numEnemies++;
+			print("Add enemy " + gameObject.name + "=" + numEnemies);
+			created = true;
+		}
+	}
+
+	public void RemoveMe()
+	{
+		if (!destroyed)
+		{
+			numEnemies--;
+			print("Remove enemy " + gameObject.name + "=" + numEnemies);
+			destroyed = true;
+			if (numEnemies <= 0)
+			{
+				MusicController.PlayCalmMusic();
+				numEnemies = 0;
+				if (puzzleHandler)
+					puzzleHandler.PuzzelIsCleared();
+			}
+		}
 	}
 
 	// Update is called once per frame
@@ -202,7 +244,7 @@ class EnemyHealth : MonoBehaviour, IAttackable
 					Die();
 					if (Random.Range(1, 5) == 1)
 					{
-						Instantiate(powerUps[Random.Range(0, powerUps.Length - 1)], transform.position, Quaternion.identity);
+						Instantiate(powerUps[Random.Range(0, powerUps.Length - 1)], transform.position + Vector3.up * 1, Quaternion.identity);
 					}
 				}
 			}
@@ -250,7 +292,11 @@ class EnemyHealth : MonoBehaviour, IAttackable
 		}
 		transform.localScale = Vector3.one;
 		ParticleEffectsManager.GetEffect("DeathExplosion").Spawn(meshRenderer);
-		Sound.Play(deathSound);
+		if (Time.time - lastDeathSoundTime > 0.25f)
+		{
+			lastDeathSoundTime = Time.time;
+			Sound.Play(deathSound, 0.5f); 
+		}
 		Destroy(gameObject);
 	}
 }

@@ -954,7 +954,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1312619713406724}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 280.54318, y: 12.542623, z: -81.92343}
   m_LocalScale: {x: 1.7491, y: 1.7491, z: 1.7491}
   m_Children:
   - {fileID: 4184003612858594}
@@ -1972,7 +1972,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0.54901963, g: 0.41960785, b: 0.41960785, a: 1}
-  m_Intensity: 1.1
+  m_Intensity: 7.4
   m_Range: 42.23
   m_SpotAngle: 68
   m_CookieSize: 10
@@ -2009,7 +2009,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0.54901963, g: 0.41960785, b: 0.41960785, a: 1}
-  m_Intensity: 1.1
+  m_Intensity: 7.4
   m_Range: 42.23
   m_SpotAngle: 68
   m_CookieSize: 10
@@ -2083,7 +2083,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0.54901963, g: 0.41960785, b: 0.41960785, a: 1}
-  m_Intensity: 1.1
+  m_Intensity: 7.4
   m_Range: 42.23
   m_SpotAngle: 68
   m_CookieSize: 10
@@ -2120,7 +2120,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0.54901963, g: 0.41960785, b: 0.41960785, a: 1}
-  m_Intensity: 1.1
+  m_Intensity: 7.4
   m_Range: 42.23
   m_SpotAngle: 68
   m_CookieSize: 10
@@ -2157,7 +2157,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0.54901963, g: 0.41960785, b: 0.41960785, a: 1}
-  m_Intensity: 1.1
+  m_Intensity: 7.4
   m_Range: 42.23
   m_SpotAngle: 68
   m_CookieSize: 10
@@ -2232,7 +2232,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Fights:
-  - {fileID: 1968543289848300, guid: 2959d68436e8f66468a31020e953ee56, type: 2}
+  - {fileID: 1950898765791362, guid: a668935026bc7d74ab77cb65c75dd5ac, type: 2}
+  - {fileID: 1585080562246144, guid: 5913b3f090a5b824ca1c5e32ae725981, type: 2}
+  - {fileID: 1554334560966944, guid: ea81be886c2747f49adf9e41c6fbd94c, type: 2}
+  - {fileID: 1952925121887754, guid: a581c36bf04734141842c2f360ab1bd1, type: 2}
   puzzls:
   - {fileID: 1128735571917748, guid: 8b62113077c8bc847be15ed174820797, type: 2}
   layout:

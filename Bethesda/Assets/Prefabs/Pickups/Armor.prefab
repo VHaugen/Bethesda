@@ -38,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1224050764098760}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalPosition: {x: 269.86066, y: 73.13024, z: -14.7878895}
+  m_LocalScale: {x: 2.1066298, y: 2.1066298, z: 2.1066298}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -59,7 +59,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 2cc1b498bec09434c9bc631475e4e2fe, type: 2}
+  - {fileID: 2100000, guid: 9ee621a0087590d40b68c2db4334ff54, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,7 +85,7 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1224050764098760}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &114009784849275934
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   period: 2
   height: 0.5
+  rotatePeriod: 1
   basePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114161850053217426
 MonoBehaviour:

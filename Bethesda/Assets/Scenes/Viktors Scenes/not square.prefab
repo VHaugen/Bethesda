@@ -4418,7 +4418,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Fights:
-  - {fileID: 1968543289848300, guid: 2959d68436e8f66468a31020e953ee56, type: 2}
+  - {fileID: 1950898765791362, guid: a668935026bc7d74ab77cb65c75dd5ac, type: 2}
+  - {fileID: 1585080562246144, guid: 5913b3f090a5b824ca1c5e32ae725981, type: 2}
+  - {fileID: 1554334560966944, guid: ea81be886c2747f49adf9e41c6fbd94c, type: 2}
+  - {fileID: 1952925121887754, guid: a581c36bf04734141842c2f360ab1bd1, type: 2}
   puzzls:
   - {fileID: 1128735571917748, guid: 8b62113077c8bc847be15ed174820797, type: 2}
+  layout: []
   door: {fileID: 1687522264665482, guid: 86b8902e463a7e54baee42552968683f, type: 2}
+  tempDoors: []
+  isFirstRoom: 0
+  uppThing: {fileID: 0}

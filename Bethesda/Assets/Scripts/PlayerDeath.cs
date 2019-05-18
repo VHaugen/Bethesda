@@ -11,7 +11,7 @@ public class PlayerDeath : MonoBehaviour
 	public void Die()
 	{
 		inProcessOfDying = true;
-		timer = 3.0f;
+		timer = 4.5f;
 		MusicController.DisableMusic();
 	}
 

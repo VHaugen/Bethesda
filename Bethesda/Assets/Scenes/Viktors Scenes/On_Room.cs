@@ -36,11 +36,12 @@ public class On_Room : MonoBehaviour
             if (Fights.Length > 0)
             {
                 Instantiate(RandFight(), new Vector3(transform.root.position.x, transform.root.position.y, transform.root.position.z), Quaternion.identity);
-            }
+			}
             if (puzzls.Length > 0)
             {
-                Instantiate(RandPuzzel(), new Vector3(transform.root.position.x, transform.root.position.y, transform.root.position.z), Quaternion.identity);
-            }
+				if (EnemyHealth.numEnemies == 0) // "Puzzle" only in first room/rooms with no enemies
+					Instantiate(RandPuzzel(), new Vector3(transform.root.position.x, transform.root.position.y, transform.root.position.z), Quaternion.identity);
+			}
             if (layout.Length > 0)
             {
                 Instantiate(RandLayout(), new Vector3(transform.root.position.x, transform.root.position.y, transform.root.position.z), Quaternion.identity);

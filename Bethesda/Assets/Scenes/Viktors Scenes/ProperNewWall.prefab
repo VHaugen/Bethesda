@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33130155604901246}
   - component: {fileID: 23226515969634190}
   - component: {fileID: 64630231471766906}
-  m_Layer: 2
+  m_Layer: 12
   m_Name: Plane
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 4970132242780026}
   - component: {fileID: 33575163652744044}
   - component: {fileID: 23251197151343106}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4110741896720228}
   - component: {fileID: 212374607104473364}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dungen_texture_skull (1)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4227178902754142}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ProperNewWall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 4573855584635560}
   - component: {fileID: 65784064129921074}
   - component: {fileID: 23019087355903352}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: group
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4513910401990872}
   - component: {fileID: 212813751297692096}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dungen_texture_skull
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 33763028019480710}
   - component: {fileID: 23652285514407438}
   - component: {fileID: 64438758427867756}
-  m_Layer: 2
+  m_Layer: 12
   m_Name: Plane (1)
   m_TagString: Wall
   m_Icon: {fileID: 0}
