@@ -273,6 +273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Doors: []
+  openSound: {fileID: 0}
 --- !u!1001 &301919054
 Prefab:
   m_ObjectHideFlags: 0

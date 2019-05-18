@@ -2241,6 +2241,7 @@ MonoBehaviour:
   layout:
   - {fileID: 1624797239015946, guid: c6b876e90df3d47f1947c466fd50b3be, type: 2}
   - {fileID: 1341970689607568, guid: 115bf746329334beeb0ba35e1e01b81f, type: 2}
+  - {fileID: 1031832796717970, guid: 607503b3decdc364fb4d419333614311, type: 2}
   door: {fileID: 1687522264665482, guid: 86b8902e463a7e54baee42552968683f, type: 2}
   tempDoors: []
   isFirstRoom: 0
