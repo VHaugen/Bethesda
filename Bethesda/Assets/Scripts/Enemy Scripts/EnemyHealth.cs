@@ -244,7 +244,7 @@ class EnemyHealth : MonoBehaviour, IAttackable
 					Die();
 					if (Random.Range(1, 5) == 1)
 					{
-						Instantiate(powerUps[Random.Range(0, powerUps.Length - 1)], transform.position + Vector3.up * 1, Quaternion.identity);
+						Instantiate(powerUps[Random.Range(0, powerUps.Length - 1)]).transform.position = transform.position + Vector3.up * 1;
 					}
 				}
 			}

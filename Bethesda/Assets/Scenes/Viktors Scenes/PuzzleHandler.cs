@@ -44,7 +44,7 @@ public class PuzzleHandler : MonoBehaviour
 		}
 
 		float distanceTravelled = 0;
-		while (distanceTravelled < 20)
+		while (distanceTravelled < 40)
 		{
 			for (int i = 0; i < Doors.Count; i++)
 			{

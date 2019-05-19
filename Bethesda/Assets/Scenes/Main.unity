@@ -257,6 +257,11 @@ Prefab:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 114889301802305810, guid: b3000bd02b224e548b552288524b282c,
+        type: 2}
+      propertyPath: heavyAttackIndicator
+      value: 
+      objectReference: {fileID: 2013757965}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3000bd02b224e548b552288524b282c, type: 2}
   m_IsPrefabAsset: 0
@@ -357,12 +362,12 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114798885808628372, guid: db2c3f0b4dae91049b5cd7d44cc7eeff,
+    - target: {fileID: 114650765349555848, guid: db2c3f0b4dae91049b5cd7d44cc7eeff,
         type: 2}
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114650765349555848, guid: db2c3f0b4dae91049b5cd7d44cc7eeff,
+    - target: {fileID: 114798885808628372, guid: db2c3f0b4dae91049b5cd7d44cc7eeff,
         type: 2}
       propertyPath: m_Color.a
       value: 1
@@ -844,6 +849,12 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb86b3cba553d0249af441b68d9a6314, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &2013757965 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114931399516653610, guid: db2c3f0b4dae91049b5cd7d44cc7eeff,
+    type: 2}
+  m_PrefabInternal: {fileID: 1307747285}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &2124975213
 Prefab:
   m_ObjectHideFlags: 0

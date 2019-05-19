@@ -1278,7 +1278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa0a575d88f91b542a6188e279f0eed7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 0}
+  material: {fileID: 2100000, guid: 4a27960c60c3c4f4d9b6d1a2530b7e73, type: 2}
   duration: 2
   infinite: 0
 --- !u!114 &114071140685625016

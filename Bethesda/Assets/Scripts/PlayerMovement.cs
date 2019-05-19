@@ -19,6 +19,7 @@ public class PlayerMovement : Movement
 	public Color collideColor = new Color(1f, 1f, 1f, 0.1f);
 	public Renderer meshRenderer;
 	public Image dashCooldown;
+	public Image heavyAttackIndicator;
 	bool isCooldown;
 	int numRays = 7;
 	public GameObject rayCastPoint;
@@ -207,16 +208,34 @@ public class PlayerMovement : Movement
 	}
 	public void AddMana(int amount)
 	{
+		float prevMana = currentMana;
 		currentMana = Mathf.Min(currentMana + amount, manaSlider.maxValue);
 		manaSlider.value = currentMana;
-		//print("gained mana" + amount + " -- " + manaSlider.value);
+		if (heavyAttackIndicator)
+		{
+			if (currentMana >= weapon.overHeadCost && prevMana < weapon.overHeadCost)
+			{
+				heavyAttackIndicator.CrossFadeAlpha(1f, 0.3f, true);
+				heavyAttackIndicator.GetComponent<Fadeplosion>().Perform();
+			}
+		}
 	}
 
 	public void UseMana(int amount)
 	{
 		currentMana -= amount;
 		manaSlider.value -= amount;
-		print("lostmana " + amount);
+		if (heavyAttackIndicator)
+		{
+			if (currentMana < weapon.overHeadCost)
+			{
+				heavyAttackIndicator.CrossFadeAlpha(0.5f, 0.3f, true);
+			}
+		}
+		else
+		{
+			Debug.LogError("heavyattackindicator not assigned");
+		}
 	}
 
 	public void TakeDamage(int amount)
