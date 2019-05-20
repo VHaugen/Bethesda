@@ -34,7 +34,7 @@ public class CameraSee : MonoBehaviour
                     hitObjects.Add(raycCastHit.collider.gameObject);
                     tempColorReturn = raycCastHit.collider.gameObject.GetComponent<Renderer>().material.color;
                     tempColor = raycCastHit.collider.gameObject.GetComponent<Renderer>().material.color;
-                    tempColor.a = 0.2f;
+                    tempColor.a = 0.35f;
                     raycCastHit.collider.gameObject.GetComponent<Renderer>().material.color = tempColor;
 
 
